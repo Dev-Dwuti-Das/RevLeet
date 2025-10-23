@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-import questions from './questions';
+import questions from './questions.js';
 const { Schema } = mongoose;
 
-const Account_schema = new Schema({
+const Account_schema = new mongoose.Schema({
     name:{
         type : String,
         required : true,
@@ -26,4 +26,5 @@ const Account_schema = new Schema({
     lastActive: { type: Date, default: Date.now }, 
 })
 
+export default mongoose.model("Account" , Account_schema);
 
