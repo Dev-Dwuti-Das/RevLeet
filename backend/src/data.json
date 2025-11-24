@@ -1,33 +1,4 @@
-import mongoose from 'mongoose';
-const url = process.env.MONGO_KEY;
-
-export async function connectDB() {
-  try {
-    await mongoose.connect(process.env.MONGO_KEY, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("✅ MongoDB connected");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-    process.exit(1);
-  }
-}
-
-export const sample_user_data = [{
-    "name": "devdas",
-    "email": "devdas@example.com",
-    "profile": {
-      "fullName": "Dev D. Das",
-      "avatarUrl": "https://example.com/avatars/devdas.png",
-      "bio": "Founder of Sprucial, passionate about AI and coding humor reels."
-    },
-    "totalSolved": 120,
-    "streak": 12,
-    "lastActive": "2025-10-21T18:45:00.000Z"
-  }]
-
-export const mockQuestions = [
+[
   {
     "questionNumber": 217,
     "title": "Contains Duplicate",
@@ -231,6 +202,16 @@ export const mockQuestions = [
     "status": "Unsolved",
     "createdBy": null
   },
+  {
+    "questionNumber": 572,
+    "title": "Subtree of Another Tree",
+    "slug": "subtree-of-another-tree",
+    "difficulty": "Easy",
+    "topicTags": ["Tree", "DFS"],
+    "link": "https://leetcode.com/problems/subtree-of-another-tree",
+    "status": "Unsolved",
+    "createdBy": null
+  },
 
   {
     "questionNumber": 235,
@@ -321,6 +302,16 @@ export const mockQuestions = [
     "difficulty": "Medium",
     "topicTags": ["Matrix", "DFS", "BFS"],
     "link": "https://leetcode.com/problems/pacific-atlantic-water-flow",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+  {
+    "questionNumber": 695,
+    "title": "Max Area of Island",
+    "slug": "max-area-of-island",
+    "difficulty": "Medium",
+    "topicTags": ["Matrix", "DFS"],
+    "link": "https://leetcode.com/problems/max-area-of-island",
     "status": "Unsolved",
     "createdBy": null
   },
@@ -418,12 +409,43 @@ export const mockQuestions = [
   },
 
   {
+    "questionNumber": 133,
+    "title": "Clone Graph",
+    "slug": "clone-graph",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "DFS"],
+    "link": "https://leetcode.com/problems/clone-graph",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
     "questionNumber": 207,
     "title": "Course Schedule",
     "slug": "course-schedule",
     "difficulty": "Medium",
     "topicTags": ["Graph", "Topological Sort"],
     "link": "https://leetcode.com/problems/course-schedule",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+  {
+    "questionNumber": 417,
+    "title": "Pacific Atlantic Water Flow",
+    "slug": "pacific-atlantic-water-flow",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "DFS"],
+    "link": "https://leetcode.com/problems/pacific-atlantic-water-flow",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+  {
+    "questionNumber": 200,
+    "title": "Number of Islands",
+    "slug": "number-of-islands",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "DFS"],
+    "link": "https://leetcode.com/problems/number-of-islands",
     "status": "Unsolved",
     "createdBy": null
   },
@@ -490,243 +512,5 @@ export const mockQuestions = [
     "link": "https://leetcode.com/problems/reorder-list",
     "status": "Unsolved",
     "createdBy": null
-  },
-
-  {
-    "questionNumber": 572,
-    "title": "Subtree of Another Tree",
-    "slug": "subtree-of-another-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/subtree-of-another-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 110,
-    "title": "Balanced Binary Tree",
-    "slug": "balanced-binary-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/balanced-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 1448,
-    "title": "Count Good Nodes in Binary Tree",
-    "slug": "count-good-nodes-in-binary-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/count-good-nodes-in-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 695,
-    "title": "Max Area of Island",
-    "slug": "max-area-of-island",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS"],
-    "link": "https://leetcode.com/problems/max-area-of-island",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 130,
-    "title": "Surrounded Regions",
-    "slug": "surrounded-regions",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS"],
-    "link": "https://leetcode.com/problems/surrounded-regions",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 329,
-    "title": "Longest Increasing Path in a Matrix",
-    "slug": "longest-increasing-path-in-a-matrix",
-    "difficulty": "Hard",
-    "topicTags": ["Matrix", "DFS", "Memoization"],
-    "link": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 212,
-    "title": "Word Search II",
-    "slug": "word-search-ii",
-    "difficulty": "Hard",
-    "topicTags": ["Trie", "Backtracking", "Matrix"],
-    "link": "https://leetcode.com/problems/word-search-ii",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 20,
-    "title": "Valid Parentheses",
-    "slug": "valid-parentheses",
-    "difficulty": "Easy",
-    "topicTags": ["Stack"],
-    "link": "https://leetcode.com/problems/valid-parentheses",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 155,
-    "title": "Min Stack",
-    "slug": "min-stack",
-    "difficulty": "Medium",
-    "topicTags": ["Stack", "Design"],
-    "link": "https://leetcode.com/problems/min-stack",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 71,
-    "title": "Simplify Path",
-    "slug": "simplify-path",
-    "difficulty": "Medium",
-    "topicTags": ["Stack", "String"],
-    "link": "https://leetcode.com/problems/simplify-path",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 150,
-    "title": "Evaluate Reverse Polish Notation",
-    "slug": "evaluate-reverse-polish-notation",
-    "difficulty": "Medium",
-    "topicTags": ["Stack"],
-    "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 210,
-    "title": "Course Schedule II",
-    "slug": "course-schedule-ii",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "Topological Sort"],
-    "link": "https://leetcode.com/problems/course-schedule-ii",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 684,
-    "title": "Redundant Connection",
-    "slug": "redundant-connection",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "Union Find"],
-    "link": "https://leetcode.com/problems/redundant-connection",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 53,
-    "title": "Maximum Subarray",
-    "slug": "maximum-subarray",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "DP"],
-    "link": "https://leetcode.com/problems/maximum-subarray",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 300,
-    "title": "Longest Increasing Subsequence",
-    "slug": "longest-increasing-subsequence",
-    "difficulty": "Medium",
-    "topicTags": ["DP", "Binary Search"],
-    "link": "https://leetcode.com/problems/longest-increasing-subsequence",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 97,
-    "title": "Interleaving String",
-    "slug": "interleaving-string",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/interleaving-string",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 208,
-    "title": "Implement Trie (Prefix Tree)",
-    "slug": "implement-trie-prefix-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Trie", "Design"],
-    "link": "https://leetcode.com/problems/implement-trie-prefix-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 211,
-    "title": "Design Add and Search Words Data Structure",
-    "slug": "design-add-and-search-words-data-structure",
-    "difficulty": "Medium",
-    "topicTags": ["Trie", "Design"],
-    "link": "https://leetcode.com/problems/design-add-and-search-words-data-structure",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 146,
-    "title": "LRU Cache",
-    "slug": "lru-cache",
-    "difficulty": "Medium",
-    "topicTags": ["Design", "Hash"],
-    "link": "https://leetcode.com/problems/lru-cache",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 704,
-    "title": "Binary Search",
-    "slug": "binary-search",
-    "difficulty": "Easy",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/binary-search",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 33,
-    "title": "Search in Rotated Sorted Array",
-    "slug": "search-in-rotated-sorted-array",
-    "difficulty": "Medium",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/search-in-rotated-sorted-array",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 153,
-    "title": "Find Minimum in Rotated Sorted Array",
-    "slug": "find-minimum-in-rotated-sorted-array",
-    "difficulty": "Medium",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 981,
-    "title": "Time Based Key-Value Store",
-    "slug": "time-based-key-value-store",
-    "difficulty": "Medium",
-    "topicTags": ["Hash Map", "Design"],
-    "link": "https://leetcode.com/problems/time-based-key-value-store",
-    "status": "Unsolved",
-    "createdBy": null
   }
 ]
-
