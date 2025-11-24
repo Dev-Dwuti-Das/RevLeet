@@ -1,15 +1,18 @@
 import Stats from "./stats";
+import Question_list from "./question_list";
 
 function home() {
   return (
     <>
       <div className="flex flex-row">
-        <div className="basis-1/3 bg-sky-600 flex justify-center border-3 rounded-md">01</div>
-        <div className="basis-1/3 bg-sky-700 flex justify-center"><Stats></Stats></div>
-        <div className="basis-1/3 bg-sky-800 flex justify-center">03</div>
+        <div className="flex flex-row basis-2/3 border-2 rounded-xl">
+          <div className="flex basis-1/2 justify-center  p-5"><Stats></Stats></div>
+          <div className="flex basis-1/2 justify-center  p-5"><Stats></Stats></div>
+        </div>
+        <div className="basis-1/3 flex justify-center">
+          <Question_list></Question_list>
+        </div>
       </div>
-      
-      <h1 class="text-3xl font-bold ">Hello world!</h1>
     </>
   );
 }
