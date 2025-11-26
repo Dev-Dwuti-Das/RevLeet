@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
 
-function question_list() {
-    return ( 
-    <>
-    <h1>Question list</h1>
-
-    
-    </> 
-    );
+function Question_list() {
+  return (
+  <div className="h-64 overscroll-contain border rounded-lg p-2">
+    <h1>test</h1>
+    <h1>test</h1><h1>test</h1><h1>test</h1><h1>test</h1>
+    <h1>test</h1>
+    <h1>test</h1>
+    <h1>test</h1><h1>test</h1>
+    <h1>test</h1>
+  </div>
+  )
 }
 
-export default question_list;
+export default Question_list;
