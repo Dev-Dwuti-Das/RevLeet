@@ -10,7 +10,7 @@ function home() {
           <div className="flex basis-1/2 justify-center  p-5"><Stats></Stats></div>
         </div>
         <div className="basis-1/3 flex justify-center">
-          <Question_list></Question_list>
+          <Question_list>cbsacb</Question_list>
         </div>
       </div>
     </>
