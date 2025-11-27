@@ -16,8 +16,12 @@ app.get("/" , (req,res) => {
     return res.json({msg : "done bai"}) 
 } )
 
+<<<<<<< HEAD
 app.use("/api/", router);
 
+=======
+app.use('/api/revleet',userRouter);
+>>>>>>> 6c41057c3657902714bcd651e7e151738fd48d80
 
 
 app.get("/sample_data", async (req, res) => {
@@ -58,12 +62,15 @@ app.get("/sample_data", async (req, res) => {
 });
 
 
+<<<<<<< HEAD
 
 // app.get("/dashboard", (req,res)=>{
 //     return res.json({msg : "dashboard h vai"}) 
 // })
 
 
+=======
+>>>>>>> 6c41057c3657902714bcd651e7e151738fd48d80
 app.listen(port , (req,res)=> {
     console.log("running")
     connectDB();
