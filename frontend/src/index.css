@@ -1,15 +1,21 @@
 @import "tailwindcss";
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0b0b0b;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
 }
 
+::-webkit-scrollbar-track {
+  background: #111;       /* dark track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #424242;       /* pure black */
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #222;       /* lighter on hover */
+}
 a {
   font-weight: 500;
   color: #646cff;
@@ -17,6 +23,7 @@ a {
 }
 a:hover {
   color: #535bf2;
+}
 body{
   background-color: black;
   color: antiquewhite;
