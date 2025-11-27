@@ -10,7 +10,6 @@ import default_questions from "../models/default_questions.js";
 
 dotenv.config();
 
-
 const app = express();
 const port = 3000;
 
@@ -19,6 +18,7 @@ app.get("/" , (req,res) => {
     return res.json({msg : "done bai"}) 
 } )
 
+app.use('/api/revleet',userRouter);
 
 
 app.get("/sample_data", async (req, res) => {
@@ -35,12 +35,6 @@ app.get("/sample_data", async (req, res) => {
     res.json({ msg: err.message });
   }
 });
-
-
-
-app.get("/dashboard", (req,res)=>{
-    return res.json({msg : "dashboard h vai"}) 
-})
 
 
 app.listen(port , (req,res)=> {

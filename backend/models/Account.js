@@ -21,7 +21,10 @@ const Account_schema = new mongoose.Schema({
       avatarUrl: String,
       bio: String,
     },
-    totalSolved: { type: Number, default: 0 },
+    settings: {
+        dailyGoal: Number,
+    },
+    totalrevised: { type: Number, default: 0 },
     streak: { type: Number, default: 0 },
     lastActive: { type: Date, default: Date.now }, 
 })
