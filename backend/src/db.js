@@ -14,534 +14,20 @@ export async function connectDB() {
   }
 }
 
-export const sample_user_data = [{
-    "name": "devdas",
-    "email": "devdas@example.com",
-    "profile": {
-      "fullName": "Dev D. Das",
-      "avatarUrl": "https://example.com/avatars/devdas.png",
-      "bio": "Founder of Sprucial, passionate about AI and coding humor reels."
-    },
-    "totalSolved": 120,
-    "streak": 12,
-    "lastActive": "2025-10-21T18:45:00.000Z"
-  }]
+// export const sample_user_data = [{
+//     "name": "devdas",
+//     "email": "devdas@example.com",
+//     "profile": {
+//       "fullName": "Dev D. Das",
+//       "avatarUrl": "https://example.com/avatars/devdas.png",
+//       "bio": "Founder of Sprucial, passionate about AI and coding humor reels."
+//     },
+//     "totalSolved": 120,
+//     "streak": 12,
+//     "lastActive": "2025-10-21T18:45:00.000Z"
+//   }]
 
-export const mockQuestions = [
-  {
-    "questionNumber": 217,
-    "title": "Contains Duplicate",
-    "slug": "contains-duplicate",
-    "difficulty": "Easy",
-    "topicTags": ["Array", "Hash Table"],
-    "link": "https://leetcode.com/problems/contains-duplicate",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 242,
-    "title": "Valid Anagram",
-    "slug": "valid-anagram",
-    "difficulty": "Easy",
-    "topicTags": ["String", "Hash Table", "Sorting"],
-    "link": "https://leetcode.com/problems/valid-anagram",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 1,
-    "title": "Two Sum",
-    "slug": "two-sum",
-    "difficulty": "Easy",
-    "topicTags": ["Array", "Hash Table"],
-    "link": "https://leetcode.com/problems/two-sum",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 49,
-    "title": "Group Anagrams",
-    "slug": "group-anagrams",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Hash Table", "String"],
-    "link": "https://leetcode.com/problems/group-anagrams",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 347,
-    "title": "Top K Frequent Elements",
-    "slug": "top-k-frequent-elements",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Hash Table", "Heap"],
-    "link": "https://leetcode.com/problems/top-k-frequent-elements",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 238,
-    "title": "Product of Array Except Self",
-    "slug": "product-of-array-except-self",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Prefix Sum"],
-    "link": "https://leetcode.com/problems/product-of-array-except-self",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 36,
-    "title": "Valid Sudoku",
-    "slug": "valid-sudoku",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Hash Table"],
-    "link": "https://leetcode.com/problems/valid-sudoku",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 128,
-    "title": "Longest Consecutive Sequence",
-    "slug": "longest-consecutive-sequence",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Hash Table"],
-    "link": "https://leetcode.com/problems/longest-consecutive-sequence",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 125,
-    "title": "Valid Palindrome",
-    "slug": "valid-palindrome",
-    "difficulty": "Easy",
-    "topicTags": ["String", "Two Pointers"],
-    "link": "https://leetcode.com/problems/valid-palindrome",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 167,
-    "title": "Two Sum II - Input Array Is Sorted",
-    "slug": "two-sum-ii-input-array-is-sorted",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Two Pointers"],
-    "link": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 15,
-    "title": "3Sum",
-    "slug": "3sum",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Two Pointers", "Sorting"],
-    "link": "https://leetcode.com/problems/3sum",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 11,
-    "title": "Container With Most Water",
-    "slug": "container-with-most-water",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "Two Pointers"],
-    "link": "https://leetcode.com/problems/container-with-most-water",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 42,
-    "title": "Trapping Rain Water",
-    "slug": "trapping-rain-water",
-    "difficulty": "Hard",
-    "topicTags": ["Array", "Two Pointers", "DP", "Stack"],
-    "link": "https://leetcode.com/problems/trapping-rain-water",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 121,
-    "title": "Best Time to Buy and Sell Stock",
-    "slug": "best-time-to-buy-and-sell-stock",
-    "difficulty": "Easy",
-    "topicTags": ["Array", "DP"],
-    "link": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 3,
-    "title": "Longest Substring Without Repeating Characters",
-    "slug": "longest-substring-without-repeating-characters",
-    "difficulty": "Medium",
-    "topicTags": ["String", "Sliding Window"],
-    "link": "https://leetcode.com/problems/longest-substring-without-repeating-characters",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 424,
-    "title": "Longest Repeating Character Replacement",
-    "slug": "longest-repeating-character-replacement",
-    "difficulty": "Medium",
-    "topicTags": ["String", "Sliding Window"],
-    "link": "https://leetcode.com/problems/longest-repeating-character-replacement",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 76,
-    "title": "Minimum Window Substring",
-    "slug": "minimum-window-substring",
-    "difficulty": "Hard",
-    "topicTags": ["String", "Sliding Window"],
-    "link": "https://leetcode.com/problems/minimum-window-substring",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 226,
-    "title": "Invert Binary Tree",
-    "slug": "invert-binary-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/invert-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 104,
-    "title": "Maximum Depth of Binary Tree",
-    "slug": "maximum-depth-of-binary-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/maximum-depth-of-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 100,
-    "title": "Same Tree",
-    "slug": "same-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/same-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 235,
-    "title": "Lowest Common Ancestor of BST",
-    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 102,
-    "title": "Binary Tree Level Order Traversal",
-    "slug": "binary-tree-level-order-traversal",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "BFS"],
-    "link": "https://leetcode.com/problems/binary-tree-level-order-traversal",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 98,
-    "title": "Validate Binary Search Tree",
-    "slug": "validate-binary-search-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/validate-binary-search-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 230,
-    "title": "Kth Smallest Element in BST",
-    "slug": "kth-smallest-element-in-a-bst",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/kth-smallest-element-in-a-bst",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 105,
-    "title": "Construct Binary Tree from Preorder and Inorder Traversal",
-    "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 124,
-    "title": "Binary Tree Maximum Path Sum",
-    "slug": "binary-tree-maximum-path-sum",
-    "difficulty": "Hard",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/binary-tree-maximum-path-sum",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 200,
-    "title": "Number of Islands",
-    "slug": "number-of-islands",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS", "BFS"],
-    "link": "https://leetcode.com/problems/number-of-islands",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 133,
-    "title": "Clone Graph",
-    "slug": "clone-graph",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "DFS", "BFS"],
-    "link": "https://leetcode.com/problems/clone-graph",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 417,
-    "title": "Pacific Atlantic Water Flow",
-    "slug": "pacific-atlantic-water-flow",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS", "BFS"],
-    "link": "https://leetcode.com/problems/pacific-atlantic-water-flow",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 62,
-    "title": "Unique Paths",
-    "slug": "unique-paths",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/unique-paths",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 1143,
-    "title": "Longest Common Subsequence",
-    "slug": "longest-common-subsequence",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/longest-common-subsequence",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 322,
-    "title": "Coin Change",
-    "slug": "coin-change",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/coin-change",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 152,
-    "title": "Maximum Product Subarray",
-    "slug": "maximum-product-subarray",
-    "difficulty": "Medium",
-    "topicTags": ["Array", "DP"],
-    "link": "https://leetcode.com/problems/maximum-product-subarray",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 139,
-    "title": "Word Break",
-    "slug": "word-break",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/word-break",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 198,
-    "title": "House Robber",
-    "slug": "house-robber",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/house-robber",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 213,
-    "title": "House Robber II",
-    "slug": "house-robber-ii",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/house-robber-ii",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 91,
-    "title": "Decode Ways",
-    "slug": "decode-ways",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/decode-ways",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 70,
-    "title": "Climbing Stairs",
-    "slug": "climbing-stairs",
-    "difficulty": "Easy",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/climbing-stairs",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 207,
-    "title": "Course Schedule",
-    "slug": "course-schedule",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "Topological Sort"],
-    "link": "https://leetcode.com/problems/course-schedule",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 21,
-    "title": "Merge Two Sorted Lists",
-    "slug": "merge-two-sorted-lists",
-    "difficulty": "Easy",
-    "topicTags": ["Linked List"],
-    "link": "https://leetcode.com/problems/merge-two-sorted-lists",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 206,
-    "title": "Reverse Linked List",
-    "slug": "reverse-linked-list",
-    "difficulty": "Easy",
-    "topicTags": ["Linked List"],
-    "link": "https://leetcode.com/problems/reverse-linked-list",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 141,
-    "title": "Linked List Cycle",
-    "slug": "linked-list-cycle",
-    "difficulty": "Easy",
-    "topicTags": ["Linked List", "Two Pointers"],
-    "link": "https://leetcode.com/problems/linked-list-cycle",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 2,
-    "title": "Add Two Numbers",
-    "slug": "add-two-numbers",
-    "difficulty": "Medium",
-    "topicTags": ["Linked List"],
-    "link": "https://leetcode.com/problems/add-two-numbers",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 19,
-    "title": "Remove Nth Node From End of List",
-    "slug": "remove-nth-node-from-end-of-list",
-    "difficulty": "Medium",
-    "topicTags": ["Linked List", "Two Pointers"],
-    "link": "https://leetcode.com/problems/remove-nth-node-from-end-of-list",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 143,
-    "title": "Reorder List",
-    "slug": "reorder-list",
-    "difficulty": "Medium",
-    "topicTags": ["Linked List"],
-    "link": "https://leetcode.com/problems/reorder-list",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-
-  {
-    "questionNumber": 572,
-    "title": "Subtree of Another Tree",
-    "slug": "subtree-of-another-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/subtree-of-another-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 110,
-    "title": "Balanced Binary Tree",
-    "slug": "balanced-binary-tree",
-    "difficulty": "Easy",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/balanced-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 1448,
-    "title": "Count Good Nodes in Binary Tree",
-    "slug": "count-good-nodes-in-binary-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Tree", "DFS"],
-    "link": "https://leetcode.com/problems/count-good-nodes-in-binary-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 695,
-    "title": "Max Area of Island",
-    "slug": "max-area-of-island",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS"],
-    "link": "https://leetcode.com/problems/max-area-of-island",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 130,
-    "title": "Surrounded Regions",
-    "slug": "surrounded-regions",
-    "difficulty": "Medium",
-    "topicTags": ["Matrix", "DFS"],
-    "link": "https://leetcode.com/problems/surrounded-regions",
-    "status": "Unsolved",
-    "createdBy": null
-  },
+export const mockQuestions =[
   {
     "questionNumber": 329,
     "title": "Longest Increasing Path in a Matrix",
@@ -553,26 +39,71 @@ export const mockQuestions = [
     "createdBy": null
   },
   {
-    "questionNumber": 212,
-    "title": "Word Search II",
-    "slug": "word-search-ii",
+    "questionNumber": 174,
+    "title": "Dungeon Game",
+    "slug": "dungeon-game",
     "difficulty": "Hard",
-    "topicTags": ["Trie", "Backtracking", "Matrix"],
-    "link": "https://leetcode.com/problems/word-search-ii",
+    "topicTags": ["DP"],
+    "link": "https://leetcode.com/problems/dungeon-game",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 20,
-    "title": "Valid Parentheses",
-    "slug": "valid-parentheses",
-    "difficulty": "Easy",
-    "topicTags": ["Stack"],
-    "link": "https://leetcode.com/problems/valid-parentheses",
+    "questionNumber": 698,
+    "title": "Partition to K Equal Sum Subsets",
+    "slug": "partition-to-k-equal-sum-subsets",
+    "difficulty": "Medium",
+    "topicTags": ["Backtracking", "DP"],
+    "link": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets",
     "status": "Unsolved",
     "createdBy": null
   },
+
+  {
+    "questionNumber": 1396,
+    "title": "Design Underground System",
+    "slug": "design-underground-system",
+    "difficulty": "Medium",
+    "topicTags": ["Design", "Hash Map"],
+    "link": "https://leetcode.com/problems/design-underground-system",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 460,
+    "title": "LFU Cache",
+    "slug": "lfu-cache",
+    "difficulty": "Hard",
+    "topicTags": ["Design", "Hash Map", "Linked List"],
+    "link": "https://leetcode.com/problems/lfu-cache",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 1706,
+    "title": "Where Will the Ball Fall",
+    "slug": "where-will-the-ball-fall",
+    "difficulty": "Medium",
+    "topicTags": ["Matrix", "Simulation"],
+    "link": "https://leetcode.com/problems/where-will-the-ball-fall",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 1306,
+    "title": "Jump Game III",
+    "slug": "jump-game-iii",
+    "difficulty": "Medium",
+    "topicTags": ["BFS", "DFS"],
+    "link": "https://leetcode.com/problems/jump-game-iii",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
   {
     "questionNumber": 155,
     "title": "Min Stack",
@@ -583,150 +114,248 @@ export const mockQuestions = [
     "status": "Unsolved",
     "createdBy": null
   },
+
   {
-    "questionNumber": 71,
-    "title": "Simplify Path",
-    "slug": "simplify-path",
+    "questionNumber": 394,
+    "title": "Decode String",
+    "slug": "decode-string",
     "difficulty": "Medium",
     "topicTags": ["Stack", "String"],
-    "link": "https://leetcode.com/problems/simplify-path",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 150,
-    "title": "Evaluate Reverse Polish Notation",
-    "slug": "evaluate-reverse-polish-notation",
-    "difficulty": "Medium",
-    "topicTags": ["Stack"],
-    "link": "https://leetcode.com/problems/evaluate-reverse-polish-notation",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 210,
-    "title": "Course Schedule II",
-    "slug": "course-schedule-ii",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "Topological Sort"],
-    "link": "https://leetcode.com/problems/course-schedule-ii",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 684,
-    "title": "Redundant Connection",
-    "slug": "redundant-connection",
-    "difficulty": "Medium",
-    "topicTags": ["Graph", "Union Find"],
-    "link": "https://leetcode.com/problems/redundant-connection",
+    "link": "https://leetcode.com/problems/decode-string",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 53,
-    "title": "Maximum Subarray",
-    "slug": "maximum-subarray",
+    "questionNumber": 560,
+    "title": "Subarray Sum Equals K",
+    "slug": "subarray-sum-equals-k",
     "difficulty": "Medium",
-    "topicTags": ["Array", "DP"],
-    "link": "https://leetcode.com/problems/maximum-subarray",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 300,
-    "title": "Longest Increasing Subsequence",
-    "slug": "longest-increasing-subsequence",
-    "difficulty": "Medium",
-    "topicTags": ["DP", "Binary Search"],
-    "link": "https://leetcode.com/problems/longest-increasing-subsequence",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 97,
-    "title": "Interleaving String",
-    "slug": "interleaving-string",
-    "difficulty": "Medium",
-    "topicTags": ["DP"],
-    "link": "https://leetcode.com/problems/interleaving-string",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 208,
-    "title": "Implement Trie (Prefix Tree)",
-    "slug": "implement-trie-prefix-tree",
-    "difficulty": "Medium",
-    "topicTags": ["Trie", "Design"],
-    "link": "https://leetcode.com/problems/implement-trie-prefix-tree",
-    "status": "Unsolved",
-    "createdBy": null
-  },
-  {
-    "questionNumber": 211,
-    "title": "Design Add and Search Words Data Structure",
-    "slug": "design-add-and-search-words-data-structure",
-    "difficulty": "Medium",
-    "topicTags": ["Trie", "Design"],
-    "link": "https://leetcode.com/problems/design-add-and-search-words-data-structure",
+    "topicTags": ["Array", "Prefix Sum"],
+    "link": "https://leetcode.com/problems/subarray-sum-equals-k",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 146,
-    "title": "LRU Cache",
-    "slug": "lru-cache",
+    "questionNumber": 525,
+    "title": "Contiguous Array",
+    "slug": "contiguous-array",
     "difficulty": "Medium",
-    "topicTags": ["Design", "Hash"],
-    "link": "https://leetcode.com/problems/lru-cache",
+    "topicTags": ["Hash Map", "Array"],
+    "link": "https://leetcode.com/problems/contiguous-array",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 704,
-    "title": "Binary Search",
-    "slug": "binary-search",
-    "difficulty": "Easy",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/binary-search",
+    "questionNumber": 1209,
+    "title": "Remove All Adjacent Duplicates in String II",
+    "slug": "remove-all-adjacent-duplicates-in-string-ii",
+    "difficulty": "Medium",
+    "topicTags": ["Stack", "String"],
+    "link": "https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string-ii",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 33,
-    "title": "Search in Rotated Sorted Array",
-    "slug": "search-in-rotated-sorted-array",
+    "questionNumber": 402,
+    "title": "Remove K Digits",
+    "slug": "remove-k-digits",
     "difficulty": "Medium",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/search-in-rotated-sorted-array",
+    "topicTags": ["Stack", "Greedy"],
+    "link": "https://leetcode.com/problems/remove-k-digits",
     "status": "Unsolved",
     "createdBy": null
   },
 
   {
-    "questionNumber": 153,
-    "title": "Find Minimum in Rotated Sorted Array",
-    "slug": "find-minimum-in-rotated-sorted-array",
+    "questionNumber": 316,
+    "title": "Remove Duplicate Letters",
+    "slug": "remove-duplicate-letters",
     "difficulty": "Medium",
-    "topicTags": ["Binary Search"],
-    "link": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array",
+    "topicTags": ["Stack", "Greedy", "String"],
+    "link": "https://leetcode.com/problems/remove-duplicate-letters",
     "status": "Unsolved",
     "createdBy": null
   },
+
   {
-    "questionNumber": 981,
-    "title": "Time Based Key-Value Store",
-    "slug": "time-based-key-value-store",
+    "questionNumber": 201,
+    "title": "Bitwise AND of Numbers Range",
+    "slug": "bitwise-and-of-numbers-range",
     "difficulty": "Medium",
-    "topicTags": ["Hash Map", "Design"],
-    "link": "https://leetcode.com/problems/time-based-key-value-store",
+    "topicTags": ["Bit Manipulation"],
+    "link": "https://leetcode.com/problems/bitwise-and-of-numbers-range",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 139,
+    "title": "Word Break",
+    "slug": "word-break",
+    "difficulty": "Medium",
+    "topicTags": ["DP", "String"],
+    "link": "https://leetcode.com/problems/word-break",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 647,
+    "title": "Palindromic Substrings",
+    "slug": "palindromic-substrings",
+    "difficulty": "Medium",
+    "topicTags": ["DP", "String"],
+    "link": "https://leetcode.com/problems/palindromic-substrings",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 227,
+    "title": "Basic Calculator II",
+    "slug": "basic-calculator-ii",
+    "difficulty": "Medium",
+    "topicTags": ["Stack", "Math"],
+    "link": "https://leetcode.com/problems/basic-calculator-ii",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 772,
+    "title": "Basic Calculator III",
+    "slug": "basic-calculator-iii",
+    "difficulty": "Hard",
+    "topicTags": ["Stack", "Math"],
+    "link": "https://leetcode.com/problems/basic-calculator-iii",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 726,
+    "title": "Number of Atoms",
+    "slug": "number-of-atoms",
+    "difficulty": "Hard",
+    "topicTags": ["Stack", "Hash Map"],
+    "link": "https://leetcode.com/problems/number-of-atoms",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 301,
+    "title": "Remove Invalid Parentheses",
+    "slug": "remove-invalid-parentheses",
+    "difficulty": "Hard",
+    "topicTags": ["Backtracking", "BFS"],
+    "link": "https://leetcode.com/problems/remove-invalid-parentheses",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 1091,
+    "title": "Shortest Path in Binary Matrix",
+    "slug": "shortest-path-in-binary-matrix",
+    "difficulty": "Medium",
+    "topicTags": ["BFS", "Matrix"],
+    "link": "https://leetcode.com/problems/shortest-path-in-binary-matrix",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 2076,
+    "title": "Process Restricted Friend Requests",
+    "slug": "process-restricted-friend-requests",
+    "difficulty": "Hard",
+    "topicTags": ["Union Find", "Graph"],
+    "link": "https://leetcode.com/problems/process-restricted-friend-requests",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 130,
+    "title": "Surrounded Regions",
+    "slug": "surrounded-regions",
+    "difficulty": "Medium",
+    "topicTags": ["DFS", "Matrix"],
+    "link": "https://leetcode.com/problems/surrounded-regions",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 785,
+    "title": "Is Graph Bipartite?",
+    "slug": "is-graph-bipartite",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "BFS"],
+    "link": "https://leetcode.com/problems/is-graph-bipartite",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 909,
+    "title": "Snakes and Ladders",
+    "slug": "snakes-and-ladders",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "BFS"],
+    "link": "https://leetcode.com/problems/snakes-and-ladders",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 133,
+    "title": "Clone Graph",
+    "slug": "clone-graph",
+    "difficulty": "Medium",
+    "topicTags": ["Graph", "DFS"],
+    "link": "https://leetcode.com/problems/clone-graph",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 721,
+    "title": "Accounts Merge",
+    "slug": "accounts-merge",
+    "difficulty": "Medium",
+    "topicTags": ["Union Find", "Graph"],
+    "link": "https://leetcode.com/problems/accounts-merge",
+    "status": "Unsolved",
+    "createdBy": null
+  },
+
+  {
+    "questionNumber": 1192,
+    "title": "Critical Connections in a Network",
+    "slug": "critical-connections-in-a-network",
+    "difficulty": "Hard",
+    "topicTags": ["Graph", "Tarjan"],
+    "link": "https://leetcode.com/problems/critical-connections-in-a-network",
     "status": "Unsolved",
     "createdBy": null
   }
 ]
+
+
+
+
+
+
+
+
+
+
+  
+
 

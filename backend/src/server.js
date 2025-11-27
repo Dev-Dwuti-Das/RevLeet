@@ -1,6 +1,6 @@
 import express from "express"
 import dotenv from 'dotenv';
-import {connectDB , sample_user_data, mockQuestions} from "./db.js";
+import {connectDB, mockQuestions} from "./db.js";
 import Accounts from '../models/Account.js';
 import Questions from "../models/questions.js";
 import default_questions from "../models/default_questions.js";
@@ -20,20 +20,42 @@ app.use("/api/", router);
 
 
 
-// app.get("/sample_data", async (req, res) => {
-//   try {
-//     // 2. Insert new mock questions
-//     const result = await default_questions.insertMany(mockQuestions);
-//     console.log("New data inserted");
+app.get("/sample_data", async (req, res) => {
+  try {
+    let inserted = [];
+    let skipped = [];
 
-//     res.json({
-//       msg: "Database refreshed successfully",
-//       data: result
-//     });
-//   } catch (err) {
-//     res.json({ msg: err.message });
-//   }
-// });
+    for (const q of mockQuestions) {
+      const exists = await default_questions.findOne({
+        $or: [
+          { title: q.title },
+          { slug: q.slug },
+          { questionNumber: q.questionNumber }
+        ]
+      });
+
+      if (exists) {
+        skipped.push(q.title);
+        continue; 
+      }
+
+      const newQ = await default_questions.create(q);
+      inserted.push(newQ);
+    }
+
+    res.json({
+      message: "Database updated successfully",
+      insertedCount: inserted.length,
+      skippedCount: skipped.length,
+      inserted,
+      skipped,
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 

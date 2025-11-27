@@ -16,24 +16,39 @@ function Question_list() {
   }, []);
 
   return (
-    <div className="h-140 w-128 overflow-y-auto border rounded-lg p-2">
-      {question.map((q) => (
-        <div className="p-2 border-b" key={q._id}>
-          <div>{q.title}</div>
-          <div
-            className={
-              q.difficulty === "Hard"
-                ? "text-red-500 font-semibold"
-                : q.difficulty === "Medium"
-                ? "text-yellow-500"
-                : "text-green-500"
-            }
-          >
-            {q.difficulty}
-          </div>
-        </div>
-      ))}
+    <div className="h-140 flex-row overflow-y-auto border rounded-lg p-4
+    [scrollbar-width:thin]
+    [scrollbar-color:#555_#111]">
+  {question.map((q) => (
+    <div 
+      key={q._id}
+      className="p-3 border-b transition flex flex-col gap-1"
+    >
+      {/* Question Number + Title */}
+      <div className="flex items-center gap-2">
+        <span className="text-white-600 font-semibold">
+          Q{q.questionNumber}
+        </span>
+        <span className="font-medium text-white-400">
+          {q.title}
+        </span>
+      </div>
+
+      {/* Difficulty */}
+      <span
+        className={
+          q.difficulty === "Hard"
+            ? "text-red-500 font-semibold"
+            : q.difficulty === "Medium"
+            ? "text-yellow-500 font-semibold"
+            : "text-green-500 font-semibold"
+        }
+      >
+        {q.difficulty}
+      </span>
     </div>
+  ))}
+</div>
   );
 }
 
