@@ -33,18 +33,6 @@ const leetCodeQuestionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
-  status: {
-    type: String,
-    enum: ["Unsolved", "Attempted", "Solved", "Reviewed"],
-    default: "Unsolved",
-  },
-
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: false,
-  },
 });
 
 export default mongoose.model("LeetCodeQuestion", leetCodeQuestionSchema);
