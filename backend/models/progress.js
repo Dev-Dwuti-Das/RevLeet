@@ -16,7 +16,6 @@ const ProgressSchema = new Schema({
     required: true,
   },
 
- 
   queue: {
     type: String,
     enum: QUEUES,
@@ -35,7 +34,7 @@ const ProgressSchema = new Schema({
 
 });
 
-// guarantee one per user per question
+
 ProgressSchema.index({ user: 1, question: 1 }, { unique: true });
 
 export default mongoose.model("Progress", ProgressSchema);

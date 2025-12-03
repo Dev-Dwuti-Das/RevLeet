@@ -1,20 +1,27 @@
-import Stats from "./stats";
-import Question_list from "./question_list";
+import Stats from "./Stats";
+import QuestionList from "./Question_List";
 
-function home() {
+function Home() {
   return (
-    <>
-      <div className="flex flex-row">
-        <div className="flex flex-row basis-2/3 border-2 rounded-xl">
-          <div className="flex basis-1/2 justify-center  p-5"><Stats></Stats></div>
-          <div className="flex basis-1/2 justify-center  p-5"><Stats></Stats></div>
+    <div className="flex flex-row gap-4 p-4 min-h-screen text-white">
+
+      <div className="flex flex-col basis-2/3 gap-4">
+        <div className="flex gap-4">
+          <div className="basis-1/2">
+            <Stats />
+          </div>
+          <div className="basis-1/2">
+            <Stats />
+          </div>
         </div>
-        <div className="basis-1/3 flex justify-center">
-          <Question_list>cbsacb</Question_list>
-        </div>
+
       </div>
-    </>
+
+      <div className="basis-1/3">
+        <QuestionList />
+      </div>
+    </div>
   );
 }
 
-export default home;
+export default Home;
