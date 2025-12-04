@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const dailySolvedSchema = new Schema({
-  date: { type: String }, // format: YYYY-MM-DD
+  date: { type: String }, 
   solved: { type: Number, default: 0 },
 });
 
@@ -40,13 +40,10 @@ const AccountSchema = new Schema({
     dailyGoal: Number,
   },
 
-  // Global metrics for the dashboard
   totalSolved: { type: Number, default: 0 },
 
-  // queue distribution (Q1..Q5)
   queueCounts: { type: queueCountSchema, default: () => ({}) },
 
-  // For graphs (problems solved per day)
   dailySolved: { type: [dailySolvedSchema], default: [] },
 
   streak: { type: Number, default: 0 },

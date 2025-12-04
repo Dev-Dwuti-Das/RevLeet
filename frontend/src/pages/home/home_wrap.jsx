@@ -1,4 +1,6 @@
-import Stats from "./Stats";
+import RedQstats from "./redQstats.jsx";
+import YellowQStats from "./yellowQstats.jsx";
+import OrangeQstats from "./orangeQstats.jsx";
 import QuestionList from "./Question_List";
 
 function Home() {
@@ -8,14 +10,18 @@ function Home() {
       <div className="flex flex-col basis-2/3 gap-4">
         <div className="flex gap-4">
           <div className="basis-1/2">
-            <Stats />
+            <RedQstats></RedQstats>
           </div>
           <div className="basis-1/2">
-            <Stats />
+          <OrangeQstats></OrangeQstats>
+          </div>
+          <div className="basis-1/2">
+          <YellowQStats></YellowQStats>
+            
           </div>
         </div>
-
       </div>
+      
 
       <div className="basis-1/3">
         <QuestionList />
