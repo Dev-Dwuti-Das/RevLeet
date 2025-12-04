@@ -2,7 +2,7 @@ import express from "express"
 import dotenv from 'dotenv';
 import {connectDB, mockQuestions} from "./db.js";
 import Accounts from '../models/Account.js';
-import Questions from "../models/questions.js";
+// import Questions from "../models/questions.js";
 import default_questions from "../models/default_questions.js";
 import router from "../routes/route.js";
 dotenv.config();

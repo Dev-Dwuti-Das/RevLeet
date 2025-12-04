@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Home from './pages/home/home_wrap.jsx';
 import Navbar from './components/common/header.jsx';
+import Queues from './pages/queues/queue_wrap.jsx';
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "home",
     element: <Home/>,
+  },
+  {
+    path: "Queues",
+    element: <Queues/>,
   },
   {
     path: "*",

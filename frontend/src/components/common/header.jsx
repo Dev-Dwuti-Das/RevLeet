@@ -21,8 +21,8 @@ export default function Navbar() {
           <a href="#" className="text-sm font-semibold text-white">
             Home 
           </a>
-          <a href="#" className="text-sm font-semibold text-white">
-            Todays pick
+          <a href="http://localhost:5173/Queues" className="text-sm font-semibold text-white">
+            Queues
           </a>
           <a href="#" className="text-sm font-semibold text-white">
             somehitng
