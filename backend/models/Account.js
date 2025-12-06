@@ -32,8 +32,6 @@ const AccountSchema = new Schema({
 
   profile: {
     fullName: String,
-    avatarUrl: String,
-    bio: String,
   },
 
   settings: {

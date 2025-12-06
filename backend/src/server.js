@@ -6,18 +6,23 @@ import Accounts from '../models/Account.js';
 import default_questions from "../models/default_questions.js";
 import router from "../routes/route.js";
 dotenv.config();
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json())
 
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
+
 app.get("/" , (req,res) => {
     return res.json({msg : "done bai"}) 
 } )
 
-
-app.use("/api/", router);
+app.use("/api", router);
 
 
 

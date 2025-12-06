@@ -5,7 +5,6 @@ async function getquestions(req, res) {
     const questions_data = await default_questions.find({});
 
     return res
-    .setHeader("Access-Control-Allow-Origin",'http://localhost:5173')
     .status(200)
     .json(questions_data);
   } catch (err) {
@@ -14,3 +13,4 @@ async function getquestions(req, res) {
 }
 
 export default getquestions;
+
