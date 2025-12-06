@@ -32,6 +32,8 @@ const ProgressSchema = new Schema({
     default: null,
   },
 
+  isDone: { type: Boolean, default: false }
+
 });
 
 

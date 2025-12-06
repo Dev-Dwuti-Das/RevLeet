@@ -31,19 +31,19 @@ function Queues() {
             <div
               key={q.key}
               className="
-                bg-[#1b1b1b] rounded-2xl border border-gray-700/40 
+                bg-[#1b1b1b] rounded-2xl border border-gray-700/50
                 p-4 flex flex-col 
                 shadow-lg shadow-black/30
                 hover:shadow-xl hover:shadow-black/50 
                 transition-all duration-300
               "
             >
-              {/* Title */}
+              
               <h2 className={`text-xl font-semibold mb-3 ${q.color}`}>
                 {q.label}
               </h2>
 
-              {/* Items */}
+              
               <div className="space-y-2">
                 {queueData[q.key].length === 0 && (
                   <div className="text-gray-500 text-sm italic">
