@@ -1,73 +1,27 @@
 import React from "react";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
-export const doughnutData = {
-  labels: ["Red", "Blue", "Yellow"],
-  datasets: [
-    {
-      label: "Traffic",
-      data: [35, 25, 40],
-      backgroundColor: [
-        "rgba(255, 46, 63, 0.91)", // red
-        "rgba(53, 73, 255, 0.86)",  // blue
-        "rgba(246, 181, 50, 1)", // yellow
-      ],
-      borderColor: [
-        "rgba(0, 0, 0, 1)",
-        "rgba(0, 0, 0, 1)",
-        "rgba(0, 0, 0, 1)",
-      ],
-      borderWidth: 2,
-      hoverOffset: 12,
-      spacing: 2,
-    },
-  ],
-};
-
-const options1 = {
-  layout: {
-    padding: { top: 0, right: 0, bottom: 0, left: 0 },
-  },
-  plugins: {
-    legend: {
-      position: "right",
-      labels: {
-        color: "white",
-        font: { size: 14 },
-        boxWidth: 30,
-        boxHeight: 30,
-        padding: 10,
-        usePointStyle: true,
-      },
-    },
-  },
-};
-
-function redQstats() {
+function RedQstats() {
   return (
-    <>
-    <Doughnut
-          data={doughnutData}
-          options={options1}
-        />
-      <div
- className="
-  bg-[#1b1b1b]
-  rounded-2xl
-  border border-gray-300/30
-  p-5 cursor-pointer
-  transition-all duration-300
+    <div
+      className="
+        bg-[#121212]
+        rounded-2xl
+        border border-[#1d1d1d]
+        p-6
+        shadow-[0_0_20px_rgba(255,255,255,0.05)]
+        transition-all duration-300
+        hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
+      "
+    >
+      <h1 className="text-xl font-semibold text-white">Clueless</h1>
 
-  hover:shadow-[0_0_12px_rgba(255,255,255,0.2)]
-">
-        <h1 className="text-3xl font-bold text-red-500/75">Clueless</h1>
-        <h2>3 days </h2>
-      </div>
-    </>
+      <p className="text-4xl font-bold text-red-500 mt-3">3 questions</p>
+
+      <p className="text-gray-400 text-sm mt-2">
+        time remaining
+      </p>
+    </div>
   );
 }
 
-export default redQstats;
+export default RedQstats;

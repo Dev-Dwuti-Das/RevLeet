@@ -18,7 +18,7 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden lg:flex lg:gap-x-12">
-          <a href="#" className="text-sm font-semibold text-white">
+          <a href="http://localhost:5173/home" className="text-sm font-semibold text-white">
             Home 
           </a>
           <a href="http://localhost:5173/Queues" className="text-sm font-semibold text-white">
