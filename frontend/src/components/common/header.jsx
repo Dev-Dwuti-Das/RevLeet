@@ -1,56 +1,96 @@
+import { useState } from "react";
+
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <header className="bg-gray-900">
-      <nav
-        aria-label="Global"
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
-      >
+    <header className="bg-[#000000d]/80 backdrop-blur-md  border-white/10  z-50">
+      <nav className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
         
-        <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5">
-            <img
-              alt="Your Company"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-              className="h-8 w-auto"
-            />
-          </a>
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+          <img
+            src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+            className="h-8 w-auto"
+          />
+          <span className="text-white font-semibold tracking-wide text-xl">
+            Sentinel
+          </span>
         </div>
 
         {/* Desktop Menu */}
-        <div className="hidden lg:flex lg:gap-x-12">
-          <a href="http://localhost:5173/home" className="text-sm font-semibold text-white">
-            Home 
+        <div className="hidden lg:flex items-center gap-10">
+          <a
+            href="/home"
+            className="text-gray-300 hover:text-white transition text-lg font-extrabold"
+          >
+            Home
           </a>
-          <a href="http://localhost:5173/Queues" className="text-sm font-semibold text-white">
+          <a
+            href="/Queues"
+            className="text-gray-300 hover:text-white transition text-xl font-extrabold"
+          >
             Queues
           </a>
-          <a href="#" className="text-sm font-semibold text-white">
-            somehitng
+          <a
+            href="#"
+            className="text-gray-300 hover:text-white transition text-xl font-extrabold"
+          >
+            Something
           </a>
         </div>
 
-        
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="#" className="text-sm font-semibold text-white">
-            Log in →
+        {/* Login Button */}
+        <div className="hidden lg:flex">
+          <a
+            href="#"
+            className="text-gray-300 hover:text-white transition text-sm font-medium"
+          >
+            Login →
           </a>
         </div>
 
-       
-        {/* <div className="lg:hidden">
-          <button className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300">
-            <span className="sr-only">Menu</span>
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 5.25h16.5M3.75 12h16.5M3.75 18.75h16.5"/>
-            </svg>
-          </button>
-        </div> */}
+        {/* Mobile Button */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="lg:hidden text-gray-300 hover:text-white transition"
+        >
+          <svg className="h-7 w-7" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      {open && (
+        <div className="lg:hidden bg-[#111]/95 border-t border-white/10 px-6 pb-6 space-y-4">
+          <a
+            href="/home"
+            className="block text-gray-300 hover:text-white text-base py-2"
+          >
+            Home
+          </a>
+          <a
+            href="/Queues"
+            className="block text-gray-300 hover:text-white text-base py-2"
+          >
+            Queues
+          </a>
+          <a
+            href="#"
+            className="block text-gray-300 hover:text-white text-base py-2"
+          >
+            Something
+          </a>
+
+          <a
+            href="#"
+            className="block text-gray-300 hover:text-white text-base pt-4"
+          >
+            Login →
+          </a>
+        </div>
+      )}
     </header>
   );
 }

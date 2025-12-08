@@ -1,5 +1,4 @@
 import React from "react";
-
 function YellowQstats() {
   return (
     <div
