@@ -11,9 +11,9 @@ export const doughnutData = {
       label: "Traffic",
       data: [35, 25, 40],
       backgroundColor: [
-        "rgb(243, 88, 101)", // red
-        "rgb(73, 90, 251)",  // blue
-        "rgb(255, 199, 88)", // yellow
+        "rgba(255, 46, 63, 0.91)", // red
+        "rgba(53, 73, 255, 0.86)",  // blue
+        "rgba(246, 181, 50, 1)", // yellow
       ],
       borderColor: [
         "rgba(0, 0, 0, 1)",
