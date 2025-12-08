@@ -1,22 +1,25 @@
-import React from "react";
-
-function orangeQstats() {
+function OrangeQstats() {
   return (
-    <>
-      <div
-        className="  bg-[#1b1b1b]
-  rounded-2xl
-  border border-gray-300/30
-  p-5 cursor-pointer
-  transition-all duration-300
+    <div
+      className="
+        bg-[#121212]
+        rounded-2xl
+        border border-[#1d1d1d]
+        p-6
+        shadow-[0_0_20px_rgba(255,255,255,0.05)]
+        transition-all duration-300
+        hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
+      "
+    >
+      <h1 className="text-xl font-semibold text-white">Vague</h1>
 
-  hover:shadow-[0_0_12px_rgba(255,255,255,0.2)]"
-      >
-        <h1 className="text-3xl font-bold text-orange-500/75">Vague</h1>
-        <h2>3 days </h2>
-      </div>
-    </>
+      <p className="text-4xl font-bold text-orange-400 mt-3">3 days</p>
+
+      <p className="text-gray-400 text-sm mt-2">
+        time remaining
+      </p>
+    </div>
   );
 }
 
-export default orangeQstats;
+export default OrangeQstats;
