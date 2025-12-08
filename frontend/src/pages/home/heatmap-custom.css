@@ -1,0 +1,46 @@
+/* Remove default styling */
+.react-calendar-heatmap .color-empty {
+  fill: #2a2a2a !important;
+}
+
+/* Base styling for all squares */
+.react-calendar-heatmap rect {
+  rx: 5px; /* rounded corners */
+  ry: 5px;
+  stroke: #1c1c1c;
+  transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.react-calendar-heatmap rect:hover {
+  stroke: #ffffff50 !important;
+  stroke-width: 2px;
+  transform: scale(1.15);
+}
+
+/* Custom color levels matching your UI */
+.heat-level-0 {
+  fill: #262626 !important;
+}
+
+.heat-level-1 {
+  fill: rgba(239, 68, 68, 0.4) !important; /* red */
+}
+
+.heat-level-2 {
+  fill: rgba(249, 115, 22, 0.55) !important; /* orange */
+}
+
+.heat-level-3 {
+  fill: rgba(250, 204, 21, 0.7) !important; /* yellow */
+}
+
+.heat-level-4 {
+  fill: rgba(250, 204, 21, 1) !important; /* bright yellow */
+}
+
+/* Tooltip (optional if using react-tooltip) */
+[data-tip] {
+  color: white;
+  font-size: 12px;
+}
