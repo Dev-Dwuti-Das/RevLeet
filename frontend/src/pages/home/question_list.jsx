@@ -35,7 +35,7 @@ function Question_list() {
   return (
     <div
       className="
-        h-160 w-auto overflow-y-auto 
+        h-173 w-auto overflow-y-auto 
         bg-[#121212]
         rounded-2xl       
         border border-[#1d1d1d]

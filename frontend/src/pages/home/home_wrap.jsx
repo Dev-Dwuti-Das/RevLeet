@@ -7,32 +7,33 @@ import DoughnutChart from "./doughnut.jsx";
 
 function Home() {
   return (
-    <div className="p-4 min-h-screen text-white">
-
-      
-      <div className="flex flex-col lg:flex-row gap-4 w-full">
-
+    <div className="p-4 min-h-screen text-white w-full">
+      {/* Main layout */}
+      <div className="flex flex-col lg:flex-row gap-6 w-full">
         {/* LEFT SIDE */}
-        <div className="w-full lg:w-2/3">
-
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-col gap-6 w-full lg:w-2/3">
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <RedQstats />
             <OrangeQstats />
             <YellowQStats />
           </div>
-          <div className="mt-5 flex-row">
-            <HeatmapExample></HeatmapExample>
-            <DoughnutChart></DoughnutChart>
+
+          <div className="md:col-span-1 w-full">
+            <DoughnutChart />
           </div>
 
+          <div className="md:col-span-2 w-full">
+            <HeatmapExample />
+          </div>
+
+          
         </div>
 
-       
+        {/* RIGHT SIDE */}
         <div className="w-full lg:w-1/3">
           <QuestionList />
         </div>
-
       </div>
     </div>
   );
