@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import SearchBar from "./Search";
 
 function Question_list() {
   const [question, setquestion] = useState([]);
@@ -45,7 +46,13 @@ function Question_list() {
         transition-all duration-300
       "
     >
-      <h1 className="text-2xl font-semibold text-white mb-4">Question List</h1>
+    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+  <h1 className="text-2xl font-semibold text-white">Question List</h1>
+
+  <div className="w-full md:w-1/2">
+    <SearchBar />
+  </div>
+</div>
 
       {question.map((q) => (
         <div
@@ -56,7 +63,7 @@ function Question_list() {
             bg-[#181818]
             ${
               q.isDone
-                ? "border-green-500/60 shadow-[0_0_15px_rgba(0,255,0,0.10)]"
+                ? "border-green-500/60"
                 : "border-[#2a2a2a] hover:border-gray-500/40"
             }
           `}
