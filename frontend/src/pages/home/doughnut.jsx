@@ -11,14 +11,10 @@ export const doughnutData = {
       data: [35, 25, 40],
       backgroundColor: [
         "rgba(255, 46, 63, 0.91)", // red
-        "rgba(53, 73, 255, 0.86)",  // blue
+        "rgba(53, 73, 255, 0.86)", // blue
         "rgba(246, 181, 50, 1)", // yellow
       ],
-      borderColor: [
-        "rgba(0, 0, 0, 1)",
-        "rgba(0, 0, 0, 1)",
-        "rgba(0, 0, 0, 1)",
-      ],
+      borderColor: ["#121212", "#121212", "#121212"],
       borderWidth: 2,
       hoverOffset: 12,
       spacing: 2,
@@ -32,13 +28,13 @@ const options1 = {
   },
   plugins: {
     legend: {
-      position: "right",
+      position: "bottom",
       labels: {
         color: "white",
         font: { size: 14 },
         boxWidth: 30,
         boxHeight: 30,
-        padding: 10,
+        padding: 15,
         usePointStyle: true,
       },
     },
@@ -47,9 +43,19 @@ const options1 = {
 
 export default function DoughnutChart() {
   return (
-    <Doughnut
-      data={doughnutData}
-      options={options1}
-    />
+    <div
+      className="
+        h-[250px]
+        bg-[#121212]
+        rounded-2xl
+        border border-[#1d1d1d]
+        p-2
+        shadow-[0_0_20px_rgba(255,255,255,0.05)]
+        transition-all duration-300
+        hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
+      "
+    >
+      <Doughnut data={doughnutData} options={options1}></Doughnut>
+    </div>
   );
 }

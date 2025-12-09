@@ -13,7 +13,7 @@ function OrangeQstats() {
     >
       <h1 className="text-xl font-semibold text-white">Vague</h1>
 
-      <p className="text-4xl font-bold text-orange-400 mt-3">3 days</p>
+      <p className="text-4xl font-bold text-orange-400 mt-3">3 questions</p>
 
       <p className="text-gray-400 text-sm mt-2">
         time remaining
