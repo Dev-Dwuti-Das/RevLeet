@@ -1,5 +1,12 @@
+import { useState } from "react";
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
+  const [value, setValue] = useState("");
+
+  function triggerSearch() {
+    if (onSearch) onSearch(value);
+  }
+
   return (
     <div className="w-full">
       <div
@@ -8,17 +15,20 @@ export default function SearchBar() {
           bg-[#1b1b1b] 
           border border-gray-700/40 
           rounded-4xl 
-          ps-5 py-1 pe-1 
+          ps-5 py-1 pe-1
           transition-all duration-300
           hover:border-white/30
+          focus-within:border-white/40
         "
       >
-          
 
         {/* Input */}
         <input
           type="text"
           placeholder="Search…"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && triggerSearch()}
           className="
             w-full 
             bg-transparent 
@@ -26,12 +36,12 @@ export default function SearchBar() {
             text-white 
             placeholder-gray-500 
             text-base
-            
           "
         />
 
         {/* ENTER Button */}
         <button
+          onClick={triggerSearch}
           className="
             bg-[#262626]
             border border-gray-700/50
@@ -40,26 +50,27 @@ export default function SearchBar() {
             text-gray-300 
             text-md
             font-semibold
-            hover:bg-[]
+            hover:bg-[#303030]
             hover:text-white
             hover:border-white/30
             transition-all duration-200
             shadow-inner
+            flex items-center justify-center
           "
         >
           <svg
-          className="w-4 h-4 text-gray-500"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"
-          />
-        </svg>
+            className="w-4 h-4 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"
+            />
+          </svg>
         </button>
       </div>
     </div>

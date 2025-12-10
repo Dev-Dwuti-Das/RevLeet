@@ -5,6 +5,10 @@ import FilterMenu from "./filter";
 
 function Question_list() {
   const [question, setquestion] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [difficulty, setDifficulty] = useState("All");
+
   const u_id = "6933f00267ebd858ae1963d3";
 
   async function handletick(q_id) {
@@ -25,7 +29,9 @@ function Question_list() {
         const res = await axios.get("http://localhost:3000/api/questions", {
           params: { userId: u_id },
         });
+
         setquestion(res.data);
+        setFiltered(res.data);
       } catch (err) {
         console.error("Error fetching questions:", err);
       }
@@ -33,6 +39,37 @@ function Question_list() {
 
     fetchQuestions();
   }, []);
+
+  // 🔥 Main filter logic (search + difficulty)
+  const applyFilters = (search = searchTerm, diff = difficulty) => {
+    let updated = [...question];
+
+    // difficulty filter
+    if (diff !== "All") {
+      updated = updated.filter((q) => q.difficulty === diff);
+    }
+
+    // search filter
+    if (search.trim() !== "") {
+      updated = updated.filter((q) =>
+        q.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+
+    setFiltered(updated);
+  };
+
+  // when search changes
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    applyFilters(value, difficulty);
+  };
+
+  // when filter menu selects difficulty
+  const handleDifficulty = (value) => {
+    setDifficulty(value);
+    applyFilters(searchTerm, value);
+  };
 
   return (
     <div
@@ -48,17 +85,19 @@ function Question_list() {
         z-50
       "
     >
+      {/* Header Row: Search + Filter */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
         <div className="w-full md:w-1/2 flex flex-col md:flex-row gap-3">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
 
         <div className="md:w-auto w-full flex justify-start md:justify-end">
-          <FilterMenu />
+          <FilterMenu onFilterSelect={handleDifficulty} />
         </div>
       </div>
 
-      {question.map((q) => (
+      {/* Render filtered questions */}
+      {filtered.map((q) => (
         <div
           key={q._id}
           className={`
@@ -73,15 +112,30 @@ function Question_list() {
           `}
         >
           <div className="flex justify-between items-center">
-            <div className="text-lg font-bold text-white">
-              {q.title}
+            <div className="text-lg font-bold text-white flex items-center gap-2">
+              <span>{q.title}</span>
+
               {q.link && (
                 <a
                   href={q.link}
                   target="_blank"
-                  className="text-blue-400 hover:text-blue-300 text-sm underline ml-2"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 ml-1"
                 >
-                  visit
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.8}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                    />
+                  </svg>
                 </a>
               )}
             </div>

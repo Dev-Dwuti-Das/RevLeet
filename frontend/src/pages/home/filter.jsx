@@ -6,7 +6,6 @@ export default function FilterMenu({ onFilterSelect }) {
 
   const filters = ["All", "Easy", "Medium", "Hard"];
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClick = (e) => {
       if (!menuRef.current?.contains(e.target)) setOpen(false);
@@ -18,7 +17,7 @@ export default function FilterMenu({ onFilterSelect }) {
   return (
     <div className="relative" ref={menuRef}>
       
-      {/* Filter Button */}
+
       <button
         onClick={() => setOpen((prev) => !prev)}
         className="
@@ -47,7 +46,7 @@ export default function FilterMenu({ onFilterSelect }) {
         Filter
       </button>
 
-      {/* Dropdown */}
+     
       {open && (
         <div
           className="
