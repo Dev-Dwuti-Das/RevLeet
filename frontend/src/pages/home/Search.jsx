@@ -1,3 +1,4 @@
+
 export default function SearchBar() {
   return (
     <div className="w-full">
@@ -9,22 +10,10 @@ export default function SearchBar() {
           rounded-4xl 
           ps-5 py-1 pe-1 
           transition-all duration-300
+          hover:border-white/30
         "
       >
-        {/* Search Icon */}
-        <svg
-          className="w-6 h-6 text-gray-500 mr-3"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"
-          />
-        </svg>
+          
 
         {/* Input */}
         <input
@@ -37,6 +26,7 @@ export default function SearchBar() {
             text-white 
             placeholder-gray-500 
             text-base
+            
           "
         />
 
@@ -45,19 +35,31 @@ export default function SearchBar() {
           className="
             bg-[#262626]
             border border-gray-700/50
-            px-4 py-1.5 
+            px-3 py-2
             rounded-3xl
             text-gray-300 
             text-md
             font-semibold
             hover:bg-[]
             hover:text-white
-            hover:border-gray-500
+            hover:border-white/30
             transition-all duration-200
             shadow-inner
           "
         >
-          Enter
+          <svg
+          className="w-4 h-4 text-gray-500"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"
+          />
+        </svg>
         </button>
       </div>
     </div>

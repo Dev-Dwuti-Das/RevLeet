@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import SearchBar from "./Search";
+import FilterMenu from "./filter";
 
 function Question_list() {
   const [question, setquestion] = useState([]);
@@ -44,15 +45,18 @@ function Question_list() {
         shadow-[0_0_25px_rgba(255,255,255,0.04)]
         hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]
         transition-all duration-300
+        z-50
       "
     >
-    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
-  <h1 className="text-2xl font-semibold text-white">Question List</h1>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
+        <div className="w-full md:w-1/2 flex flex-col md:flex-row gap-3">
+          <SearchBar />
+        </div>
 
-  <div className="w-full md:w-1/2">
-    <SearchBar />
-  </div>
-</div>
+        <div className="md:w-auto w-full flex justify-start md:justify-end">
+          <FilterMenu />
+        </div>
+      </div>
 
       {question.map((q) => (
         <div
@@ -68,9 +72,19 @@ function Question_list() {
             }
           `}
         >
-         
           <div className="flex justify-between items-center">
-            <div className="text-lg font-bold text-white">{q.title}</div>
+            <div className="text-lg font-bold text-white">
+              {q.title}
+              {q.link && (
+                <a
+                  href={q.link}
+                  target="_blank"
+                  className="text-blue-400 hover:text-blue-300 text-sm underline ml-2"
+                >
+                  visit
+                </a>
+              )}
+            </div>
 
             <div
               className={`font-semibold ${
@@ -85,12 +99,11 @@ function Question_list() {
             </div>
           </div>
 
-          
           <label className="flex items-center gap-3 mt-3 cursor-pointer select-none">
             <input
               type="checkbox"
-              defaultChecked={q.isDone}  
-              onChange={() => handletick(q._id)} 
+              defaultChecked={q.isDone}
+              onChange={() => handletick(q._id)}
               className="
                 appearance-none h-5 w-5 rounded-md 
                 border border-gray-600 bg-[#1f1f1f]
