@@ -1,6 +1,6 @@
 import React from "react";
 
-function RedQstats() {
+function WaitingQ() {
   return (
     <div
       className="
@@ -13,9 +13,9 @@ function RedQstats() {
         hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
       "
     >
-      <h1 className="text-xl font-semibold text-white">Clueless</h1>
+      <h1 className="text-xl font-semibold text-white">Waiting queue</h1>
 
-      <p className="text-4xl font-bold text-red-500 mt-3">3 questions</p>
+      <p className="text-4xl font-bold text-white-500 opacity-75 mt-3">3 questions</p>
 
       <p className="text-gray-400 text-sm mt-2">
         time remaining
@@ -24,4 +24,4 @@ function RedQstats() {
   );
 }
 
-export default RedQstats;
+export default WaitingQ;

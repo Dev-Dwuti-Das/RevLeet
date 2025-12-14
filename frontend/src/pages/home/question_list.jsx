@@ -5,9 +5,10 @@ import FilterMenu from "./filter";
 
 function Question_list() {
   const [question, setquestion] = useState([]);
-  const [filtered, setFiltered] = useState([]);
+  const [filtered, setFiltered] = useState([]); //
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState("All");
+  const [tick, settick] = useState(false);
 
   const u_id = "6933f00267ebd858ae1963d3";
 
@@ -18,6 +19,7 @@ function Question_list() {
         question_id: q_id,
       });
       console.log(res);
+      settick((prev) => !prev);
     } catch (err) {
       console.log(err);
     }
@@ -32,24 +34,33 @@ function Question_list() {
 
         setquestion(res.data);
         setFiltered(res.data);
+        console.log("rendered");
       } catch (err) {
         console.error("Error fetching questions:", err);
       }
     };
 
     fetchQuestions();
-  }, []);
+  }, [tick]);
 
-  // 🔥 Main filter logic (search + difficulty)
   const applyFilters = (search = searchTerm, diff = difficulty) => {
     let updated = [...question];
 
-    // difficulty filter
-    if (diff !== "All") {
-      updated = updated.filter((q) => q.difficulty === diff);
+    if (["Easy", "Medium", "Hard"].includes(diff)) {
+      updated = updated.filter((q) => {
+        return q.difficulty === diff;
+      });
+      console.log(updated);
     }
 
-    // search filter
+    if (diff === "isdone") {
+      updated = updated.filter((q) => q.isDone === true);
+    }
+
+    if (diff === "isnotdone") {
+      updated = updated.filter((q) => q.isDone === false);
+    }
+
     if (search.trim() !== "") {
       updated = updated.filter((q) =>
         q.title.toLowerCase().includes(search.toLowerCase())
@@ -65,7 +76,6 @@ function Question_list() {
     applyFilters(value, difficulty);
   };
 
-  // when filter menu selects difficulty
   const handleDifficulty = (value) => {
     setDifficulty(value);
     applyFilters(searchTerm, value);
@@ -85,7 +95,6 @@ function Question_list() {
         z-50
       "
     >
-      {/* Header Row: Search + Filter */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">
         <div className="w-full md:w-1/2 flex flex-col md:flex-row gap-3">
           <SearchBar onSearch={handleSearch} />
@@ -95,6 +104,23 @@ function Question_list() {
           <FilterMenu onFilterSelect={handleDifficulty} />
         </div>
       </div>
+      {/* isdone */}
+
+      {/* No results message */}
+      {filtered.length === 0 && (
+        <div
+          className="
+            mt-6 p-6 text-center 
+            text-gray-400 
+            bg-[#181818] 
+            border border-[#2a2a2a] 
+            rounded-xl
+            text-sm
+          "
+        >
+          Try removing filters, adding more questions soon.
+        </div>
+      )}
 
       {/* Render filtered questions */}
       {filtered.map((q) => (
@@ -106,7 +132,7 @@ function Question_list() {
             bg-[#181818]
             ${
               q.isDone
-                ? "border-green-500/60"
+                ? "border-green-500/30"
                 : "border-[#2a2a2a] hover:border-gray-500/40"
             }
           `}
@@ -141,31 +167,38 @@ function Question_list() {
             </div>
 
             <div
-              className={`font-semibold ${
-                q.difficulty === "Hard"
-                  ? "text-red-400"
-                  : q.difficulty === "Medium"
-                  ? "text-yellow-400"
-                  : "text-green-400"
-              }`}
+              className={`px-3 py-1 rounded-full text-xs font-semibold
+                 ${
+                   q.difficulty === "Hard"
+                     ? "bg-red-500/10 text-red-400"
+                     : q.difficulty === "Medium"
+                     ? " bg-yellow-500/10 text-yellow-400"
+                     : "bg-green-500/10 text-green-400"
+                 }`}
             >
-              {q.difficulty}
+              <div>{q.difficulty}</div>
             </div>
           </div>
 
           <label className="flex items-center gap-3 mt-3 cursor-pointer select-none">
-            <input
-              type="checkbox"
-              defaultChecked={q.isDone}
-              onChange={() => handletick(q._id)}
-              className="
+            {q.isDone === true ? (
+              <h2 className="text-green-400 font-semibold text-s">completed</h2>
+            ) : (
+              <>
+                <input
+                  type="checkbox"
+                  defaultChecked={q.isDone}
+                  onChange={() => handletick(q._id)}
+                  className="
                 appearance-none h-5 w-5 rounded-md 
                 border border-gray-600 bg-[#1f1f1f]
                 checked:bg-green-500 checked:border-green-500
                 transition-all duration-200
               "
-            />
-            <span className="text-gray-300">Mark as done</span>
+                />
+                <h1 className="font-semibold text-xs">Mark as done</h1>
+              </>
+            )}
           </label>
         </div>
       ))}

@@ -1,52 +1,70 @@
 import { useEffect, useRef, useState } from "react";
 
-export default function FilterMenu({ onFilterSelect }) {
+export default function Filter({ onFilterSelect }) {
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useState(""); // track selected
   const menuRef = useRef(null);
 
-  const filters = ["All", "Easy", "Medium", "Hard"];
+  const filters = [
+    { label: "All", color: "text-gray-300" },
+    { label: "Easy", color: "text-green-400" },
+    { label: "Medium", color: "text-yellow-400" },
+    { label: "Hard", color: "text-red-400" },
+    { label: "No", color: "text-gray-300" },
+    { label: "isdone", color: "text-green-400" },
+    { label: "isnotdone", color: "text-red-400" },
+  ];
 
+  // Close dropdown on outside click
   useEffect(() => {
-    const handleClick = (e) => {
+    const close = (e) => {
       if (!menuRef.current?.contains(e.target)) setOpen(false);
     };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
+    document.addEventListener("mousedown", close);
+    return () => document.removeEventListener("mousedown", close);
   }, []);
+
+  // Get color for selected option
+  const selectedColor =
+    filters.find((f) => f.label === selected)?.color || "text-gray-300";
 
   return (
     <div className="relative" ref={menuRef}>
-      
-
+      {/* Button */}
       <button
-        onClick={() => setOpen((prev) => !prev)}
-        className="
+        onClick={() => setOpen(!open)}
+        className={`
           flex items-center gap-2
           bg-[#1b1b1b]
           border border-gray-700/40
-          text-gray-300/50
           rounded-3xl
           px-3 py-2
           text-sm font-semibold
           hover:border-gray-400/60
-          hover:text-white
           transition-all duration-300
-          focus:text-gray-300
-        "
+          ${selected === "" ? "text-gray-300/80" : selectedColor}
+        `}
       >
         <svg
-          className="w-4 h-4"
+          className={`w-4 h-4 ${
+            selected === "" ? "text-gray-400" : selectedColor
+          }`}
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
           viewBox="0 0 24 24"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 4.5h18M6 10.5h12M10 16.5h4" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3 4.5h18M6 10.5h12M10 16.5h4"
+          />
         </svg>
-        Filter
+
+        {selected === "" ? "Filter" : selected}
       </button>
 
-     
+      {/* Dropdown */}
       {open && (
         <div
           className="
@@ -56,27 +74,24 @@ export default function FilterMenu({ onFilterSelect }) {
             rounded-xl 
             shadow-lg shadow-black/40 
             py-2
-            animate-fadeIn
             z-50
           "
         >
-          {filters.map((item) => (
+          {filters.map((f, index) => (
             <div
-              key={item}
+              key={f.label}
               onClick={() => {
-                onFilterSelect(item);
+                setSelected(f.label === "All" ? "" : f.label);
+                onFilterSelect(f.label);
                 setOpen(false);
               }}
-              className="
-                px-4 py-2 
-                text-gray-300 text-sm 
-                hover:bg-[#262626] 
-                hover:text-white
-                transition-all 
-                cursor-pointer
-              "
+              className={`
+                px-4 py-2 text-sm cursor-pointer
+                ${f.color}
+                ${f.label === "No"? "border-b border-white/10" : "hover:bg-[#262626] hover:text-white transition-all font-semibold"} 
+              `}
             >
-              {item}
+              {f.label === "No"? " ":f.label}
             </div>
           ))}
         </div>

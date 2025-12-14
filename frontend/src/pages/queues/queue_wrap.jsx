@@ -12,9 +12,9 @@ export default function Queues() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8">
-          <CluelessCard />
           <VagueCard />
           <AlmostDoneCard />
+          <CluelessCard></CluelessCard>
         </div>
 
       </div>

@@ -1,4 +1,4 @@
-import RedQstats from "./redQstats.jsx";
+import WaitingQ from "./WaitingQ.jsx";
 import YellowQStats from "./yellowQstats.jsx";
 import OrangeQstats from "./orangeQstats.jsx";
 import QuestionList from "./Question_List";
@@ -8,15 +8,15 @@ import DoughnutChart from "./doughnut.jsx";
 function Home() {
   return (
     <div className="p-4 min-h-screen text-white w-full">
-      {/* Main layout */}
+      
       <div className="flex flex-col lg:flex-row gap-6 w-full">
-        {/* LEFT SIDE */}
+        
         <div className="flex flex-col gap-6 w-full lg:w-2/3">
-          {/* Cards */}
+         
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <RedQstats />
             <OrangeQstats />
             <YellowQStats />
+            <WaitingQ/>
           </div>
 
           <div className="md:col-span-1 w-full">
