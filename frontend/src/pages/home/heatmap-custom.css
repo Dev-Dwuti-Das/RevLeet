@@ -1,49 +1,39 @@
-/* Remove default styling */
-.react-calendar-heatmap .color-empty {
-  fill: #2a2a2a !important;
-}
 
-/* Base styling for all squares */
 .react-calendar-heatmap rect {
-  rx: 5px; /* rounded corners */
+  rx: 5px; 
   ry: 5px;
   stroke: #1c1c1c;
   transition: all 0.25s ease;
 }
 
-/* Hover effect */
+
 .react-calendar-heatmap rect:hover {
   stroke: #9d9d9da3 !important;
   stroke-width: 1px;
   transform: scale(1.01);
 }
 
-/* Custom color levels matching your UI */
+
 .heat-level-0 {
-  fill: #262626 !important; /* empty */
+  fill: #262626 !important;
 }
 
 .heat-level-1 {
-  fill: rgba(34, 197, 94, 0.35) !important; /* soft green */
-  /* Tailwind green-500 @ 35% */
+  fill: rgba(34, 197, 94, 0.35) !important; 
+ 
 }
 
 .heat-level-2 {
-  fill: rgba(34, 197, 94, 0.55) !important; /* medium green */
-  /* Tailwind green-500 @ 55% */
+  fill: rgba(34, 197, 94, 0.55) !important;
+ 
 }
 
 .heat-level-3 {
-  fill: rgba(16, 185, 129, 0.75) !important; /* teal-green glow */
-  /* Tailwind emerald-500 */
+  fill: #10b981bf !important; 
+ 
 }
 
 .heat-level-4 {
-  fill: rgba(74, 222, 128, 1) !important; /* bright neon green */
-  /* Tailwind green-400 */
-}
-/* Tooltip (optional if using react-tooltip) */
-[data-tip] {
-  color: white;
-  font-size: 12px;
+  fill: rgba(74, 222, 128, 1) !important; 
+ 
 }
