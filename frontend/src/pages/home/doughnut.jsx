@@ -47,7 +47,7 @@ export default function DoughnutChart() {
       className="
         h-[250px]
         bg-[#121212]
-        rounded-2xl
+        rounded-3xl
         border border-[#1d1d1d]
         p-2
         shadow-[0_0_20px_rgba(255,255,255,0.05)]
