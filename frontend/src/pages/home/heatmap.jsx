@@ -4,7 +4,7 @@ import "./heatmap-custom.css"; // <-- custom styling
 
 export default function HeatmapExample() {
   return (
-    <div className="bg-[#121212] p-3 pb-0 rounded-2xl border border-gray-700/40 shadow-xl">
+    <div className="bg-[#121212] p-3 pb-0 rounded-3xl border border-gray-700/40 shadow-xl">
       <h2 className="text-xl font-semibold mb-4 text-white">Activity Heatmap</h2>
 
       <CalendarHeatmap

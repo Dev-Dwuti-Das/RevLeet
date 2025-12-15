@@ -27,16 +27,16 @@ export default function Navbar() {
             Home
           </a>
           <a
-            href="/Queues"
+            href="/WorkingQueues"
             className="text-gray-300 hover:text-white transition text-xl font-extrabold"
           >
-            Queues
+            WorkingQ
           </a>
           <a
-            href="#"
+            href="/WaitingQueues"
             className="text-gray-300 hover:text-white transition text-xl font-extrabold"
           >
-            Something
+            WaitingQ
           </a>
         </div>
 

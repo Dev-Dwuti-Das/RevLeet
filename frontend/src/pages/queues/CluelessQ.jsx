@@ -4,7 +4,7 @@ export default function CluelessQ() {
       className="
         relative
         bg-[#121212]
-        rounded-2xl
+        rounded-3xl
         border border-[#1f1f1f]
         p-6
         overflow-hidden

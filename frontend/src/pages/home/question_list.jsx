@@ -86,12 +86,13 @@ function Question_list() {
       className="
         h-173 w-auto overflow-y-auto 
         bg-[#121212]
-        rounded-2xl       
+        rounded-3xl       
         border border-[#1d1d1d]
         p-6 flex flex-col
         shadow-[0_0_25px_rgba(255,255,255,0.04)]
         hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]
         transition-all duration-300
+        overflow-hidden
         z-50
       "
     >
@@ -127,14 +128,10 @@ function Question_list() {
         <div
           key={q._id}
           className={`
-            p-4 mt-4 rounded-xl 
-            border transition-all duration-300
+            p-4 mt-4 rounded-3xl 
+            transition-all duration-300
             bg-[#181818]
-            ${
-              q.isDone
-                ? "border-green-500/30"
-                : "border-[#2a2a2a] hover:border-gray-500/40"
-            }
+            
           `}
         >
           <div className="flex justify-between items-center">
@@ -191,8 +188,8 @@ function Question_list() {
                   onChange={() => handletick(q._id)}
                   className="
                 appearance-none h-5 w-5 rounded-md 
-                border border-gray-600 bg-[#1f1f1f]
-                checked:bg-green-500 checked:border-green-500
+                border border-gray-500 bg-[#1f1f1f]
+                checked:bg-green-500/80 checked:border-green-500
                 transition-all duration-200
               "
                 />
