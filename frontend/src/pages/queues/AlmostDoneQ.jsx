@@ -2,22 +2,72 @@ export default function AlmostDoneQ() {
   return (
     <div
       className="
+        relative
         bg-[#121212]
         rounded-2xl
-        border border-[#1d1d1d]
+        border border-[#1f1f1f]
         p-6
-        shadow-[0_0_20px_rgba(255,255,255,0.05)]
+        overflow-hidden
         transition-all duration-300
-        hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
+        hover:shadow-[0_0_30px_rgba(250,204,21,0.12)]
       "
     >
-      <h2 className="text-2xl font-semibold mb-2">Almost done</h2>
+      <div className="absolute left-0 top-0 h-full w-1 bg-yellow-500/70" />
 
-      <div className="text-3xl font-bold text-yellow-500 mb-1">No questions</div>
-      <p className="text-gray-400 text-sm mb-6">time remaining</p>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-semibold text-white tracking-wide">
+          Almost done
+        </h2>
 
-      <div className="text-gray-500 text-sm italic">
-        empty queue
+        <span
+          className="
+            text-xs font-semibold
+            text-yellow-400
+            bg-yellow-500/10
+            px-3 py-1 rounded-full
+          "
+        >
+          Medium Priority
+        </span>
+      </div>
+
+      <div className="mb-5">
+        <div className="text-4xl font-bold text-yellow-500 leading-tight">
+          2
+        </div>
+        <p className="text-gray-400 text-sm">
+          questions pending
+        </p>
+      </div>
+
+      <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
+
+      <div className="space-y-2">
+        <div
+          className="
+            flex items-center justify-between
+            bg-[#1f1f1f]
+            px-4 py-2 rounded-xl
+            border border-gray-700/30
+            text-sm text-gray-200
+          "
+        >
+          Binary Search
+          <span className="text-xs text-gray-500">Easy</span>
+        </div>
+
+        <div
+          className="
+            flex items-center justify-between
+            bg-[#1f1f1f]
+            px-4 py-2 rounded-xl
+            border border-gray-700/30
+            text-sm text-gray-200
+          "
+        >
+          Valid Parentheses
+          <span className="text-xs text-gray-500">Medium</span>
+        </div>
       </div>
     </div>
   );

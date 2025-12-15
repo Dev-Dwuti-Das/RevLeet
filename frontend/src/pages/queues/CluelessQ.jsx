@@ -3,7 +3,7 @@ export default function CluelessQ() {
     <div
       className="
         relative
-        bg-gradient-to-br from-[#121212] to-[#161616]
+        bg-[#121212]
         rounded-2xl
         border border-[#1f1f1f]
         p-6
@@ -42,7 +42,7 @@ export default function CluelessQ() {
       </div>
 
       {/* Divider */}
-      <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-700/40 to-transparent mb-4" />
+      <div className="h-px rounded-full w-full bg-gray-700/40 mb-4"/>
 
       {/* Question Preview */}
       <div className="space-y-2">
