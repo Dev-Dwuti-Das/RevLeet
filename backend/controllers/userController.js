@@ -51,7 +51,6 @@ export async function handletick(req, res) {
       if (entry) entry.solved += 1;
       else account.dailySolved.push({ date: today, solved: 1 });
 
-      // streak logic
       if (!last) account.streak = 1;
       else if (last !== today) {
         const y = new Date(now);

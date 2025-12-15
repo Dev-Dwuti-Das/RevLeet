@@ -1,6 +1,7 @@
 import CluelessCard from "./CluelessQ.jsx";
 import VagueCard from "./VagueQ.jsx";
 import AlmostDoneCard from "./AlmostDoneQ.jsx";
+import WaitingQ from "../queues/WaitingQ.jsx";
 
 export default function Queues() {
   return (
@@ -11,10 +12,13 @@ export default function Queues() {
           My Queues
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-5 gap-8">
+          <WaitingQ></WaitingQ>
           <VagueCard />
+          <WaitingQ></WaitingQ>
           <AlmostDoneCard />
-          <CluelessCard></CluelessCard>
+          <WaitingQ></WaitingQ>
+          {/* <CluelessCard></CluelessCard> */}
         </div>
 
       </div>
