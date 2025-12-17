@@ -1,6 +1,7 @@
 import progress from "../models/progress.js";
 import Account from "../models/Account.js";
-import bycrpt from "bcrypt";
+import bcrypt from "bcrypt";
+
 
 export async function handletick(req, res) {
   try {
@@ -70,8 +71,19 @@ export async function handletick(req, res) {
 
 
 export async function signup(req, res){
-  const {name, email, password} = req.body;
-  const salt = bycrpt.genSaltSync(10);
-  const hash = await bycrpt.hash(password , salt);
-  console.log(name, email, password, hash);
+  try{
+      const {name, email, password} = req.body;
+  const salt = bcrypt.genSaltSync(10);
+  const hash = await bcrypt.hash(password , salt);
+  console.log("name :",name, "email:",email, "pass:", password, "hash:", hash);
+  return res.status(201).json({
+    msg:"working"
+  })
+  }catch(err){
+    console.log(err);
+    return res.status(500).json({
+    msg:"working"
+  })
+    
+  }
 }

@@ -12,7 +12,7 @@ const router = express.Router();
 
 router.get("/questions", getquestions);
 
-router.get("/signup",signup);
+router.post("/signup",signup);
 
 router.post("/tick", handletick)
 
