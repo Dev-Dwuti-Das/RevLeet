@@ -30,6 +30,13 @@ const AccountSchema = new Schema({
     lowercase: true,
   },
 
+  password:{
+    type:String,
+    required: true,
+    trim: true,
+    unique: true,
+  },
+
   profile: {
     fullName: String,
   },

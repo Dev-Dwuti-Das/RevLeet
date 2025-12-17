@@ -1,13 +1,6 @@
 import progress from "../models/progress.js";
 import Account from "../models/Account.js";
-
-export const dashboard = (req, res) => {
-  return res.json({ msg: "dashboard h vai" });
-};
-
-export const listing = (req, res) => {
-  return res.json({ msg: "listing" });
-};
+import bycrpt from "bcrypt";
 
 export async function handletick(req, res) {
   try {
@@ -73,4 +66,12 @@ export async function handletick(req, res) {
     console.error("Tick error:", err);
     res.status(500).json({ error: err.message });
   }
+}
+
+
+export async function signup(req, res){
+  const {name, email, password} = req.body;
+  const salt = bycrpt.genSaltSync(10);
+  const hash = await bycrpt.hash(password , salt);
+  console.log(name, email, password, hash);
 }
