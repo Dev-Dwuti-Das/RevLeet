@@ -10,6 +10,8 @@ import WaitingQueues from './pages/queues/Waiting_queue_wrap.jsx';
 import About from './pages/queues/about.jsx';
 import Landing from './pages/queues/Landing.jsx';
 
+import Signup from './pages/Auth/signup.jsx';
+
 
 
 const router = createBrowserRouter([
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "Landing",
     element: <Landing/>,
+  },
+  {
+    path: "signup",
+    element: <Signup/>,
   },
   {
     path: "*",

@@ -1,13 +1,15 @@
 import WaitingQ from "./WaitingQ.jsx";
 import YellowQStats from "./yellowQstats.jsx";
 import OrangeQstats from "./orangeQstats.jsx";
-import QuestionList from "./Question_List";
+// import QuestionList from "./Question_List";
+import Questionlist from "./question_list.jsx";
 import HeatmapExample from "./heatmap.jsx";
 import DoughnutChart from "./doughnut.jsx";
 
 function Home() {
   return (
-    <div className="p-4 min-h-screen text-white w-full ">
+    <div className="p-4 min-h-screen text-white w-full relative">
+      
       
 
       
@@ -44,13 +46,11 @@ function Home() {
           <div className="md:col-span-2 w-full">
             <HeatmapExample />
           </div>
-
-          
         </div>
 
        
         <div className="w-full lg:w-1/3">
-          <QuestionList />
+          <Questionlist/>
         </div>
       </div>
     </div>

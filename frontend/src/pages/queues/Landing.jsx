@@ -6,6 +6,7 @@ export default function Landing() {
       <section className="relative flex flex-col items-center justify-center text-center px-6 py-32 overflow-hidden">
 
         {/* subtle glow */}
+        <div className="absolute top-40 left-75 w-[800px] h-[500px] bg-purple-600/70 blur-[140px] z-0" />
         <div className="absolute inset-0 bg-gradient-to-b from-purple-500/10 to-transparent blur-3xl" />
 
         <h1 className="relative text-5xl md:text-7xl font-bold tracking-tight mb-6">
@@ -13,15 +14,16 @@ export default function Landing() {
           <span className="text-purple-400">Now actually remember it.</span>
         </h1>
 
-        <p className="relative max-w-2xl text-gray-400 text-lg md:text-xl mb-10">
+        <p className="relative max-w-2xl text-gray-200/80 text-lg md:text-xl mb-10">
           Revleet is a spaced-repetition system for coding problems.
-          It automatically schedules revisions so concepts stick — long after interviews.
+          It automatically schedules revisions so concepts stick for interviews.
         </p>
 
         <div className="relative flex gap-4">
           <a
             href="/home"
             className="
+              text-white-500
               bg-purple-500 hover:bg-purple-600
               px-8 py-4 rounded-full
               font-semibold
@@ -68,7 +70,7 @@ export default function Landing() {
           </h2>
 
           {/* FLOW */}
-          <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-300 mb-10">
+          <div className="flex flex-wrap justify-center align-items gap-3 text-sm text-gray-300 mb-10">
             <Step label="Question List" />
             <Arrow />
             <Step label="Waiting" color="purple" />
@@ -112,14 +114,16 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="bg-[#111] py-28 text-center px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Stop grinding.<br />
-          Start retaining.
-        </h2>
+        <span className="text-4xl md:text-5xl font-bold mb-6 me-4">
+          Stop grinding
+        </span><span className="text-4xl md:text-5xl font-bold mb-6">
+          Stop Learning
+        </span>
 
-        <p className="text-gray-400 mb-10 max-w-xl mx-auto">
+
+
+        <p className="text-gray-400 mb-10 max-w-xl mx-auto mt-2">
           Revleet turns practice into long-term skill.
         </p>
 
@@ -127,10 +131,11 @@ export default function Landing() {
           href="/home"
           className="
             bg-purple-500 hover:bg-purple-600
-            px-10 py-5 rounded-full
-            font-semibold
+            px-10 py-3 rounded-full
+            font-bold
+            text-white
+            text-xl
             transition
-            shadow-[0_0_40px_rgba(168,85,247,0.4)]
           "
         >
           Get Started Free
@@ -185,5 +190,5 @@ function Step({ label, color }) {
 }
 
 function Arrow() {
-  return <span className="text-purple-400">→</span>;
+  return <span className="text-purple-400 flex align-items mt-2">→</span>;
 }
