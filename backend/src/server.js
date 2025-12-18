@@ -26,7 +26,7 @@ app.use("/api", router);
 
 app.use("/user", router);
 
-
+  
 
 // app.get("/sample_data", async (req, res) => {
 //   try {

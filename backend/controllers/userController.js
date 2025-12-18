@@ -1,7 +1,7 @@
 import progress from "../models/progress.js";
 import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
-
+import jwt from "jsonwebtoken";
 
 export async function handletick(req, res) {
   try {
@@ -19,7 +19,6 @@ export async function handletick(req, res) {
 
       return res.json({ msg: "Marked as solved", progress: record });
     }
-
 
     const autoMoveAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
@@ -62,28 +61,65 @@ export async function handletick(req, res) {
       msg: "Solved for the first time",
       progress: newRecord,
     });
-
   } catch (err) {
     console.error("Tick error:", err);
     res.status(500).json({ error: err.message });
   }
 }
 
+export async function signup(req, res) {
+  try {
+    const { name, email, password } = req.body;
+    let user = await Account.findOne({ email: email });
+    if (user) {
+      return res.status(409).json({ msg: "user already exist try logging in" });
+    }
+    const salt = bcrypt.genSaltSync(10);
+    const hash = await bcrypt.hash(password, salt);
+    const newuser = await Account.create({
+      name,
+      email,
+      password: hash,
+    });
 
-export async function signup(req, res){
-  try{
-      const {name, email, password} = req.body;
-  const salt = bcrypt.genSaltSync(10);
-  const hash = await bcrypt.hash(password , salt);
-  console.log("name :",name, "email:",email, "pass:", password, "hash:", hash);
-  return res.status(201).json({
-    msg:"working"
-  })
-  }catch(err){
+    console.log(newuser);
+
+    return res.status(201).json({
+      msg: "working",
+    });
+  } catch (err) {
     console.log(err);
     return res.status(500).json({
-    msg:"working"
-  })
-    
+      msg: "working",
+    });
+  }
+}
+
+export async function login(req, res) {
+  try {
+    const { email, password } = req.body;
+    const user =await Account.findOne({ email })
+    if (!user) {
+      res.status(201).json({ msg: "user not found try signin" });
+    }
+    console.log({pass:password, user: user.password});
+    const ismatch = await bcrypt.compare(password, user.password);
+    if (!ismatch) res.json({ msg: "password or email wrong" });
+
+    const token = jwt.sign({ user: user._id }, process.env.SECRET_CODE, {
+      expiresIn: "15d",
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      sameSite: "strict",
+      secure: false, // true in production
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(200).json({ msg: "Login successful" });
+  } catch (err) {
+    console.error("Login error:", err);
+    return res.status(500).json({ msg: "Server error" });
   }
 }
