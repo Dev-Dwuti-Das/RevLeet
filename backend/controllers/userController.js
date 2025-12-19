@@ -3,6 +3,9 @@ import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
+
+
 export async function handletick(req, res) {
   try {
     const { user, question_id } = req.body;
@@ -98,13 +101,12 @@ export async function signup(req, res) {
 export async function login(req, res) {
   try {
     const { email, password } = req.body;
-    const user =await Account.findOne({ email })
+    const user = await Account.findOne({ email })
     if (!user) {
-      res.status(201).json({ msg: "user not found try signin" });
+      res.status(201).json({ msg: "user not found try sigining in", flag:"error" });
     }
-    console.log({pass:password, user: user.password});
     const ismatch = await bcrypt.compare(password, user.password);
-    if (!ismatch) res.json({ msg: "password or email wrong" });
+    if (!ismatch) res.json({ msg: "password or email wrong" ,  flag:"error"});
 
     const token = jwt.sign({ user: user._id }, process.env.SECRET_CODE, {
       expiresIn: "15d",
@@ -117,9 +119,9 @@ export async function login(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    return res.status(200).json({ msg: "Login successful" });
+    return res.status(200).json({ msg: "Login successful" , flag:"success"});
   } catch (err) {
     console.error("Login error:", err);
-    return res.status(500).json({ msg: "Server error" });
+    return res.status(500).json({ msg: "Server error" , flag:"server error"});
   }
 }

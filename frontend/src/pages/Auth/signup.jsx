@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import {toast} from "sonner"
 
 function Signup() {
   const [form, setform] = useState({
@@ -12,9 +13,9 @@ function Signup() {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/api/signup", form);
-      console.log(res.data);
+      toast.success("Signup successful");
     } catch (err) {
-      console.log(err);
+      toast.error("Signup successful");
     }
   }
 

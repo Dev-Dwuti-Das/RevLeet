@@ -4,13 +4,14 @@ import './index.css'
 import Home from './pages/home/home_wrap.jsx';
 import Navbar from './components/common/header.jsx';
 import WorkingQueues from './pages/queues/Working_queue_wrap.jsx';
-import { createBrowserRouter } from "react-router";
-import { RouterProvider } from "react-router/dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WaitingQueues from './pages/queues/Waiting_queue_wrap.jsx';
 import About from './pages/queues/about.jsx';
 import Landing from './pages/queues/Landing.jsx';
+import Login from './pages/Auth/login.jsx';
 
 import Signup from './pages/Auth/signup.jsx';
+import { Toaster } from "sonner";
 
 
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
     element: <Signup/>,
   },
   {
+    path: "login",
+    element: <Login/>,
+  },
+  {
     path: "*",
     element: <div>Non found</div>,
   },
@@ -54,5 +59,6 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Navbar></Navbar>
     <RouterProvider router={router} />
+    <Toaster position="top-center" richColors />
   </StrictMode>,
 )
