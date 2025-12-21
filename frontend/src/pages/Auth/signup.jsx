@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import {toast} from "sonner"
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [form, setform] = useState({
     name: "",
     email: "",
@@ -13,28 +15,48 @@ function Signup() {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/api/signup", form);
-      toast.success("Signup successful");
+
+      res.data.flag === "error"
+        ? toast.error(res.data.msg, {
+            style: {
+              color: "#ff2c2cec",
+              fontWeight: 700,
+            },
+          })
+        : toast.success(res.data.msg, {
+            style: {
+              color: "#56ff67ec",
+            },
+          });
+      if(res.data.flag === "success"){
+        setTimeout(() => {
+        navigate("/home"); /// very big bud ------------> id pass already exist mein bhi home mein direct kr de rha h
+      }, 1200);
+      }
     } catch (err) {
-      toast.error("Signup successful");
+      toast.error("Server error", {
+        style: {
+          color: "#ff2c2cec",
+          fontWeight: 700,
+        },
+      });
     }
   }
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
-
-      
       <div className="hidden lg:flex flex-col justify-center px-16 relative overflow-hidden">
-        
-        {/* Glow */}
         {/* <div className="absolute top-32 left-32 w-[800px] h-[600px] bg-purple-600/70 blur-[120px] z-0" /> */}
 
-        <h1 className="text-5xl font-bold  mb-6">
-          Revleet
-        </h1>
+        <h1 className="text-5xl font-bold  mb-6">Revleet</h1>
 
         <p className="text-xl text-gray-300 font-bold max-w-md mb-8 z-1">
           A smarter way to revise DSA problems using
-          <span className="text-purple-400 font-semibold z-1"> spaced repetition</span>.
+          <span className="text-purple-400 font-semibold z-1">
+            {" "}
+            spaced repetition
+          </span>
+          .
         </p>
 
         <ul className="space-y-4 text-gray-400 font-semibold  z-1">
@@ -54,9 +76,9 @@ function Signup() {
       </div>
 
       <div className="flex items-center relative justify-center px-6 overflow-hidden">
-        
-         <div className="absolute top-32 -left-32 w-[800px] h-[600px] bg-purple-600/80 blur-[120px] z-0" />
-        <div className="
+        <div className="absolute top-32 -left-32 w-[800px] h-[600px] bg-purple-600/80 blur-[120px] z-0" />
+        <div
+          className="
           w-full max-w-md
           bg-[#121212]
           border border-white/10
@@ -64,9 +86,8 @@ function Signup() {
           p-8
           z-1
           
-        ">
-
-          
+        "
+        >
           <div className="mb-8">
             <h2 className="text-3xl font-bold tracking-tight">
               Create your account
@@ -78,7 +99,6 @@ function Signup() {
 
           {/* Form */}
           <form onSubmit={handlesubmit} className="space-y-5">
-
             <input
               type="text"
               placeholder="Full name"

@@ -4,7 +4,7 @@ import './index.css'
 import Home from './pages/home/home_wrap.jsx';
 import Navbar from './components/common/header.jsx';
 import WorkingQueues from './pages/queues/Working_queue_wrap.jsx';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider,Navigate } from "react-router-dom";
 import WaitingQueues from './pages/queues/Waiting_queue_wrap.jsx';
 import About from './pages/queues/about.jsx';
 import Landing from './pages/queues/Landing.jsx';
@@ -18,7 +18,7 @@ import { Toaster } from "sonner";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <Navigate to="/landing" replace />
   },
   {
     path: "home",
@@ -59,6 +59,22 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Navbar></Navbar>
     <RouterProvider router={router} />
-    <Toaster position="top-center" richColors />
+    <Toaster
+      position="top-center"
+      richColors
+      toastOptions={{
+        duration: 3500,
+        style:{
+          background:"black",
+          borderRadius:"18px",
+          border:"#720FB9",
+          borderStyle:"solid",
+          borderWidth:"2px",
+          fontSize:"15px",
+          fontWidth:700
+        }
+        
+      }}
+    />
   </StrictMode>,
 )

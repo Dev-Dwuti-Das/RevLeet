@@ -72,10 +72,11 @@ export async function handletick(req, res) {
 
 export async function signup(req, res) {
   try {
-    const { name, email, password } = req.body;
+    let { name, email, password } = req.body;
+    email = email.toLowerCase().trim();
     let user = await Account.findOne({ email: email });
     if (user) {
-      return res.status(409).json({ msg: "user already exist try logging in" });
+      return res.status(200).json({ msg: "Email already exists. Try logging in" , flag:"error"});
     }
     const salt = bcrypt.genSaltSync(10);
     const hash = await bcrypt.hash(password, salt);
@@ -84,11 +85,11 @@ export async function signup(req, res) {
       email,
       password: hash,
     });
-
     console.log(newuser);
 
     return res.status(201).json({
-      msg: "working",
+      msg: "Sign up successfull",
+      flag : "success"
     });
   } catch (err) {
     console.log(err);
@@ -103,10 +104,10 @@ export async function login(req, res) {
     const { email, password } = req.body;
     const user = await Account.findOne({ email })
     if (!user) {
-      res.status(201).json({ msg: "user not found try sigining in", flag:"error" });
+      res.status(201).json({ msg: "User not found try sigining in", flag:"error" });
     }
     const ismatch = await bcrypt.compare(password, user.password);
-    if (!ismatch) res.json({ msg: "password or email wrong" ,  flag:"error"});
+    if (!ismatch) res.json({ msg: "Incorrect password or email" ,  flag:"error"});
 
     const token = jwt.sign({ user: user._id }, process.env.SECRET_CODE, {
       expiresIn: "15d",
