@@ -30,7 +30,7 @@ function Signup() {
           });
       if(res.data.flag === "success"){
         setTimeout(() => {
-        navigate("/home"); /// very big bud ------------> id pass already exist mein bhi home mein direct kr de rha h
+        navigate("/home"); /// very big bug ------------> id pass already exist mein bhi home mein direct kr de rha h
       }, 1200);
       }
     } catch (err) {
