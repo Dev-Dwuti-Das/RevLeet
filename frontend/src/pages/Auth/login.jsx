@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 
 function login() {
+  let navigate = useNavigate();
   const [form, setform] = useState({
     email: "",
     password: "",
@@ -23,6 +25,12 @@ function login() {
              color:"#56ff67ec",
             },
           }) 
+
+      if(res.data.flag === "success"){
+        setTimeout(() => {
+        navigate("/home"); 
+      }, 1200);
+      }
 
     } catch (err) {
       toast.error("Wrong email or password")

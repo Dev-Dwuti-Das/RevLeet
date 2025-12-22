@@ -11,8 +11,6 @@ function Home() {
     <div className="p-4 min-h-screen text-white w-full relative">
       
       
-
-      
       <div className="flex flex-col lg:flex-row gap-6 w-full">
         
         <div className="flex flex-col gap-6 w-full lg:w-2/3">

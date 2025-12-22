@@ -10,15 +10,14 @@ function Question_list() {
   const [difficulty, setDifficulty] = useState("All");
   const [tick, settick] = useState(false);
 
-  const u_id = "6933f00267ebd858ae1963d3";
-
   async function handletick(q_id) {
     try {
-      const res = await axios.post("http://localhost:3000/api/tick", {
-        user: u_id,
-        question_id: q_id,
-      });
-      console.log(res);
+      const res = await axios.post("http://localhost:3000/api/tick", 
+        {question_id: q_id},
+        {withCredentials:true}
+      );
+      console.log("ran")
+      
       settick((prev) => !prev);
     } catch (err) {
       console.log(err);
@@ -29,8 +28,8 @@ function Question_list() {
     const fetchQuestions = async () => {
       try {
         const res = await axios.get("http://localhost:3000/api/questions", {
-          params: { userId: u_id },
-        });
+          withCredentials:true,
+        },);
 
         setquestion(res.data);
         setFiltered(res.data);

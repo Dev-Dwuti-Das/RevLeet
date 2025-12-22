@@ -14,7 +14,7 @@ function Signup() {
   async function handlesubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/signup", form);
+      const res = await axios.post("http://localhost:3000/api/signup", form, {withCredentials:true});
 
       res.data.flag === "error"
         ? toast.error(res.data.msg, {
@@ -30,7 +30,7 @@ function Signup() {
           });
       if(res.data.flag === "success"){
         setTimeout(() => {
-        navigate("/home"); /// very big bud ------------> id pass already exist mein bhi home mein direct kr de rha h
+        navigate("/home"); /// very big bug ------------> id pass already exist mein bhi home mein direct kr de rha h
       }, 1200);
       }
     } catch (err) {

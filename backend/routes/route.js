@@ -13,7 +13,7 @@ const router = express.Router();
 
 // router.get('/listing', listing);
 
-router.get("/questions", getquestions);
+router.get("/questions",auth_jwt, getquestions);
 
 router.post("/signup",signup);  
 
