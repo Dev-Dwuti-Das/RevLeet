@@ -6,13 +6,14 @@ import Accounts from '../models/Account.js';
 import default_questions from "../models/default_questions.js";
 import router from "../routes/route.js";
 dotenv.config();
+import cookieparser from "cookie-parser"
 import cors from "cors";
 
 const app = express();
 const port = 3000;
 
 app.use(express.json())
-
+app.use(cookieparser())
 app.use(cors({
   origin: "http://localhost:5173",
   credentials: true

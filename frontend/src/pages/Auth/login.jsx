@@ -13,7 +13,16 @@ function login() {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/api/login", form, {withCredentials:true} );
-      res.data.flag === "error" ? toast.error(res.data.msg) : toast.success(res.data.msg) 
+      res.data.flag === "error" ? toast.error(res.data.msg, {
+             style: {
+             color:"#ff2c2cec",
+             fontWeight:700
+            },
+          }) : toast.success(res.data.msg, {
+             style: {
+             color:"#56ff67ec",
+            },
+          }) 
 
     } catch (err) {
       toast.error("Wrong email or password")
