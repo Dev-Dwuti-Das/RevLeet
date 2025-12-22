@@ -80,7 +80,7 @@ export async function signup(req, res) {
     let user = await Account.findOne({ email: email });
     if (user) {
       return res
-        .status(209)
+        .status(409)
         .json({ msg: "Email already exists. Try logging in", flag: "error" });
     }
     const salt = bcrypt.genSaltSync(10);
