@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 
 export async function handletick(req, res) {
   try {
-    const { user, question_id } = req.body;
+    const {question_id} = req.body;
+    const user = req.user;
 
     let record = await progress.findOne({ user, question: question_id });
 
@@ -79,7 +80,7 @@ export async function signup(req, res) {
     let user = await Account.findOne({ email: email });
     if (user) {
       return res
-        .status(409)
+        .status(209)
         .json({ msg: "Email already exists. Try logging in", flag: "error" });
     }
     const salt = bcrypt.genSaltSync(10);
@@ -108,7 +109,7 @@ export async function signup(req, res) {
   } catch (err) {
     console.log(err);
     return res.status(500).json({
-      msg: "working",
+      msg: "ISR",
     });
   }
 }
@@ -140,6 +141,6 @@ export async function login(req, res) {
     return res.status(200).json({ msg: "Login successful", flag: "success" });
   } catch (err) {
     console.error("Login error:", err);
-    return res.status(500).json({ msg: "Server error", flag: "server error" });
+    return res.status(500).json({ msg: "Server error", flag: "error" });
   }
 }

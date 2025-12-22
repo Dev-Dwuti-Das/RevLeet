@@ -63,7 +63,7 @@ createRoot(document.getElementById('root')).render(
       position="top-center"
       richColors
       toastOptions={{
-        duration: 3500,
+        duration: 1500,
         style:{
           background:"black",
           borderRadius:"18px",
