@@ -5,50 +5,82 @@ import OrangeQstats from "./orangeQstats.jsx";
 import Questionlist from "./question_list.jsx";
 import HeatmapExample from "./heatmap.jsx";
 import DoughnutChart from "./doughnut.jsx";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Home() {
+  const [data, setdata] = useState({});
+
+  useEffect(() => {
+    async function get_data() {
+      try {
+        const new_data = await axios.get("http://localhost:3000/api/gethomeinfo", {
+          withCredentials: true,
+        });
+        setdata(new_data);
+        console.log(new_data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    get_data();
+  }, []);
+
   return (
     <div className="p-4 min-h-screen text-white w-full relative">
-      
-      
       <div className="flex flex-col lg:flex-row gap-6 w-full">
-        
         <div className="flex flex-col gap-6 w-full lg:w-2/3">
-         
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {/* <WaitingQ/>  */}
             <OrangeQstats />
-             {/* <WaitingQ/>  */}
+            {/* <WaitingQ/>  */}
             <YellowQStats />
           </div>
 
-           <div className="w-full mb-1 flex items-center justify-center space-x-2">
-        <span className="bg-gray-400/20 text-xs font-semibold rounded-full px-2 py-1 border border-gray-500/35"> Question List </span>
-        <span>→</span>
-        <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1"> Waiting Queue 1</span>
-        <span>→</span>
-        <span className="bg-gray-400/20 text-xs font-semibold bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/25 px-2 py-1"> Vague Queue </span>
-        <span>→</span>
-        <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1"> Waiting Queue 2 </span>
-        <span>→</span>
-        <span className="bg-gray-400/20 text-xs font-semibold bg-yellow-500/20 text-yellow-400  border border-yellow-500/25 rounded-full px-2 py-1"> Almost done Queue </span>
-        <span>→</span>
-        <span className="bg-gray-400/20 text-xs font-semibold bg-green-500/20 text-green-400 border border-green-500/25 rounded-full px-2 py-1 mt-0"> done List</span>
-      </div>
-          
+          <div className="w-full mb-1 flex items-center justify-center space-x-2">
+            <span className="bg-gray-400/20 text-xs font-semibold rounded-full px-2 py-1 border border-gray-500/35">
+              {" "}
+              Question List{" "}
+            </span>
+            <span>→</span>
+            <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1">
+              {" "}
+              Waiting Queue 1
+            </span>
+            <span>→</span>
+            <span className="bg-gray-400/20 text-xs font-semibold bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/25 px-2 py-1">
+              {" "}
+              Vague Queue{" "}
+            </span>
+            <span>→</span>
+            <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1">
+              {" "}
+              Waiting Queue 2{" "}
+            </span>
+            <span>→</span>
+            <span className="bg-gray-400/20 text-xs font-semibold bg-yellow-500/20 text-yellow-400  border border-yellow-500/25 rounded-full px-2 py-1">
+              {" "}
+              Almost done Queue{" "}
+            </span>
+            <span>→</span>
+            <span className="bg-gray-400/20 text-xs font-semibold bg-green-500/20 text-green-400 border border-green-500/25 rounded-full px-2 py-1 mt-0">
+              {" "}
+              done List
+            </span>
+          </div>
 
           <div className="md:col-span-1 w-full">
-            <DoughnutChart />
+            <DoughnutChart data={data}/>
           </div>
-         
+
           <div className="md:col-span-2 w-full">
             <HeatmapExample />
           </div>
         </div>
 
-      
         <div className="w-full lg:w-1/3">
-          <Questionlist/>
+          <Questionlist />
         </div>
       </div>
     </div>
