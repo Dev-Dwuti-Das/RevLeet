@@ -11,6 +11,7 @@ function auth_jwt(req, res, next){
          const decodeduser  = jwt.verify(token , process.env.SECRET_CODE);
          console.log(decodeduser);
          req.user = decodeduser.user
+         console.log(req.user);
          next();
     }catch(err){
         return res.status(401).json({msg:"Invalid token"});
