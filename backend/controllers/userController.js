@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 
 export async function handletick(req, res) {
   try {
-    const {question_id} = req.body;
+    const { question_id } = req.body;
     const user = req.user;
 
     let record = await progress.findOne({ user, question: question_id });
@@ -111,6 +111,20 @@ export async function signup(req, res) {
     return res.status(500).json({
       msg: "ISR",
     });
+  }
+}
+
+export async function gethomeinfo(req, res) {
+  const userid = req.user;
+  if (!userid) return res.status(401).json({ msg: "id not matched" });
+
+  try {
+    const user_data = await progress
+      .find({user:userid})
+      .populate("question");
+    res.status(200).json({ user_data });
+  } catch (err) {
+    res.status(500).json({ msg: "error" });
   }
 }
 
