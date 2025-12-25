@@ -1,4 +1,5 @@
-export default function WaitingQueueQ() {
+export default function WaitingQueueQ({ data }) {
+  const safeData = Array.isArray(data) ? data : [];
   return (
     <div
       className="
@@ -7,9 +8,12 @@ export default function WaitingQueueQ() {
         rounded-3xl
         border border-[#1f1f1f]
         p-6
-        overflow-hidden
+        h-100
+        
         transition-all duration-300
         hover:shadow-[0_0_30px_rgba(168,85,247,0.12)]
+        overflow-y-auto 
+        overflow-x-hidden
       "
     >
       <div className="absolute left-0 top-0 h-full w-1 bg-purple-500/70" />
@@ -54,24 +58,33 @@ export default function WaitingQueueQ() {
         <div className="text-4xl font-bold text-purple-500 leading-tight">
           4
         </div>
-        <p className="text-gray-400 text-sm">
-          questions queued
-        </p>
       </div>
 
       <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
 
       <div className="space-y-2">
-        <div
-          className="
-            bg-[#1f1f1f]
-            px-4 py-2 rounded-xl
-            border border-gray-700/30
-            text-sm text-gray-400 italic
-          "
-        >
-          Not scheduled yet
-        </div>
+        {safeData
+          .filter((data) => {
+            return data.queue === "Q1";
+          })
+          .map((data) => {
+            return (
+              <div key={data._id}
+                className="
+              bg-[#1f1f1f]
+              px-4 py-2 rounded-xl
+              border border-gray-700/30
+              text-lg font-semibold text-white
+            "
+              >
+                {data.question.title}
+                {data.question.difficulty}
+              </div>
+            );
+          })}
+        {safeData.filter((item) => item.queue === "Q1").length === 0 && (
+          <p className="text-gray-500 italic">Not scheduled yet</p>
+        )}
       </div>
     </div>
   );

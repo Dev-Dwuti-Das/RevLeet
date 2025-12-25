@@ -17,8 +17,8 @@ function Home() {
         const new_data = await axios.get("http://localhost:3000/api/gethomeinfo", {
           withCredentials: true,
         });
-        setdata(new_data);
-        console.log(new_data);
+        setdata(new_data.data.user_data);
+        console.log(new_data.data.user_data);
       } catch (err) {
         console.log(err);
       }
@@ -33,9 +33,9 @@ function Home() {
         <div className="flex flex-col gap-6 w-full lg:w-2/3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {/* <WaitingQ/>  */}
-            <OrangeQstats />
+            <OrangeQstats data={data}/>
             {/* <WaitingQ/>  */}
-            <YellowQStats />
+            <YellowQStats data={data}/>
           </div>
 
           <div className="w-full mb-1 flex items-center justify-center space-x-2">
