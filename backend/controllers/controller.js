@@ -5,6 +5,10 @@ import Progress from "../models/progress.js";
 
 async function getquestions(req, res) {
   try {
+    console.log("REQ.USER =", req.user); // 🔥 ADD THIS
+
+  const user_data = await Progress.find({ user: req.user });
+  console.log("FOUND =", user_data.length); // 🔥 ADD THIS
     const userId = req.user;
 
     if (!userId) {
