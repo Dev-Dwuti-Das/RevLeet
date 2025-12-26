@@ -2,12 +2,14 @@ import progress from "../models/progress.js";
 import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { automoveat } from "../utils/queue_flow.js";
 
 export async function handletick(req, res) {
   try {
     const { question_id } = req.body;
     const user = req.user;
 
+    // 1️⃣ Check existing progress
     let record = await progress.findOne({ user, question: question_id });
 
     if (record) {
@@ -21,17 +23,17 @@ export async function handletick(req, res) {
       return res.json({ msg: "Marked as solved", progress: record });
     }
 
-    const autoMoveAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-
+    // 2️⃣ CREATE progress (FIXED — no hardcoded 7 days)
     const newRecord = await progress.create({
       user,
       question: question_id,
       queue: "Q1",
       isDone: true,
       queueEnteredAt: new Date(),
-      autoMoveAt,
+      autoMoveAt: automoveat("Q1"), // ✅ CORRECT
     });
 
+    // 3️⃣ Update account stats
     const account = await Account.findById(user);
     if (account) {
       const now = new Date();
@@ -41,17 +43,21 @@ export async function handletick(req, res) {
       account.totalSolved += 1;
       account.queueCounts.Q1 += 1;
 
-      const entry = account.dailySolved.find((d) => d.date === today);
+      const entry = account.dailySolved.find(d => d.date === today);
       if (entry) entry.solved += 1;
       else account.dailySolved.push({ date: today, solved: 1 });
 
-      if (!last) account.streak = 1;
-      else if (last !== today) {
-        const y = new Date(now);
-        y.setDate(now.getDate() - 1);
+      if (!last) {
+        account.streak = 1;
+      } else if (last !== today) {
+        const yesterday = new Date(now);
+        yesterday.setDate(now.getDate() - 1);
 
-        if (last === y.toDateString()) account.streak += 1;
-        else account.streak = 1;
+        if (last === yesterday.toDateString()) {
+          account.streak += 1;
+        } else {
+          account.streak = 1;
+        }
       }
 
       account.lastActive = now;
@@ -62,11 +68,13 @@ export async function handletick(req, res) {
       msg: "Solved for the first time",
       progress: newRecord,
     });
+
   } catch (err) {
     console.error("Tick error:", err);
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: err.message });
   }
 }
+
 
 export async function signup(req, res) {
   try {
@@ -147,7 +155,7 @@ export async function login(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "lax",
       secure: false, // true in production
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });

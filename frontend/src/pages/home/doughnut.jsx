@@ -36,7 +36,7 @@ export default function DoughnutChart({data}) {
       if(curr.queue === "Q4")acc.q4++;
       if(curr.queue === "Q5")acc.q5++;
       return acc;
-    },{q1:2,q2:2,q3:3,q4:2,q5:2}
+    },{q1:0,q2:0,q3:0,q4:0,q5:0}
   ) 
   
   const chartdata = {
