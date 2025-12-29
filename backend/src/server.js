@@ -9,6 +9,7 @@ dotenv.config();
 import cookieparser from "cookie-parser"
 import cors from "cors";
 
+
 const app = express();
 const port = 3000;
 
@@ -19,13 +20,15 @@ app.use(cors({
   credentials: true
 }));
 
+
+
 app.get("/" , (req,res) => {
     return res.json({msg : "done bai"}) 
 } )
 
 app.use("/api", router);
 
-app.use("/user", router);
+// app.use("/user", router);
 
   
 
