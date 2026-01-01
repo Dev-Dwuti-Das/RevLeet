@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import jwt from "jsonwebtoken";
-import { autoMoveUserQueues } from "../utils/queue_flow.js";
+import { autoMoveUserQueues } from "../utils/queueFlow.js";
 
 async function auth_jwt(req, res, next) {
   const token = req.cookies?.token;

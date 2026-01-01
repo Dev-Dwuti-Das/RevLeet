@@ -1,5 +1,12 @@
 export default function WaitingQ4({data}) {
   const safeData = Array.isArray(data) ? data : [];
+  const queue_count = safeData.reduce(
+    (acc, curr) => {
+      if (curr.queue === "Q4") acc.q4++;
+      return acc;
+    },
+    { q4: 0 }
+  );
   return (
     <div
       className="
@@ -28,13 +35,13 @@ export default function WaitingQ4({data}) {
             px-3 py-1 rounded-full
           "
         >
-          Medium Priority
+          Pending Queue
         </span>
       </div>
 
       <div className="mb-5">
         <div className="text-4xl font-bold text-yellow-500 leading-tight">
-          2
+          {queue_count.q4}
         </div>
         <p className="text-gray-400 text-sm">
           questions pending

@@ -7,6 +7,8 @@ import auth_jwt from "../middleware/auth.js";
 import  getquestions from "../controllers/controller.js";
 // import { listing } from "../controllers/userController.js";
 import { gethomeinfo } from "../controllers/userController.js";
+import { handle_done } from "../utils/queueFlow.js";
+
 const router = express.Router();
 
 
@@ -16,6 +18,8 @@ const router = express.Router();
 router.get("/gethomeinfo", auth_jwt, gethomeinfo);
 
 router.get("/questions",auth_jwt, getquestions);
+
+router.post("/queuedone",auth_jwt, handle_done);
 
 router.post("/signup",signup);  
 
