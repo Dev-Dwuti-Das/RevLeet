@@ -1,4 +1,5 @@
-export default function AlmostDoneQ() {
+export default function WaitingQ4({data}) {
+  const safeData = Array.isArray(data) ? data : [];
   return (
     <div
       className="
@@ -40,34 +41,31 @@ export default function AlmostDoneQ() {
         </p>
       </div>
 
+
       <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
-
       <div className="space-y-2">
-        <div
-          className="
-            flex items-center justify-between
-            bg-[#1f1f1f]
-            px-4 py-2 rounded-xl
-            border border-gray-700/30
-            text-sm text-gray-200
-          "
-        >
-          Binary Search
-          <span className="text-xs text-gray-500">Easy</span>
-        </div>
-
-        <div
-          className="
-            flex items-center justify-between
-            bg-[#1f1f1f]
-            px-4 py-2 rounded-xl
-            border border-gray-700/30
-            text-sm text-gray-200
-          "
-        >
-          Valid Parentheses
-          <span className="text-xs text-gray-500">Medium</span>
-        </div>
+        {safeData
+          .filter((data) => {
+            return data.queue === "Q4";
+          })
+          .map((data) => {
+            return (
+              <div key={data._id}
+                className="
+              bg-[#1f1f1f]
+              px-4 py-2 rounded-xl
+              border border-gray-700/30
+              text-lg font-semibold text-white
+            "
+              >
+                {data.question.title}
+                {data.question.difficulty}
+              </div>
+            );
+          })}
+        {safeData.filter((item) => item.queue === "Q4").length === 0 && (
+          <p className="text-gray-500 italic">Not scheduled yet</p>
+        )}
       </div>
     </div>
   );
