@@ -1,6 +1,13 @@
 
 export default function WaitingQueueQ2({ data }) {
   const safeData = Array.isArray(data) ? data : [];
+  const queue_count = safeData.reduce(
+    (acc, curr) => {
+      if (curr.queue === "Q3") acc.q3++;
+      return acc;
+    },
+    { q3: 0 }
+  );
   return (
     <div
       className="
@@ -20,8 +27,8 @@ export default function WaitingQueueQ2({ data }) {
       <div className="absolute left-0 top-0 h-full w-1 bg-purple-500/70" />
 
       <div className="flex items-center justify-between mb-3">
-        <h2 className="text-xl font-semibold text-white tracking-wide">
-          Waiting(3)
+        <h2 className="text-3xl font-bold text-white tracking-wide">
+          Buffer 2
         </h2>
 
         <span
@@ -32,32 +39,38 @@ export default function WaitingQueueQ2({ data }) {
             px-3 py-1 rounded-full
           "
         >
-          Low Priority
+          Waiting Queue
         </span>
       </div>
 
-      {/* FLOW INDICATOR */}
-      <div className="flex items-center gap-2 mb-4 text-xs text-gray-400">
+     <div className="flex items-center gap-2 mb-4 mt-5 flex text-xs text-gray-400">
+
         <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Question List
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-purple-500/10 text-purple-300 rounded-full border border-purple-500/20">
-          Waiting
+          Buffer 1
         </span>
 
         <span className="text-purple-400">→</span>
 
         <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Vague
+          Warm
+        </span>
+
+        <span className="text-purple-400">→</span>
+
+        <span className="px-2 py-1 bg-purple-500/20 text-purple-300 font-semibold rounded-full border border-purple-500/20">
+          Buffer 2
+        </span>
+
+        <span className="text-purple-400">→</span>
+
+        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
+          Stable
         </span>
       </div>
 
       <div className="mb-5">
         <div className="text-4xl font-bold text-purple-500 leading-tight">
-          4
+          {queue_count.q3}
         </div>
       </div>
 

@@ -2,14 +2,13 @@ import progress from "../models/progress.js";
 import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { automoveat } from "../utils/queue_flow.js";
+import { automoveat } from "../utils/queueFlow.js";
 
 export async function handletick(req, res) {
   try {
     const { question_id } = req.body;
     const user = req.user;
 
-    // 1️⃣ Check existing progress
     let record = await progress.findOne({ user, question: question_id });
 
     if (record) {
@@ -23,7 +22,6 @@ export async function handletick(req, res) {
       return res.json({ msg: "Marked as solved", progress: record });
     }
 
-    // 2️⃣ CREATE progress (FIXED — no hardcoded 7 days)
     const newRecord = await progress.create({
       user,
       question: question_id,
@@ -33,7 +31,6 @@ export async function handletick(req, res) {
       autoMoveAt: automoveat("Q1"),
     });
 
-    // 3️⃣ Update account stats
     const account = await Account.findById(user);
     if (account) {
       const now = new Date();
