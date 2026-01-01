@@ -1,7 +1,6 @@
-import CluelessCard from "./CluelessQ.jsx";
-import VagueCard from "./VagueQ.jsx";
-import AlmostDoneCard from "./AlmostDoneQ.jsx";
-import WaitingQ from "./WaitingQ.jsx";
+
+import WaitingQ1 from "./WaitingQ1.jsx";
+import WaitingQ3 from "./WaitingQ3.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -34,13 +33,9 @@ export default function WaitingQueues() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
-          
-          <WaitingQ data={data}></WaitingQ>
-          <WaitingQ></WaitingQ>
-         
-          {/* <CluelessCard></CluelessCard> */}
+          <WaitingQ1 data={data}></WaitingQ1>
+          <WaitingQ3 data={data}></WaitingQ3>
         </div>
-
       </div>
     </div>
   );

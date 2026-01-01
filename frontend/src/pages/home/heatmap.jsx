@@ -15,7 +15,7 @@ export default function HeatmapExample() {
           { date: "2024-01-02", count: 3 },
           { date: "2024-01-03", count: 5 },
           { date: "2024-01-10", count: 2 },
-          { date: "2024-01-12", count: 7 },
+          { date: "2024-01-12", count: 7 },   
         ]}
         classForValue={(val) => {
           if (!val || val.count === 0) return "heat-level-0";

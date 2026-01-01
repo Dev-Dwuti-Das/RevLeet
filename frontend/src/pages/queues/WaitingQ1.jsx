@@ -1,4 +1,4 @@
-export default function WaitingQueueQ({ data }) {
+export default function WaitingQueueQ1({ data }) {
   const safeData = Array.isArray(data) ? data : [];
   return (
     <div
@@ -20,7 +20,7 @@ export default function WaitingQueueQ({ data }) {
 
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-xl font-semibold text-white tracking-wide">
-          Waiting
+          Waiting(1)
         </h2>
 
         <span

@@ -30,7 +30,7 @@ export async function handletick(req, res) {
       queue: "Q1",
       isDone: true,
       queueEnteredAt: new Date(),
-      autoMoveAt: automoveat("Q1"), // ✅ CORRECT
+      autoMoveAt: automoveat("Q1"),
     });
 
     // 3️⃣ Update account stats
@@ -43,7 +43,7 @@ export async function handletick(req, res) {
       account.totalSolved += 1;
       account.queueCounts.Q1 += 1;
 
-      const entry = account.dailySolved.find(d => d.date === today);
+      const entry = account.dailySolved.find((d) => d.date === today);
       if (entry) entry.solved += 1;
       else account.dailySolved.push({ date: today, solved: 1 });
 
@@ -68,13 +68,11 @@ export async function handletick(req, res) {
       msg: "Solved for the first time",
       progress: newRecord,
     });
-
   } catch (err) {
     console.error("Tick error:", err);
     return res.status(500).json({ error: err.message });
   }
 }
-
 
 export async function signup(req, res) {
   try {
@@ -128,7 +126,7 @@ export async function gethomeinfo(req, res) {
 
   try {
     const user_data = await progress
-      .find({user:userid})
+      .find({ user: userid })
       .populate("question");
     res.status(200).json({ user_data });
   } catch (err) {
@@ -138,16 +136,19 @@ export async function gethomeinfo(req, res) {
 
 export async function login(req, res) {
   try {
-    const { email, password } = req.body;
+    const email = String(req.body.email);
+    const password = String(req.body.password);
+
     const user = await Account.findOne({ email });
     if (!user) {
-      res
+      return res
         .status(201)
         .json({ msg: "User not found try sigining in", flag: "error" });
     }
     const ismatch = await bcrypt.compare(password, user.password);
-    if (!ismatch)
-      res.json({ msg: "Incorrect password or email", flag: "error" });
+    if (!ismatch) {
+      return res.json({ msg: "Incorrect password or email", flag: "error" });
+    }
 
     const token = jwt.sign({ user: user._id }, process.env.SECRET_CODE, {
       expiresIn: "15d",
