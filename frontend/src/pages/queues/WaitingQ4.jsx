@@ -39,6 +39,30 @@ export default function WaitingQ4({data}) {
         </span>
       </div>
 
+      <div className="flex items-center gap-2 mb-4 mt-5 flex text-xs text-gray-400">
+        <span className="px-2 py-1 bg-[#1f1f1f]  font-semibold rounded-full border border-gray-700/30">
+          Buffer 1
+        </span>
+
+        <span className="text-purple-400">→</span>
+
+        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
+          Warm
+        </span>
+
+        <span className="text-purple-400">→</span>
+
+        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
+          Buffer 2
+        </span>
+
+        <span className="text-purple-400">→</span>
+
+        <span className="px-2 py-1 bg-yellow-500/40 font-semibold rounded-full text-white border border-yellow-700/40">
+          Stable
+        </span>
+      </div>
+
       <div className="mb-5">
         <div className="text-4xl font-bold text-yellow-500 leading-tight">
           {queue_count.q4}
@@ -47,10 +71,11 @@ export default function WaitingQ4({data}) {
           questions pending
         </p>
       </div>
+      
 
 
       <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
-      <div className="space-y-2">
+      <div className="space-y-2 max-h-[400px] overflow-y-auto">
         {safeData
           .filter((data) => {
             return data.queue === "Q4";

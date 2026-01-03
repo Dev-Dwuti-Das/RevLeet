@@ -10,14 +10,27 @@ function Question_list() {
   const [difficulty, setDifficulty] = useState("All");
   const [tick, settick] = useState(false);
 
+  const fetchQuestions = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/api/questions", {
+        withCredentials: true,
+      });
+
+      setquestion(res.data);
+      setFiltered(res.data);
+    } catch (err) {
+      console.error("Error fetching questions:", err);
+    }
+  };
+
   async function handletick(q_id) {
     try {
-      const res = await axios.post("http://localhost:3000/api/tick", 
-        {question_id: q_id},
-        {withCredentials:true}
+      const res = await axios.post(
+        "http://localhost:3000/api/tick",
+        { question_id: q_id },
+        { withCredentials: true }
       );
-      console.log("ran")
-      
+     
       settick((prev) => !prev);
     } catch (err) {
       console.log(err);
@@ -25,20 +38,6 @@ function Question_list() {
   }
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const res = await axios.get("http://localhost:3000/api/questions", {
-          withCredentials:true,
-        },);
-
-        setquestion(res.data);
-        setFiltered(res.data);
-        console.log("rendered");
-      } catch (err) {
-        console.error("Error fetching questions:", err);
-      }
-    };
-
     fetchQuestions();
   }, [tick]);
 
@@ -49,7 +48,6 @@ function Question_list() {
       updated = updated.filter((q) => {
         return q.difficulty === diff;
       });
-      console.log(updated);
     }
 
     if (diff === "isdone") {

@@ -3,9 +3,9 @@ function YellowQstats({data}) {
   const safeData = Array.isArray(data) ? data : [];
   const queue_count = safeData.reduce(
     (acc, curr) => {
-      if(curr.queue === "Q5")acc.q3++;
+      if(curr.queue === "Q4")acc.q4++;
       return acc;
-    },{q5:0}
+    },{q4:0}
   )
   return (
     <div
@@ -33,7 +33,7 @@ function YellowQstats({data}) {
         </span></div>
       
 
-      <p className="text-4xl font-bold text-yellow-400 mt-3">{queue_count.q5} questions</p>
+      <p className="text-4xl font-bold text-yellow-400 mt-3">{queue_count.q4} questions</p>
 
       <p className="text-gray-400 text-sm mt-2">
         time remaining

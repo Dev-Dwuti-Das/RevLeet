@@ -25,7 +25,6 @@ const options1 = {
 };
 
 export default function DoughnutChart({data}) {
-  console.log(data);
   const safeData = Array.isArray(data) ? data : [];
 
   const queue_count = safeData.reduce(

@@ -1,12 +1,12 @@
-function OrangeQstats({data}) {
+function Q2stats({data}) {
   const number = data;
   const safeData = Array.isArray(number) ? data : [];
 
   const queue_count = safeData.reduce(
     (acc, curr) => {
-      if(curr.queue === "Q3")acc.q3++;
+      if(curr.queue === "Q2")acc.q2++;
       return acc;
-    },{q3:0}
+    },{q2:0}
   ) 
   return (
     <div
@@ -32,7 +32,7 @@ function OrangeQstats({data}) {
         Pending
         </span></div>
 
-      <p className="text-4xl font-bold text-orange-400 mt-3">{queue_count.q3} quesitons</p>
+      <p className="text-4xl font-bold text-orange-400 mt-3">{queue_count.q2} quesitons</p>
 
       <p className="text-gray-400 text-sm mt-2">
         time remaining
@@ -41,4 +41,4 @@ function OrangeQstats({data}) {
   );
 }
 
-export default OrangeQstats;
+export default Q2stats;

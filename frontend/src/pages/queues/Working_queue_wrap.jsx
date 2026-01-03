@@ -6,20 +6,18 @@ import axios from "axios";
 
 export default function Working_Queues() {
   const [data, setdata] = useState({});
-  
-    useEffect(() => {
-      async function get_data() {
+  async function get_data() {
         try {
           const new_data = await axios.get("http://localhost:3000/api/gethomeinfo", {
             withCredentials: true,
           });
           setdata(new_data.data.user_data);
-          console.log(new_data.data.user_data);
+      
         } catch (err) {
           console.log(err);
         }
       }
-  
+    useEffect(() => {
       get_data();
     }, [])
   return (
@@ -31,7 +29,7 @@ export default function Working_Queues() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
-          <WaitingQ2 data={data}/>
+          <WaitingQ2 data={data} ondone={get_data}/>
           <WaitingQ4 data={data}/>
           {/* <CluelessCard></CluelessCard> */}
         </div>

@@ -118,7 +118,7 @@ export default function Landing() {
         <span className="text-4xl md:text-5xl font-bold mb-6 me-4">
           Stop grinding
         </span><span className="text-4xl md:text-5xl font-bold mb-6">
-          Stop Learning
+          Start Learning
         </span>
 
 

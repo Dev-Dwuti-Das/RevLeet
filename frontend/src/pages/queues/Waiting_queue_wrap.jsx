@@ -15,7 +15,6 @@ export default function WaitingQueues() {
             withCredentials: true,
           });
           setdata(new_data.data.user_data);
-          console.log(new_data.data.user_data);
         } catch (err) {
           console.log(err);
         }
