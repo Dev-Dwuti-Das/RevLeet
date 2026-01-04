@@ -14,7 +14,7 @@ export default function VagueCardQ({ data, ondone }) {
         { question_id: id },
         { withCredentials: true }
       );
-      toast.success("well done")
+      toast.success("Completed")
       ondone();
       settick((prev) => !prev);
     } catch (err) {
@@ -58,7 +58,7 @@ export default function VagueCardQ({ data, ondone }) {
             px-3 py-1 rounded-full
           "
         >
-          Medium Priority
+          Pending Queue
         </span>
       </div>
       <div className="flex items-center gap-2 mb-4 mt-5 flex text-xs text-gray-400">
@@ -158,7 +158,7 @@ export default function VagueCardQ({ data, ondone }) {
 </div>
 
 
-      <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
+    
     </div>
   );
 }

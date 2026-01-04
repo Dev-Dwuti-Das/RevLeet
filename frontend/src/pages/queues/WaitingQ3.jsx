@@ -1,6 +1,6 @@
-
-export default function WaitingQueueQ2({ data }) {
+export default function WaitingQueueQ1({ data }) {
   const safeData = Array.isArray(data) ? data : [];
+
   const queue_count = safeData.reduce(
     (acc, curr) => {
       if (curr.queue === "Q3") acc.q3++;
@@ -8,6 +8,7 @@ export default function WaitingQueueQ2({ data }) {
     },
     { q3: 0 }
   );
+
   return (
     <div
       className="
@@ -16,18 +17,17 @@ export default function WaitingQueueQ2({ data }) {
         rounded-3xl
         border border-[#1f1f1f]
         p-6
-        h-100
-        
         transition-all duration-300
         hover:shadow-[0_0_30px_rgba(168,85,247,0.12)]
-        overflow-y-auto 
-        overflow-x-hidden
+        overflow-hidden
       "
     >
+    
       <div className="absolute left-0 top-0 h-full w-1 bg-purple-500/70" />
 
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-3xl font-bold text-white tracking-wide">
+
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-3xl font-semibold text-white tracking-wide">
           Buffer 2
         </h2>
 
@@ -43,9 +43,9 @@ export default function WaitingQueueQ2({ data }) {
         </span>
       </div>
 
-     <div className="flex items-center gap-2 mb-4 mt-5 flex text-xs text-gray-400">
-
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
+      {/* Flow */}
+      <div className="flex items-center gap-2 mb-5 text-xs text-gray-400">
+        <span className="px-2 py-1 bg-purple-500/20 text-purple-300 font-semibold rounded-full border border-purple-500/20">
           Buffer 1
         </span>
 
@@ -57,7 +57,7 @@ export default function WaitingQueueQ2({ data }) {
 
         <span className="text-purple-400">→</span>
 
-        <span className="px-2 py-1 bg-purple-500/20 text-purple-300 font-semibold rounded-full border border-purple-500/20">
+        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
           Buffer 2
         </span>
 
@@ -72,32 +72,59 @@ export default function WaitingQueueQ2({ data }) {
         <div className="text-4xl font-bold text-purple-500 leading-tight">
           {queue_count.q3}
         </div>
+        <p className="text-gray-400 text-sm">questions waiting</p>
       </div>
 
-      <div className="h-px rounded-full w-full bg-gray-700/40 mb-4" />
+      <div className="h-px w-full bg-gray-700/40 rounded-full mb-4" />
 
-      <div className="space-y-2">
+      {/* List */}
+      <div className="space-y-3 max-h-[360px] overflow-y-auto pr-1">
         {safeData
-          .filter((data) => {
-            return data.queue === "Q3";
-          })
-          .map((data) => {
-            return (
-              <div key={data._id}
-                className="
-              bg-[#1f1f1f]
-              px-4 py-2 rounded-xl
-              border border-gray-700/30
-              text-lg font-semibold text-white
-            "
-              >
-                {data.question.title}
-                {data.question.difficulty}
+          .filter((item) => item.queue === "Q3")
+          .map((item) => (
+            <div
+              key={item._id}
+              className="
+                group
+                flex items-center justify-between
+                gap-4
+                bg-[#161616]
+                px-4 py-3
+                rounded-2xl
+                border border-gray-700/30
+                transition-all duration-200
+                hover:border-purple-500/40
+                hover:bg-[#1b1b1b]
+              "
+            >
+              
+              <div className="flex flex-col gap-1 min-w-0">
+                <span
+                  className={`w-fit px-2.5 py-0.5 rounded-full text-[11px] font-semibold
+                    ${
+                      item.question.difficulty === "Hard"
+                        ? "bg-red-500/10 text-red-400"
+                        : item.question.difficulty === "Medium"
+                        ? "bg-yellow-500/10 text-yellow-400"
+                        : "bg-green-500/10 text-green-400"
+                    }`}
+                >
+                  {item.question.difficulty}
+                </span>
+
+               
+                <p className="text-sm font-medium text-gray-200 truncate">
+                  {item.question.title}
+                </p>
               </div>
-            );
-          })}
+
+            </div>
+          ))}
+
         {safeData.filter((item) => item.queue === "Q3").length === 0 && (
-          <p className="text-gray-500 italic">Not scheduled yet</p>
+          <p className="text-gray-500 italic text-sm">
+            Not scheduled yet
+          </p>
         )}
       </div>
     </div>

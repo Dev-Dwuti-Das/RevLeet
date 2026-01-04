@@ -30,7 +30,7 @@ export default function Working_Queues() {
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 gap-8">
           <WaitingQ2 data={data} ondone={get_data}/>
-          <WaitingQ4 data={data}/>
+          <WaitingQ4 data={data} ondone={get_data}/>
           {/* <CluelessCard></CluelessCard> */}
         </div>
 
