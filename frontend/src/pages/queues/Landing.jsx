@@ -1,5 +1,30 @@
 import landing_page_asset1 from "../../assets/landing_page_asset1.png";
 export default function Landing() {
+  function FlowPill({ label, tone }) {
+    const styles = {
+      neutral: "bg-white/5 border-white/15 text-white",
+      purple: "bg-purple-500/20 border-purple-400/30 text-purple-300",
+      orange: "bg-orange-500/20 border-orange-400/30 text-orange-300",
+      yellow: "bg-yellow-500/20 border-yellow-400/30 text-yellow-300",
+      green: "bg-green-500/20 border-green-400/30 text-green-300",
+    };
+
+    return (
+      <span
+        className={`
+        px-5 py-2.5
+        rounded-full
+        text-sm font-medium
+        backdrop-blur-md
+        border
+        ${styles[tone]}
+      `}
+      >
+        {label}
+      </span>
+    );
+  }
+
   function QueueCardLeft() {
     return (
       <div
@@ -28,7 +53,6 @@ export default function Landing() {
           </span>
         </div>
 
-       
         <div className="mb-6">
           <span className="text-4xl font-semibold text-purple-500">6</span>
           <p className="text-sm text-gray-400">questions pending</p>
@@ -87,13 +111,11 @@ export default function Landing() {
           </span>
         </div>
 
-        {/* Count */}
         <div className="mb-4">
           <span className="text-4xl font-semibold text-orange-400">8</span>
           <p className="text-sm text-gray-400">questions pending</p>
         </div>
 
-        {/* List */}
         <div className="space-y-3 max-h-[280px] overflow-y-auto pr-1">
           {[
             "Two Sum II – Input Array Is Sorted",
@@ -133,8 +155,7 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        
+      <section className="relative min-h-screen flex items-center justify-center">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.25),transparent_60%)]" />
 
@@ -238,94 +259,100 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center px-6">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div
-            className="
-      w-[700px] h-[350px]
-      rounded-full
-      bg-violet-500/40
-      blur-[160px]
-      opacity-80
-    "
-          />
-        </div>
+      
+<section className="relative py-32">
+  
+  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
-        <div className="relative z-10 max-w-3xl text-center mb-20">
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tight text-white">
-            Think better with <span className="text-violet-400">Revleet</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-400">
-            Never forget a problem. Never relearn the same concept twice.
+  <div className="relative max-w-6xl mx-auto px-6 text-center">
+
+    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
+      LeetCode helps you <span className="text-violet-500 heading-top1 ">solve</span>.
+      <br />
+      It doesn’t help you <span className="text-violet-500 heading-top1">remember</span>.
+    </h2>
+
+    <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
+      The real problem isn’t difficulty. It’s decay.
+    </p>
+
+    <div className="grid md:grid-cols-3 gap-10">
+
+      <div className="relative group">
+        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
+        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+            No enforced revision
+          </h3>
+          <p className="text-gray-400 leading-relaxed">
+            Problems are solved once, then silently disappear from memory.
+            There’s no system to bring them back.
           </p>
         </div>
+      </div>
 
-        {/* === GLASS PRODUCT CARD === */}
-      </section>
-
-      <section className="max-w-6xl mx-auto px-6 py-28">
-        <h2 className="text-3xl md:text-4xl font-semibold mb-10">
-          The real problem with LeetCode
-        </h2>
-
-        <img
-          src={landing_page_asset1}
-          style={{ height: 500, width: 425 }}
-        ></img>
-
-        <div className="grid md:grid-cols-3 gap-6 text-gray-400">
-          <Problem text="You solve a question once and never see it again." />
-          <Problem text="You revisit problems randomly with no structure." />
-          <Problem text="You forget patterns right when it matters most." />
+      <div className="relative group">
+        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
+        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+          <h3 className="text-lg font-medium text-gray-400 mb-3 hero-text1">
+            Fake sense of progress
+          </h3>
+          <p className="text-gray-400 leading-relaxed">
+            A high solved count looks impressive until recall fails
+            under interview pressure.
+          </p>
         </div>
-      </section>
+      </div>
 
-      <section className="bg-[#0d0d11] py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-14">
-            Revleet fixes this with structure
+      <div className="relative group">
+        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
+        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+            Mental overhead everywhere
+          </h3>
+          <p className="text-gray-400 leading-relaxed">
+            Notes, reminders, spreadsheets tools meant to help
+            end up becoming the problem.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+      <section className="relative px-6 py-28 grid-bg overflow-hidden">
+        
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
+            Revleet fixes this with{" "}
+            <span className="text-violet-500 heading-top-bold">structure</span>
           </h2>
 
-          <div className="flex flex-wrap justify-center gap-3 text-sm text-gray-300 mb-10">
-            <Step label="Question List" />
+          <div className="relative flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-10">
+            
+
+            <FlowPill label="Question List" tone="neutral" />
             <Arrow />
-            <Step label="Waiting" color="purple" />
+
+            <FlowPill label="Waiting" tone="purple" />
             <Arrow />
-            <Step label="Vague" color="orange" />
+
+            <FlowPill label="Vague" tone="orange" />
             <Arrow />
-            <Step label="Almost Done" color="yellow" />
+
+            <FlowPill label="Almost Done" tone="yellow" />
             <Arrow />
-            <Step label="Done" color="green" />
+
+            <FlowPill label="Done" tone="green" />
           </div>
 
-          <p className="text-center max-w-3xl mx-auto text-gray-400">
+          <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
             Every question moves through queues based on your confidence.
             Waiting stages enforce time gaps — the core principle of
-            <span className="text-purple-400"> spaced repetition</span>.
+            <span className="text-violet-400"> spaced repetition</span>.
           </p>
-        </div>
-      </section>
-
-      <section className="py-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-semibold text-center mb-16">
-            Built for serious preparation
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Feature
-              title="Automatic Revision Timing"
-              desc="You don’t decide when to revise. The system does — based on memory science."
-            />
-            <Feature
-              title="Visible Progress"
-              desc="At any moment, you know exactly what you’re weak at and what’s mastered."
-            />
-            <Feature
-              title="Low Mental Overhead"
-              desc="No spreadsheets. No reminders. Just solve, revise, move on."
-            />
-          </div>
         </div>
       </section>
 

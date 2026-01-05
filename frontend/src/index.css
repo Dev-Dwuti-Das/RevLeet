@@ -6,6 +6,16 @@
   border: 1px solid red;
 }  */
 
+
+.grid-bg {
+  background-color: #000;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle at center, rgba(5, 5, 5, 0.15), transparent 60%);
+  background-size: 48px 48px, 48px 48px, 100% 100%;
+}
+
 .hero-text {
   font-family: "Riccione-XLight", serif;
   font-weight: 250;
@@ -14,9 +24,27 @@
   font-size: 20px;
 }
 
+
+.hero-text1 {
+  font-family: "Riccione-XLight", serif;
+  font-weight: 250;
+  letter-spacing: 0.03em;
+  /* font-style: italic; */
+  font-size: 20px;
+}
+
 .heading-top {
   font-family: "Inter", sans-serif;
   font-weight: 400;
+  font-style: italic;
+  line-height: 1;
+  font-size: 4rem;
+}
+
+
+.heading-top1 {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
   font-style: italic;
   line-height: 1;
   font-size: 4rem;
@@ -29,6 +57,21 @@
   font-size: 4rem;
 }
 
+.heading-bottom1 {
+  font-family: "Playfair Display", serif;
+  /* font-style: italic; */
+  font-weight: 400;
+  font-size: 4rem;
+}
+
+
+.heading-top-bold{
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+  font-size: 4.5rem;
+}
 
 a,
 a:visited,
