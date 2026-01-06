@@ -2,9 +2,9 @@ import Account from "../models/Account.js";
 import Progress from "../models/progress.js";
 
 export const QUEUE_FLOW = {
-  Q1: { type: "waiting", next: "Q2", delay: 1 * 30 * 1000 },
+  Q1: { type: "waiting", next: "Q2", delay: 12 * 60 * 60 * 1000 },
   Q2: { type: "pending", next: "Q3" },
-  Q3: { type: "waiting", next: "Q4", delay: 1 * 60 * 1000 },
+  Q3: { type: "waiting", next: "Q4", delay: 12 * 60 * 60 * 1000 },
   Q4: { type: "pending", next: "Q5" },
   Q5: { type: "done" },
 };
@@ -87,10 +87,6 @@ export async function handle_done(req, res) {
         [`queueCounts.${nextQueue}`]: 1,
         totalSolved: 1,
       },
-    });
-    console.log("EXPORTS CHECK:", {
-      handle_done: typeof handle_done,
-      keys: Object.keys({ handle_done }),
     });
 
     return res.json({

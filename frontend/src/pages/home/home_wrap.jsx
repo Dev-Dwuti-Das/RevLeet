@@ -1,6 +1,6 @@
 import WaitingQ from "./WaitingQ.jsx";
 import YellowQStats from "./yellowQstats.jsx";
-import OrangeQstats from "./orangeQstats.jsx";
+import Q2stats from "./Q2stats.jsx";
 // import QuestionList from "./Question_List";
 import Questionlist from "./question_list.jsx";
 import HeatmapExample from "./heatmap.jsx";
@@ -18,7 +18,6 @@ function Home() {
           withCredentials: true,
         });
         setdata(new_data.data.user_data);
-        console.log(new_data.data.user_data);
       } catch (err) {
         console.log(err);
       }
@@ -33,7 +32,7 @@ function Home() {
         <div className="flex flex-col gap-6 w-full lg:w-2/3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
             {/* <WaitingQ/>  */}
-            <OrangeQstats data={data}/>
+            <Q2stats data={data}/>
             {/* <WaitingQ/>  */}
             <YellowQStats data={data}/>
           </div>
