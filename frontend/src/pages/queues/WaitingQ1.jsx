@@ -73,10 +73,10 @@ export default function WaitingQueueQ1({ data }) {
         <div className="text-4xl font-bold text-purple-500 leading-tight">
           {queue_count.q1}
         </div>
-        <p className="text-gray-400 text-sm">questions pending</p>
+        <p className="text-gray-400 text-sm">questions waiting</p>
       </div>
 
-      <div className="h-px w-full bg-gray-700/40 rounded-full mb-4" />
+
 
       {/* List */}
       <div className="space-y-3 max-h-[360px] overflow-y-auto pr-1">
@@ -118,6 +118,7 @@ export default function WaitingQueueQ1({ data }) {
                   {item.question.title}
                 </p>
               </div>
+
 
             </div>
           ))}

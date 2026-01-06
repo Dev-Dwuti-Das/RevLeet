@@ -45,7 +45,7 @@ export default function WaitingQueueQ1({ data }) {
 
       {/* Flow */}
       <div className="flex items-center gap-2 mb-5 text-xs text-gray-400">
-        <span className="px-2 py-1 bg-purple-500/20 text-purple-300 font-semibold rounded-full border border-purple-500/20">
+        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
           Buffer 1
         </span>
 
@@ -57,7 +57,7 @@ export default function WaitingQueueQ1({ data }) {
 
         <span className="text-purple-400">→</span>
 
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
+        <span className="px-2 py-1 bg-purple-500/20 text-purple-300 font-semibold rounded-full border border-purple-500/20">
           Buffer 2
         </span>
 
@@ -75,7 +75,6 @@ export default function WaitingQueueQ1({ data }) {
         <p className="text-gray-400 text-sm">questions waiting</p>
       </div>
 
-      <div className="h-px w-full bg-gray-700/40 rounded-full mb-4" />
 
       {/* List */}
       <div className="space-y-3 max-h-[360px] overflow-y-auto pr-1">
