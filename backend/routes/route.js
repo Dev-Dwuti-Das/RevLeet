@@ -27,4 +27,11 @@ router.post("/login",login);
 
 router.post("/tick",auth_jwt, handletick)
 
+router.get("/me", auth_jwt, (req, res) => {
+  res.json({
+    user: req.user
+  });
+});
+
+
 export default router;  

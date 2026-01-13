@@ -3,7 +3,7 @@ import axios from "axios";
 import SearchBar from "./Search";
 import FilterMenu from "./filter";
 
-function Question_list() {
+function Question_list({render}) {
   const [question, setquestion] = useState([]);
   const [filtered, setFiltered] = useState([]); //
   const [searchTerm, setSearchTerm] = useState("");
@@ -32,6 +32,7 @@ function Question_list() {
       );
      
       settick((prev) => !prev);
+      render();
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +82,7 @@ function Question_list() {
   return (
     <div
       className="
-        h-173 w-auto overflow-y-auto 
+        h-200 w-auto overflow-y-auto 
         bg-[#121212]
         rounded-3xl       
         border border-[#1d1d1d]

@@ -1,5 +1,9 @@
-import landing_page_asset1 from "../../assets/landing_page_asset1.png";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../context";
 export default function Landing() {
+  const loggedIn = useAuth();
+
+  if (loggedIn) return <Navigate to="/home" replace />;
   function FlowPill({ label, tone }) {
     const styles = {
       neutral: "bg-white/5 border-white/15 text-white",
@@ -259,71 +263,102 @@ export default function Landing() {
         </div>
       </section>
 
-      
-<section className="relative py-32">
-  
-  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
+      <section className="relative py-32">
+        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
-  <div className="relative max-w-6xl mx-auto px-6 text-center">
+        <div className="relative max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
+            LeetCode helps you{" "}
+            <span className="text-violet-500 heading-top1 ">solve</span>.
+            <br />
+            It doesn’t help you{" "}
+            <span className="text-violet-500 heading-top1">remember</span>.
+          </h2>
 
-    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
-      LeetCode helps you <span className="text-violet-500 heading-top1 ">solve</span>.
-      <br />
-      It doesn’t help you <span className="text-violet-500 heading-top1">remember</span>.
-    </h2>
-
-    <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
-      The real problem isn’t difficulty. It’s decay.
-    </p>
-
-    <div className="grid md:grid-cols-3 gap-10">
-
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
-            No enforced revision
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Problems are solved once, then silently disappear from memory.
-            There’s no system to bring them back.
+          <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
+            The real problem isn’t difficulty. It’s decay.
           </p>
+
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+                  No enforced revision
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Problems are solved once, then silently disappear from memory.
+                  There’s no system to bring them back.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 mb-3 hero-text1">
+                  Fake sense of progress
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  A high solved count looks impressive until recall fails under
+                  interview pressure.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+                  Mental overhead everywhere
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Notes, reminders, spreadsheets tools meant to help end up
+                  becoming the problem.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 mb-3 hero-text1">
-            Fake sense of progress
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            A high solved count looks impressive until recall fails
-            under interview pressure.
-          </p>
-        </div>
-      </div>
-
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
-            Mental overhead everywhere
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Notes, reminders, spreadsheets tools meant to help
-            end up becoming the problem.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+      </section>
 
       <section className="relative px-6 py-28 grid-bg overflow-hidden">
-        
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}
@@ -331,8 +366,6 @@ export default function Landing() {
           </h2>
 
           <div className="relative flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-10">
-            
-
             <FlowPill label="Question List" tone="neutral" />
             <Arrow />
 

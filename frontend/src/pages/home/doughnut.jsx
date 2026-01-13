@@ -25,30 +25,38 @@ export default function DoughnutChart({ data }) {
     queue_count.q4 +
     queue_count.q5;
 
+  const hasData = total > 0;
   const chartdata = {
-    labels: ["Q1", "Q2", "Q3", "Q4", "Q5"],
+    labels: hasData ? ["Q1", "Q2", "Q3", "Q4", "Q5"] : ["No data"],
     datasets: [
-      {
-        data: [
-          queue_count.q1,
-          queue_count.q2,
-          queue_count.q3,
-          queue_count.q4,
-          queue_count.q5,
-        ],
-        backgroundColor: [
-          "rgba(239, 68, 68, 0.95)",   // red
-          "rgba(99, 102, 241, 0.95)",  // indigo
-          "rgba(234, 179, 8, 0.95)",   // yellow
-          "rgba(249, 115, 22, 0.95)",  // orange
-          "rgba(168, 85, 247, 0.95)",  // purple
-        ],
-        borderRadius: 2,   // 🔥 rounded slices
-        spacing: 1,
-        borderWidth: 0,
-        hoverOffset: 16,
-        cutout: "65%",
-      },
+      hasData
+        ? {
+            data: [
+              queue_count.q1,
+              queue_count.q2,
+              queue_count.q3,
+              queue_count.q4,
+              queue_count.q5,
+            ],
+            backgroundColor: [
+              "rgba(239, 68, 68, 0.95)", // red
+              "rgba(99, 102, 241, 0.95)", // indigo
+              "rgba(234, 179, 8, 0.95)", // yellow
+              "rgba(249, 115, 22, 0.95)", // orange
+              "rgba(168, 85, 247, 0.95)", // purple
+            ],
+            borderRadius: 2,
+            spacing: 1,
+            borderWidth: 0,
+            hoverOffset: 16,
+            cutout: "65%",
+          }
+        : {
+            data: [1],
+            backgroundColor: ["rgba(255,255,255,0.08)"],
+            borderWidth: 0,
+            cutout: "65%",
+          },
     ],
   };
 
@@ -80,16 +88,14 @@ export default function DoughnutChart({ data }) {
         backdrop-blur-xl
       "
     >
-      
-      
-
-      {/* Chart */}
       <div className="relative h-[230px]">
         <Doughnut data={chartdata} options={options} />
 
-        {/* Center content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
           <span className="text-4xl font-bold text-white">{total}</span>
+          <span className="text-xs text-zinc-400 mt-1">
+            {total === 0 ? "No data yet" : "questions"}
+          </span>
         </div>
       </div>
     </div>
