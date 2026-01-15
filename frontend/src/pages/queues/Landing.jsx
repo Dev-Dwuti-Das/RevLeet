@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context";
+import LandingNavbar from "../../components/common/landing_nav";
 export default function Landing() {
   const loggedIn = useAuth();
 
@@ -14,6 +15,7 @@ export default function Landing() {
     };
 
     return (
+      
       <span
         className={`
         px-5 py-2.5
@@ -41,6 +43,7 @@ export default function Landing() {
         p-6
       "
       >
+        
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-white font-medium text-lg">Buffer 1</h3>
@@ -64,7 +67,7 @@ export default function Landing() {
 
         <div className="h-px w-full bg-white/10 mb-4" />
 
-        <div className="space-y-3 max-h-[280px] pr-1">
+        <div className="space-y-3 max-h-70 pr-1">
           {[
             { title: "Maximum Subarray" },
             { title: "LRU Cache" },
@@ -159,8 +162,9 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
+      <LandingNavbar></LandingNavbar>
       <section className="relative min-h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-[#05050a]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.25),transparent_60%)]" />
 
         <div
@@ -263,7 +267,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative py-32">
+      <section className="relative py-32 overflow-hidden border-none" id="whyrevleet">
         {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
         <div className="relative max-w-6xl mx-auto px-6 text-center">
@@ -271,7 +275,7 @@ export default function Landing() {
             LeetCode helps you{" "}
             <span className="text-violet-500 heading-top1 ">solve</span>.
             <br />
-            It doesn’t help you{" "}
+            RevLeet help you{" "}
             <span className="text-violet-500 heading-top1">remember</span>.
           </h2>
 
@@ -358,7 +362,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative px-6 py-28 grid-bg overflow-hidden">
+      <section className="relative px-6 py-28 grid-bg overflow-hidden" id="howitworks">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}

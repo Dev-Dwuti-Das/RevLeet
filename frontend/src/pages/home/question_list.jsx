@@ -5,7 +5,7 @@ import FilterMenu from "./filter";
 
 function Question_list({render}) {
   const [question, setquestion] = useState([]);
-  const [filtered, setFiltered] = useState([]); //
+  const [filtered, setFiltered] = useState([]); 
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState("All");
   const [tick, settick] = useState(false);

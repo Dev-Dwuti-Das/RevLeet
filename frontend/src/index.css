@@ -6,6 +6,9 @@
   border: 1px solid red;
 }  */
 
+html {
+  scroll-behavior: smooth;
+}
 
 .grid-bg {
   background-color: #000;

@@ -29,7 +29,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="p-4 min-h-screen text-white w-full relative">
+    <div className="p-4  pt-1 min-h-screen text-white w-full m-0 relative">
       <div className="flex flex-col lg:flex-row gap-6 w-full">
         <div className="flex flex-col gap-6 w-full lg:w-2/3">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">

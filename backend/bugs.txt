@@ -6,3 +6,5 @@ this API {http://localhost:3000/api/gethomeinfo} returning password in json
 
 logout 
 navbar
+
+auto login in signup (navbar) 
