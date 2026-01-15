@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-
+import LandingNavbar from "../../components/common/landing_nav";
 function Signup() {
   const navigate = useNavigate();
   const [form, setform] = useState({
@@ -42,6 +42,7 @@ function Signup() {
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
+      <LandingNavbar></LandingNavbar>
 
       {/* LEFT SIDE — SAME AS LOGIN */}
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">

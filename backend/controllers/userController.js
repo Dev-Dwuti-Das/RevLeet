@@ -11,50 +11,56 @@ export async function handletick(req, res) {
 
     let record = await progress.findOne({ user, question: question_id });
 
-    if (record) {
-      if (record.isDone) {
-        return res.json({ msg: "Already solved", progress: record });
-      }
-
-      record.isDone = true;
-      await record.save();
-
-      return res.json({ msg: "Marked as solved", progress: record });
+    if (record && record.isDone) {
+      return res.json({ msg: "Already solved", progress: record });
     }
 
-    const newRecord = await progress.create({
-      user,
-      question: question_id,
-      queue: "Q1",
-      isDone: true,
-      queueEnteredAt: new Date(),
-      autoMoveAt: automoveat("Q1"),
-    });
+    let solvedQueue = "Q1";
+
+    if (record) {
+      record.isDone = true;
+      await record.save();
+      solvedQueue = record.queue;
+    } else {
+      record = await progress.create({
+        user,
+        question: question_id,
+        queue: "Q1",
+        isDone: true,
+        queueEnteredAt: new Date(),
+        autoMoveAt: automoveat("Q1"),
+      });
+    }
+
 
     const account = await Account.findById(user);
+
     if (account) {
       const now = new Date();
-      const today = now.toDateString();
-      const last = account.lastActive?.toDateString();
+      const today = now.toISOString().slice(0, 10); // YYYY-MM-DD
+      const last = account.lastActive
+        ? account.lastActive.toISOString().slice(0, 10)
+        : null;
 
+    
       account.totalSolved += 1;
-      account.queueCounts.Q1 += 1;
+      account.queueCounts[solvedQueue] += 1;
 
-      const entry = account.dailySolved.find((d) => d.date === today);
+      
+      const entry = account.dailySolved.find(d => d.date === today);
       if (entry) entry.solved += 1;
       else account.dailySolved.push({ date: today, solved: 1 });
 
+   
       if (!last) {
         account.streak = 1;
       } else if (last !== today) {
-        const yesterday = new Date(now);
-        yesterday.setDate(now.getDate() - 1);
+        const yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+        const y = yesterday.toISOString().slice(0, 10);
 
-        if (last === yesterday.toDateString()) {
-          account.streak += 1;
-        } else {
-          account.streak = 1;
-        }
+        if (last === y) account.streak += 1;
+        else account.streak = 1;
       }
 
       account.lastActive = now;
@@ -62,9 +68,10 @@ export async function handletick(req, res) {
     }
 
     return res.json({
-      msg: "Solved for the first time",
-      progress: newRecord,
+      msg: "Marked as solved",
+      progress: record,
     });
+
   } catch (err) {
     console.error("Tick error:", err);
     return res.status(500).json({ error: err.message });
@@ -100,7 +107,7 @@ export async function signup(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "strict",
+      sameSite: "lax",
       secure: false, // true in production
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
@@ -125,11 +132,20 @@ export async function gethomeinfo(req, res) {
     const user_data = await progress
       .find({ user: userid })
       .populate("question");
-    res.status(200).json({ user_data });
+
+    const account = await Account.findById(userid).select(
+      "dailySolved streak queueCounts totalSolved"
+    );
+    console.log(user_data);
+    res.status(200).json({
+      user_data,
+      stats: account
+    });
   } catch (err) {
     res.status(500).json({ msg: "error" });
   }
 }
+
 
 export async function login(req, res) {
   try {

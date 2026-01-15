@@ -1,5 +1,10 @@
-import landing_page_asset1 from "../../assets/landing_page_asset1.png";
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../../context";
+import LandingNavbar from "../../components/common/landing_nav";
 export default function Landing() {
+  const loggedIn = useAuth();
+
+  if (loggedIn) return <Navigate to="/home" replace />;
   function FlowPill({ label, tone }) {
     const styles = {
       neutral: "bg-white/5 border-white/15 text-white",
@@ -10,6 +15,7 @@ export default function Landing() {
     };
 
     return (
+      
       <span
         className={`
         px-5 py-2.5
@@ -37,6 +43,7 @@ export default function Landing() {
         p-6
       "
       >
+        
         {/* Header */}
         <div className="flex items-center justify-between mb-5">
           <h3 className="text-white font-medium text-lg">Buffer 1</h3>
@@ -60,7 +67,7 @@ export default function Landing() {
 
         <div className="h-px w-full bg-white/10 mb-4" />
 
-        <div className="space-y-3 max-h-[280px] pr-1">
+        <div className="space-y-3 max-h-70 pr-1">
           {[
             { title: "Maximum Subarray" },
             { title: "LRU Cache" },
@@ -155,8 +162,9 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
+      <LandingNavbar></LandingNavbar>
       <section className="relative min-h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-[#05050a]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.25),transparent_60%)]" />
 
         <div
@@ -259,71 +267,102 @@ export default function Landing() {
         </div>
       </section>
 
-      
-<section className="relative py-32">
-  
-  {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
+      <section className="relative py-32 overflow-hidden border-none" id="whyrevleet">
+        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
-  <div className="relative max-w-6xl mx-auto px-6 text-center">
+        <div className="relative max-w-6xl mx-auto px-6 text-center">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
+            LeetCode helps you{" "}
+            <span className="text-violet-500 heading-top1 ">solve</span>.
+            <br />
+            RevLeet help you{" "}
+            <span className="text-violet-500 heading-top1">remember</span>.
+          </h2>
 
-    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
-      LeetCode helps you <span className="text-violet-500 heading-top1 ">solve</span>.
-      <br />
-      It doesn’t help you <span className="text-violet-500 heading-top1">remember</span>.
-    </h2>
-
-    <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
-      The real problem isn’t difficulty. It’s decay.
-    </p>
-
-    <div className="grid md:grid-cols-3 gap-10">
-
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
-            No enforced revision
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Problems are solved once, then silently disappear from memory.
-            There’s no system to bring them back.
+          <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
+            The real problem isn’t difficulty. It’s decay.
           </p>
+
+          <div className="grid md:grid-cols-3 gap-10">
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+                  No enforced revision
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Problems are solved once, then silently disappear from memory.
+                  There’s no system to bring them back.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 mb-3 hero-text1">
+                  Fake sense of progress
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  A high solved count looks impressive until recall fails under
+                  interview pressure.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative group">
+              <div
+                className="
+    absolute inset-0
+    bg-purple-500/30
+    blur-[90px]
+    opacity-0
+    group-hover:opacity-100
+    transition-opacity
+    duration-1000
+    delay-120
+    ease-out
+  "
+              />
+              <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
+                <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
+                  Mental overhead everywhere
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  Notes, reminders, spreadsheets tools meant to help end up
+                  becoming the problem.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 mb-3 hero-text1">
-            Fake sense of progress
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            A high solved count looks impressive until recall fails
-            under interview pressure.
-          </p>
-        </div>
-      </div>
-
-      <div className="relative group">
-        <div className="absolute inset-0 bg-purple-500/30 blur-[120px] opacity-0 group-hover:opacity-100 transition" />
-        <div className="relative rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-8">
-          <h3 className="text-lg font-medium text-gray-400 hero-text1 mb-3">
-            Mental overhead everywhere
-          </h3>
-          <p className="text-gray-400 leading-relaxed">
-            Notes, reminders, spreadsheets tools meant to help
-            end up becoming the problem.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-      <section className="relative px-6 py-28 grid-bg overflow-hidden">
-        
+      <section className="relative px-6 py-28 grid-bg overflow-hidden" id="howitworks">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}
@@ -331,8 +370,6 @@ export default function Landing() {
           </h2>
 
           <div className="relative flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-10">
-            
-
             <FlowPill label="Question List" tone="neutral" />
             <Arrow />
 

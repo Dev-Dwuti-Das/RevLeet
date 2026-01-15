@@ -1,2 +1,10 @@
 search bug : when user searches for a question and marks done then the page refreshesh resulting in reload and the ticked question disappears and user have to seach again
 this API {http://localhost:3000/api/gethomeinfo} returning password in json
+
+
+
+
+logout 
+navbar
+
+auto login in signup (navbar) 

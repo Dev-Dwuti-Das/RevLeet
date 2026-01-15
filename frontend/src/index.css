@@ -6,6 +6,9 @@
   border: 1px solid red;
 }  */
 
+html {
+  scroll-behavior: smooth;
+}
 
 .grid-bg {
   background-color: #000;
@@ -15,6 +18,8 @@
     radial-gradient(circle at center, rgba(5, 5, 5, 0.15), transparent 60%);
   background-size: 48px 48px, 48px 48px, 100% 100%;
 }
+
+
 
 .hero-text {
   font-family: "Riccione-XLight", serif;
