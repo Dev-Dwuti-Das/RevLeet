@@ -3,11 +3,10 @@ import { signup } from "../controllers/userController.js";
 import { handletick } from "../controllers/userController.js";
 import { login } from "../controllers/userController.js";
 import auth_jwt from "../middleware/auth.js";
-// import { dashboard } from "../controllers/userController.js";
 import  getquestions from "../controllers/controller.js";
-// import { listing } from "../controllers/userController.js";
 import { gethomeinfo } from "../controllers/userController.js";
 import { handle_done } from "../utils/queueFlow.js";
+import { logoutController } from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -25,7 +24,9 @@ router.post("/signup",signup);
 
 router.post("/login",login);  
 
-router.post("/tick",auth_jwt, handletick)
+router.post("/tick",auth_jwt, handletick);
+
+router.post("/logout", logoutController);
 
 router.get("/me", auth_jwt, (req, res) => {
   res.json({

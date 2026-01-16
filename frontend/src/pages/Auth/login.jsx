@@ -40,6 +40,7 @@ function login() {
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
       <LandingNavbar></LandingNavbar>
+      
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">
         {/* Glow */}
         {/* <div className="absolute top-32 left-32 w-[800px] h-[600px] bg-purple-600/70 blur-[120px] z-0" /> */}

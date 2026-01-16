@@ -124,6 +124,30 @@ export async function signup(req, res) {
   }
 }
 
+export const logoutController = (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/"
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully"
+    });
+
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Logout failed"
+    });
+  }
+};
+
+
 export async function gethomeinfo(req, res) {
   const userid = req.user;
   if (!userid) return res.status(401).json({ msg: "id not matched" });

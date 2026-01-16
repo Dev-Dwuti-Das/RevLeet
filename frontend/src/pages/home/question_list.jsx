@@ -91,7 +91,7 @@ function Question_list({render}) {
         hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]
         transition-all duration-300
         overflow-hidden
-        z-50
+        z-10
       "
     >
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-4">

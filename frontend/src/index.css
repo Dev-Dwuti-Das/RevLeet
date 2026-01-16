@@ -47,6 +47,14 @@ html {
   font-size: 15px;
 }
 
+.hero-text3 {
+  font-family: "Riccione-XLight", serif;
+  font-weight: 150;
+  letter-spacing: 0.05rem;
+  font-style: italic;
+  font-size: 13px;
+}
+
 .heading-top {
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -69,8 +77,17 @@ html {
 .heading-top2 {
   font-family: "Inter", sans-serif;
   font-weight: 400;
+  /* font-style: italic; */
   line-height: 1;
   font-size: 1.5rem;
+}
+
+.heading-top3 {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  font-style: italic;
+  font-size: 1rem;
 }
 
 .heading-bottom {
@@ -99,6 +116,13 @@ html {
   /* font-style: italic; */
   font-weight: 300;
   font-size: 1.5rem;
+}
+
+.heading-bottom4 {
+  font-family: "Playfair Display", serif;
+  /* font-style: italic; */
+  font-weight: 250;
+  font-size: 0.9rem;
 }
 
 
