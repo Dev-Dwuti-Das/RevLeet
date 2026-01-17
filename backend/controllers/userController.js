@@ -109,6 +109,7 @@ export async function signup(req, res) {
       httpOnly: true,
       sameSite: "lax",
       secure: false, // true in production
+      path: "/",   
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -196,6 +197,7 @@ export async function login(req, res) {
       sameSite: "lax",
       secure: false, // true in production
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: "/",   
     });
 
     return res.status(200).json({ msg: "Login successful", flag: "success" });
