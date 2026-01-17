@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import LandingNavbar from "../../components/common/landing_nav";
+
 function Signup() {
   const navigate = useNavigate();
   const [form, setform] = useState({
@@ -14,11 +14,9 @@ function Signup() {
   async function handlesubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/signup",
-        form,
-        { withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:3000/api/signup", form, {
+        withCredentials: true,
+      });
 
       res.data.flag === "error"
         ? toast.error(res.data.msg, {
@@ -27,11 +25,8 @@ function Signup() {
         : toast.success(res.data.msg, {
             style: { color: "#56ff67ec" },
           });
-
       if (res.data.flag === "success") {
-        setTimeout(() => {
-          navigate("/home");
-        }, 1200);
+        window.location.replace("/home");
       }
     } catch (err) {
       toast.error("Server error", {
@@ -42,8 +37,6 @@ function Signup() {
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
-      <LandingNavbar></LandingNavbar>
-
       {/* LEFT SIDE — SAME AS LOGIN */}
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">
         <h1 className="text-5xl font-bold mb-6">Revleet</h1>
@@ -75,7 +68,6 @@ function Signup() {
 
       {/* RIGHT SIDE — SAME BACKGROUND + BLOBS */}
       <div className="flex items-center relative justify-center px-6 overflow-hidden">
-
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
@@ -107,7 +99,6 @@ function Signup() {
           </div>
 
           <form onSubmit={handlesubmit} className="space-y-5">
-
             <input
               type="text"
               placeholder="Full name"

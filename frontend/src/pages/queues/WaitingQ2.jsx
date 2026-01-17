@@ -142,7 +142,7 @@ export default function VagueCardQ({ data, ondone }) {
           onChange={() => handledone(data.question._id)}
           className="
             appearance-none h-5 w-5 rounded-md 
-                border border-gray-500 bg-[#1f1f1f]
+                border border-gray-500 bg-[#252121]
                 checked:bg-green-500/80 checked:border-green-500
                 transition-all duration-200
           "

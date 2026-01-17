@@ -7,6 +7,7 @@ import HeatmapExample from "./heatmap.jsx";
 import DoughnutChart from "./doughnut.jsx";
 import { useEffect, useState } from "react";
 import ProgressSummary from "./Progress.jsx";
+import Navbar from "../../components/common/home_nav.jsx";
 import axios from "axios";
 
 function Home() {

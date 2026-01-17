@@ -1,45 +1,46 @@
-import { StrictMode } from "react";
+// main.jsx
+import "../src/index.css"
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { AuthProvider } from "./context";
+import ProtectedRoute from "./ProtectedRoute";
 
-import Navbar from "./components/common/home_nav.jsx";
-import Home from "./pages/home/home_wrap.jsx";
-import WorkingQueues from "./pages/queues/Working_queue_wrap.jsx";
-import WaitingQueues from "./pages/queues/Waiting_queue_wrap.jsx";
-import Landing from "./pages/queues/Landing.jsx";
-import Login from "./pages/Auth/login.jsx";
-import Signup from "./pages/Auth/signup.jsx";
-import About from "./pages/queues/about.jsx";
-import { Toaster } from "sonner";
-import { AuthProvider } from "./context.jsx";
+
+import Homelayout from "./layout/homelayout";
+import PublicLayout from "./layout/publiclayout";
+import Landing from "./pages/queues/Landing";
+import Login from "./pages/Auth/login";
+import Signup from "./pages/Auth/signup";
+import Home from "./pages/home/home_wrap";
+import WorkingQueues from "./pages/queues/Working_queue_wrap";
+import WaitingQueues from "./pages/queues/Waiting_queue_wrap";
 
 const router = createBrowserRouter([
   {
-    element: <Navbar />, // ✅ Navbar INSIDE router
+    element: <PublicLayout/>,
     children: [
       { path: "/", element: <Navigate to="/landing" replace /> },
       { path: "landing", element: <Landing /> },
+      { path: "login", element:<Login />},
+      { path: "signup", element: <Signup />},
+    ],
+  },
+  {
+    element: (
+      <ProtectedRoute>
+        <Homelayout />
+      </ProtectedRoute>
+    ),
+    children: [
       { path: "home", element: <Home /> },
       { path: "WorkingQueues", element: <WorkingQueues /> },
       { path: "WaitingQueues", element: <WaitingQueues /> },
-      { path: "about", element: <About /> },
-      { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> },
-      { path: "*", element: <div>Not found</div> },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <Toaster />
-    </AuthProvider>
-  </StrictMode>
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
 );

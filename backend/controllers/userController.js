@@ -109,6 +109,7 @@ export async function signup(req, res) {
       httpOnly: true,
       sameSite: "lax",
       secure: false, // true in production
+      path: "/",   
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -123,6 +124,30 @@ export async function signup(req, res) {
     });
   }
 }
+
+export const logoutController = (req, res) => {
+  try {
+    res.clearCookie("token", {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/"
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Logged out successfully"
+    });
+
+  } catch (error) {
+    console.error("Logout error:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Logout failed"
+    });
+  }
+};
+
 
 export async function gethomeinfo(req, res) {
   const userid = req.user;
@@ -172,6 +197,7 @@ export async function login(req, res) {
       sameSite: "lax",
       secure: false, // true in production
       maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: "/",   
     });
 
     return res.status(200).json({ msg: "Login successful", flag: "success" });
