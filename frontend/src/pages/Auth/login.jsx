@@ -13,7 +13,7 @@ function login() {
   async function handlesubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/login", form);
+      const res = await axios.post("http://localhost:3000/api/login", form, { withCredentials: true } );
       res.data.flag === "error"
         ? toast.error(res.data.msg, {
             style: {

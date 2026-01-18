@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import LandingNavbar from "../../components/common/landing_nav";
 export default function Landing() {
-  const loggedIn = useAuth();
+  const {loggedIn} = useAuth();
 
   if (loggedIn) return <Navigate to="/home" replace />;
   function FlowPill({ label, tone }) {

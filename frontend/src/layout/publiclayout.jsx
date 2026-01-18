@@ -1,22 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context";
 import LandingNavbar from "../components/common/landing_nav";
-
+import { useAuth } from "../context";
+import { Outlet } from "react-router-dom";
 export default function PublicLayout() {
-  const { loggedIn, loading } = useAuth();
 
-  if (loading) {
-  return (
-    <div className="min-h-screen flex items-center justify-center text-white">
-      Checking session…
-    </div>
-  );
-}
-
-
-  if (loggedIn) {
-    return <Navigate to="/home" replace />;
-  }
 
   return (
     <>
