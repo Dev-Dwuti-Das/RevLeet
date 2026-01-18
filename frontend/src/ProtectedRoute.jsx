@@ -1,14 +1,20 @@
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../src/context";
+import { Navigate, Outlet } from "react-router-dom";
+import { useAuth } from "./context";
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute() {
   const { loggedIn, loading } = useAuth();
 
   if (loading) {
-    return <div className="min-h-screen bg-black" />;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        Checking session…
+      </div>
+    );
   }
 
-  if (!loggedIn) return <Navigate to="/login" replace />;
+  if (!loggedIn) {
+    return <Navigate to="/login" replace />;
+  }
 
-  return children;
+  return <Outlet />;
 }

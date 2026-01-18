@@ -17,27 +17,28 @@ import WaitingQueues from "./pages/queues/Waiting_queue_wrap";
 
 const router = createBrowserRouter([
   {
-    element: <PublicLayout/>,
+    element: <PublicLayout />,
     children: [
       { path: "/", element: <Navigate to="/landing" replace /> },
       { path: "landing", element: <Landing /> },
-      { path: "login", element:<Login />},
-      { path: "signup", element: <Signup />},
+      { path: "login", element: <Login /> },
+      { path: "signup", element: <Signup /> },
     ],
   },
   {
-    element: (
-      <ProtectedRoute>
-        <Homelayout />
-      </ProtectedRoute>
-    ),
+    element: <ProtectedRoute />,
     children: [
-      { path: "home", element: <Home /> },
-      { path: "WorkingQueues", element: <WorkingQueues /> },
-      { path: "WaitingQueues", element: <WaitingQueues /> },
+      {
+        element: <Homelayout />,
+        children: [
+          { path: "home", element: <Home /> },
+          { path: "WorkingQueues", element: <WorkingQueues /> },
+          { path: "WaitingQueues", element: <WaitingQueues /> },
+        ],
+      },
     ],
   },
-]);
+])
 
 createRoot(document.getElementById("root")).render(
   <AuthProvider>
