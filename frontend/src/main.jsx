@@ -7,6 +7,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 
 import Homelayout from "./layout/homelayout";
+import About from "./pages/queues/about";
 import PublicLayout from "./layout/publiclayout";
 import Landing from "./pages/queues/Landing";
 import Login from "./pages/Auth/login";
@@ -14,6 +15,7 @@ import Signup from "./pages/Auth/signup";
 import Home from "./pages/home/home_wrap";
 import WorkingQueues from "./pages/queues/Working_queue_wrap";
 import WaitingQueues from "./pages/queues/Waiting_queue_wrap";
+
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,7 @@ const router = createBrowserRouter([
       { path: "landing", element: <Landing /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
+      { path: "about", element: <About/> },
     ],
   },
   {
