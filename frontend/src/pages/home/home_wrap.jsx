@@ -1,4 +1,3 @@
-import WaitingQ from "./WaitingQ.jsx";
 import YellowQStats from "./yellowQstats.jsx";
 import Q2stats from "./Q2stats.jsx";
 // import QuestionList from "./Question_List";
@@ -11,23 +10,20 @@ import axios from "axios";
 
 function Home() {
   const [data, setdata] = useState({});
-  const hasFetched = useRef(false);
-
-  const get_data = useCallback(async () => {
-    try {
-      const new_data = await axios.get("http://localhost:3000/api/gethomeinfo", {
-        withCredentials: true,
-      });
-
-      setdata((prevData) => {
-        const incomingData = new_data.data.user_data;
-        return JSON.stringify(prevData) === JSON.stringify(incomingData)
-          ? prevData
-          : incomingData;
-      });
-    } catch (err) {
-      console.log(err);
+  const [stats, setStats] = useState({});
+  async function getData() {
+      try {
+        const new_data = await axios.get("/api/gethomeinfo", {
+          withCredentials: true,
+        });
+        setdata(new_data.data.user_data);
+        setStats(new_data.data.stats || {});
+      } catch (err) {
+        console.log(err);
+      }
     }
+  useEffect(() => {
+    getData();
   }, []);
 
   useEffect(() => {
@@ -82,10 +78,12 @@ function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="md:col-span-1 w-full">
               <DoughnutChart data={data} />
+             
+
             </div>
 
             <div className="md:col-span-1 w-full">
-              <ProgressSummary data={data} />
+              <ProgressSummary data={data} stats={stats} />
             </div>
           </div>
 
@@ -95,7 +93,7 @@ function Home() {
         </div>
 
         <div className="w-full lg:w-1/3">
-          <Questionlist render={get_data} />
+          <Questionlist render={getData} />
         </div>
       </div>
     </div>

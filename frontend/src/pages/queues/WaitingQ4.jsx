@@ -1,166 +1,99 @@
 import axios from "axios";
 import { toast } from "sonner";
-import { useState, useEffect } from "react";
 
 export default function WaitingQ4({ data, ondone }) {
   const safeData = Array.isArray(data) ? data : [];
-  const [tick, settick] = useState(false);
-
-  useEffect(() => {}, [tick]);
+  const q4Items = safeData.filter((item) => item.queue === "Q4");
 
   async function handledone(id) {
     try {
       await axios.post(
-        "http://localhost:3000/api/queuedone",
+        "/api/queuedone",
         { question_id: id },
         { withCredentials: true }
       );
-      toast.success("well done");
+      toast.success("Well done");
       ondone();
-      settick((prev) => !prev);
     } catch (err) {
       console.log(err);
+      toast.error("Could not update question");
     }
   }
 
-  const queue_count = safeData.reduce(
-    (acc, curr) => {
-      if (curr.queue === "Q4") acc.q4++;
-      return acc;
-    },
-    { q4: 0 }
-  );
-
   return (
-    <div
-      className="
-        relative
-        bg-[#121212]
-        rounded-3xl
-        border border-[#1f1f1f]
-        p-6
-        overflow-hidden
-        transition-all duration-300
-        hover:shadow-[0_0_30px_rgba(250,204,21,0.12)]
-      "
-    >
-    
-      <div className="absolute left-0 top-0 h-full w-1 bg-yellow-500/70" />
+    <section className="relative overflow-hidden rounded-3xl border border-yellow-500/20 bg-gradient-to-br from-[#231f12] via-[#121212] to-[#101010] p-6">
+      <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-yellow-500/15 blur-3xl" />
 
-
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-white tracking-wide">
-          Almost done
-        </h2>
-
-        <span
-          className="
-            text-xs font-semibold
-            text-yellow-400
-            bg-yellow-500/10
-            px-3 py-1 rounded-full
-          "
-        >
+      <div className="relative flex items-start justify-between">
+        <div>
+          <h2 className="text-xl font-semibold tracking-wide">Almost done</h2>
+          <p className="text-xs text-zinc-400 mt-1">Final review queue</p>
+        </div>
+        <span className="text-xs font-semibold text-yellow-200 bg-yellow-500/15 border border-yellow-400/25 px-3 py-1 rounded-full">
           Pending Queue
         </span>
       </div>
 
-      
-      <div className="flex items-center gap-2 mb-4 mt-5 text-xs text-gray-400">
-        <span className="px-2 py-1 bg-[#1f1f1f] font-semibold rounded-full border border-gray-700/30">
-          Buffer 1
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Warm
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Buffer 2
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-yellow-500/40 font-semibold rounded-full text-white border border-yellow-700/40">
-          Stable
-        </span>
+      <div className="mt-5 flex items-center gap-2 text-xs text-zinc-400">
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Buffer 1</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Warm</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Buffer 2</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-yellow-400/30 bg-yellow-500/20 text-yellow-200 font-semibold">Stable</span>
       </div>
 
-    
-      <div className="mb-5">
-        <div className="text-4xl font-bold text-yellow-500 leading-tight">
-          {queue_count.q4}
+      <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+        <div>
+          <p className="text-3xl font-bold text-yellow-300 leading-none">{q4Items.length}</p>
+          <p className="text-xs text-zinc-400 mt-1">questions pending</p>
         </div>
-        <p className="text-gray-400 text-sm">questions pending</p>
+        <p className="text-xs font-semibold px-3 py-1 rounded-full border border-yellow-400/25 bg-yellow-500/10 text-yellow-200">
+          Final checkpoint
+        </p>
       </div>
 
-    
-      <div className="space-y-3 max-h-[400px] overflow-y-auto">
-        {safeData
-          .filter((item) => item.queue === "Q4")
-          .map((item) => (
-            <div
-              key={item._id}
-              className="
-                group
-                flex items-center justify-between
-                gap-4
-                bg-[#161616]
-                px-4 py-3
-                rounded-2xl
-                border border-gray-700/30
-                text-white
-                transition-all duration-200
-                hover:border-yellow-500/40
-                hover:bg-[#1b1b1b]
-              "
-            >
-        
-              <div className="flex flex-col gap-1 min-w-0">
+      <div className="mt-4 space-y-3 max-h-[360px] overflow-y-auto pr-1">
+        {q4Items.map((item, idx) => (
+          <article
+            key={item._id}
+            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 hover:border-yellow-400/35 transition-colors"
+          >
+            <span className="text-xs text-zinc-500 w-5">{idx + 1}</span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-zinc-100 truncate">{item.question.title}</p>
+              <div className="mt-1">
                 <span
-                  className={`w-fit px-2.5 py-0.5 rounded-full text-[11px] font-semibold
-                    ${
-                      item.question.difficulty === "Hard"
-                        ? "bg-red-500/10 text-red-400"
-                        : item.question.difficulty === "Medium"
-                        ? "bg-yellow-500/10 text-yellow-400"
-                        : "bg-green-500/10 text-green-400"
-                    }`}
+                  className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                    item.question.difficulty === "Hard"
+                      ? "bg-red-500/10 text-red-400"
+                      : item.question.difficulty === "Medium"
+                      ? "bg-yellow-500/10 text-yellow-400"
+                      : "bg-green-500/10 text-green-400"
+                  }`}
                 >
                   {item.question.difficulty}
                 </span>
-
-                <p className="text-sm font-medium text-gray-200 truncate">
-                  {item.question.title}
-                </p>
               </div>
-
-
-              <input
-                type="checkbox"
-                checked={item.queue !== "Q4"}
-                disabled={item.queue !== "Q4"}
-                onChange={() => handledone(item.question._id)}
-                className="
-                  appearance-none h-5 w-5 rounded-md
-                  border border-gray-500 bg-[#1f1f1f]
-                  checked:bg-green-500/80 checked:border-green-500
-                  transition-all duration-200
-                "
-              />
             </div>
-          ))}
 
-        {safeData.filter((item) => item.queue === "Q4").length === 0 && (
-          <p className="text-gray-500 italic text-sm">
-            Not scheduled yet
-          </p>
+            <input
+              type="checkbox"
+              checked={item.queue !== "Q4"}
+              disabled={item.queue !== "Q4"}
+              onChange={() => handledone(item.question._id)}
+              className="appearance-none h-5 w-5 rounded-md border border-gray-500 bg-[#1f1f1f] checked:bg-green-500/80 checked:border-green-500 transition-all duration-200"
+            />
+          </article>
+        ))}
+
+        {q4Items.length === 0 && (
+          <div className="rounded-2xl border border-dashed border-white/15 bg-black/20 p-4 text-sm text-zinc-400">
+            No questions are currently in Almost done queue.
+          </div>
         )}
       </div>
-    </div>
+    </section>
   );
 }

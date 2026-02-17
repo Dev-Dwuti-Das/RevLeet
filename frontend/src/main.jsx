@@ -2,6 +2,7 @@
 import "../src/index.css"
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { Toaster } from "sonner";
 import { AuthProvider } from "./context";
 import ProtectedRoute from "./ProtectedRoute";
 
@@ -46,5 +47,20 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <RouterProvider router={router} />
+    <Toaster
+      position="top-center"
+      theme="dark"
+      toastOptions={{
+        style: {
+          background: "#111111",
+          color: "#e5e7eb",
+          border: "1px solid rgba(168, 85, 247, 0.35)",
+          borderRadius: "14px",
+        },
+        classNames: {
+          success: "!text-green-400 !border-green-500/40",
+        },
+      }}
+    />
   </AuthProvider>
 );

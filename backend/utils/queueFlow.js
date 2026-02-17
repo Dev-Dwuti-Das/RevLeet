@@ -2,9 +2,9 @@ import Account from "../models/Account.js";
 import Progress from "../models/progress.js";
 
 export const QUEUE_FLOW = {
-  Q1: { type: "waiting", next: "Q2", delay: 30 * 1000 },
+  Q1: { type: "waiting", next: "Q2", delay: 7 * 24 * 60 * 60 * 1000 },
   Q2: { type: "pending", next: "Q3" },
-  Q3: { type: "waiting", next: "Q4", delay: 30 * 1000 },
+  Q3: { type: "waiting", next: "Q4", delay: 15 * 24 * 60 * 60 * 1000 },
   Q4: { type: "pending", next: "Q5" },
   Q5: { type: "done" },
 };

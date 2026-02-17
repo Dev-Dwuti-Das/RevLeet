@@ -14,9 +14,7 @@ function Signup() {
   async function handlesubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/signup", form, {
-        withCredentials: true,
-      });
+      const res = await axios.post("/api/signup", form, { withCredentials: true });
 
       res.data.flag === "error"
         ? toast.error(res.data.msg, {

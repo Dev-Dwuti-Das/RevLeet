@@ -1,12 +1,8 @@
 import mongoose from 'mongoose';
-const url = process.env.MONGO_KEY;
 
 export async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGO_KEY, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(process.env.MONGO_KEY);
     console.log("✅ MongoDB connected");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err);
@@ -357,5 +353,4 @@ export const mockQuestions =[
 
 
   
-
 

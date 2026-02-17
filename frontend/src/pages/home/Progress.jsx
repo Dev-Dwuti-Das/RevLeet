@@ -1,4 +1,4 @@
-export default function ProgressSummary({ data }) {
+export default function ProgressSummary({ data, stats }) {
   const safeData = Array.isArray(data) ? data : [];
 
   const queue_count = safeData.reduce(
@@ -22,8 +22,7 @@ export default function ProgressSummary({ data }) {
 
   const inProgress = total - queue_count.q5;
 
-  // streak (if passed as object later)
-  const streak = data?.streak ?? 0;
+  const streak = Number(stats?.streak ?? 0);
 
   return (
     <div

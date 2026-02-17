@@ -7,10 +7,10 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/me", { credentials: "include" })
-      .then(res => setLoggedIn(res.ok))
+    fetch("/api/me", { credentials: "include" })
+      .then((res) => setLoggedIn(res.ok))
       .catch(() => setLoggedIn(false))
-      .finally(() => setLoading(false)); 
+      .finally(() => setLoading(false));
   }, []);
 
   return (

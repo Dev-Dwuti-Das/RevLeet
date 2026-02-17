@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { automoveat } from "../utils/queueFlow.js";
 
+const isProd = process.env.NODE_ENV === "production";
+
 export async function handletick(req, res) {
   try {
     const { question_id } = req.body;
@@ -107,9 +109,9 @@ export async function signup(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false, // true in production
-      path: "/",   
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
@@ -118,7 +120,7 @@ export async function signup(req, res) {
       flag: "success",
     });
   } catch (err) {
-    console.log(err);
+    console.error("Signup error:", err);
     return res.status(500).json({
       msg: "ISR",
     });
@@ -129,9 +131,9 @@ export const logoutController = (req, res) => {
   try {
     res.clearCookie("token", {
       httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production",
-      path: "/"
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      path: "/",
     });
 
     return res.status(200).json({
@@ -161,7 +163,6 @@ export async function gethomeinfo(req, res) {
     const account = await Account.findById(userid).select(
       "dailySolved streak queueCounts totalSolved"
     );
-    console.log(user_data);
     res.status(200).json({
       user_data,
       stats: account
@@ -180,7 +181,7 @@ export async function login(req, res) {
     const user = await Account.findOne({ email });
     if (!user) {
       return res
-        .status(201)
+        .status(404)
         .json({ msg: "User not found try sigining in", flag: "error" });
     }
     const ismatch = await bcrypt.compare(password, user.password);
@@ -194,10 +195,10 @@ export async function login(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false, // true in production
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      path: "/",
       maxAge: 7 * 24 * 60 * 60 * 1000,
-      path: "/",   
     });
 
     return res.status(200).json({ msg: "Login successful", flag: "success" });

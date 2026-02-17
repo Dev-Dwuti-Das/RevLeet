@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import LandingNavbar from "../../components/common/landing_nav";
-function login() {
+function Login() {
   let navigate = useNavigate();
   const [form, setform] = useState({
     email: "",
@@ -13,7 +13,7 @@ function login() {
   async function handlesubmit(e) {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3000/api/login", form, { withCredentials: true } );
+      const res = await axios.post("/api/login", form, { withCredentials: true });
       res.data.flag === "error"
         ? toast.error(res.data.msg, {
             style: {
@@ -165,4 +165,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;

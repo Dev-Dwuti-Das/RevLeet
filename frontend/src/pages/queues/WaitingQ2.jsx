@@ -1,164 +1,99 @@
 import axios from "axios";
 import { toast } from "sonner";
-import { useState, useEffect } from "react";
-
 
 export default function VagueCardQ({ data, ondone }) {
   const safeData = Array.isArray(data) ? data : [];
-  const [tick, settick] = useState(false);
-  useEffect(()=>{},[tick])
+  const q2Items = safeData.filter((item) => item.queue === "Q2");
+
   async function handledone(id) {
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/queuedone",
+      await axios.post(
+        "/api/queuedone",
         { question_id: id },
         { withCredentials: true }
       );
-      toast.success("Completed")
+      toast.success("Completed");
       ondone();
-      settick((prev) => !prev);
     } catch (err) {
       console.log(err);
+      toast.error("Could not update question");
     }
   }
 
-  const queue_count = safeData.reduce(
-    (acc, curr) => {
-      if (curr.queue === "Q2") acc.q2++;
-      return acc;
-    },
-    { q2: 0 }
-  );
-
   return (
-    <div
-      className="
-        relative
-        bg-[#121212]
-        rounded-3xl
-        border border-[#1f1f1f]
-        p-6
-        overflow-hidden
-        transition-all duration-300
-        hover:shadow-[0_0_30px_rgba(249,115,22,0.12)]
-      "
-    >
-      <div className="absolute left-0 top-0 h-full w-1 bg-orange-500/70" />
+    <section className="relative overflow-hidden rounded-3xl border border-orange-500/20 bg-gradient-to-br from-[#21160f] via-[#121212] to-[#101010] p-6">
+      <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-orange-500/15 blur-3xl" />
 
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-white tracking-wide">
-          Warm
-        </h2>
-
-        <span
-          className="
-            text-xs font-semibold
-            text-orange-400
-            bg-orange-500/10
-            px-3 py-1 rounded-full
-          "
-        >
+      <div className="relative flex items-start justify-between">
+        <div>
+          <h2 className="text-xl font-semibold tracking-wide">Warm</h2>
+          <p className="text-xs text-zinc-400 mt-1">Active practice queue</p>
+        </div>
+        <span className="text-xs font-semibold text-orange-200 bg-orange-500/15 border border-orange-400/25 px-3 py-1 rounded-full">
           Pending Queue
         </span>
       </div>
-      <div className="flex items-center gap-2 mb-4 mt-5 flex text-xs text-gray-400">
-        <span className="px-2 py-1 bg-[#1f1f1f]  font-semibold rounded-full border border-gray-700/30">
-          Buffer 1
-        </span>
 
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-orange-500/40 font-semibold rounded-full text-white border border-orange-700/30">
-          Warm
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Buffer 2
-        </span>
-
-        <span className="text-purple-400">→</span>
-
-        <span className="px-2 py-1 bg-[#1f1f1f] rounded-full border border-gray-700/30">
-          Stable
-        </span>
+      <div className="mt-5 flex items-center gap-2 text-xs text-zinc-400">
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Buffer 1</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-orange-400/30 bg-orange-500/20 text-orange-200 font-semibold">Warm</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Buffer 2</span>
+        <span>→</span>
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Stable</span>
       </div>
 
-      <div className="mb-5">
-        <div className="text-4xl font-bold text-orange-500 leading-tight">
-          {queue_count.q2}
+      <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
+        <div>
+          <p className="text-3xl font-bold text-orange-300 leading-none">{q2Items.length}</p>
+          <p className="text-xs text-zinc-400 mt-1">questions pending</p>
         </div>
-        <p className="text-gray-400 text-sm">questions pending</p>
+        <p className="text-xs font-semibold px-3 py-1 rounded-full border border-orange-400/25 bg-orange-500/10 text-orange-200">
+          Mark done to move
+        </p>
       </div>
-      <div className="space-y-3  max-h-[400px] overflow-y-auto ">
 
-  {safeData
-    .filter((data) => data.queue === "Q2")
-    .map((data) => (
-      <div
-        key={data._id}
-        className="
-          group
-          flex items-center justify-between
-          gap-4
-          bg-[#161616]
-          px-4 py-3
-          rounded-2xl
-          border border-gray-700/30
-          text-white
-          transition-all duration-200
-          hover:border-orange-500/40
-          hover:bg-[#1b1b1b]
-        "
-      >
-        {/* LEFT */}
-        <div className="flex flex-col gap-1 min-w-0">
-          {/* Difficulty badge */}
-          <span
-            className={`w-fit px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide
-              ${
-                data.question.difficulty === "Hard"
-                  ? "bg-red-500/10 text-red-400"
-                  : data.question.difficulty === "Medium"
-                  ? "bg-yellow-500/10 text-yellow-400"
-                  : "bg-green-500/10 text-green-400"
-              }`}
+      <div className="mt-4 space-y-3 max-h-[360px] overflow-y-auto pr-1">
+        {q2Items.map((item, idx) => (
+          <article
+            key={item._id}
+            className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 hover:border-orange-400/35 transition-colors"
           >
-            {data.question.difficulty}
-          </span>
+            <span className="text-xs text-zinc-500 w-5">{idx + 1}</span>
+            <div className="min-w-0 flex-1">
+              <p className="text-sm font-medium text-zinc-100 truncate">{item.question.title}</p>
+              <div className="mt-1">
+                <span
+                  className={`inline-flex px-2 py-0.5 rounded-full text-[11px] font-semibold ${
+                    item.question.difficulty === "Hard"
+                      ? "bg-red-500/10 text-red-400"
+                      : item.question.difficulty === "Medium"
+                      ? "bg-yellow-500/10 text-yellow-400"
+                      : "bg-green-500/10 text-green-400"
+                  }`}
+                >
+                  {item.question.difficulty}
+                </span>
+              </div>
+            </div>
 
-          {/* Title */}
-          <p className="text-sm font-medium text-gray-200 truncate">
-            {data.question.title}
-          </p>
-        </div>
+            <input
+              type="checkbox"
+              checked={item.queue !== "Q2"}
+              disabled={item.queue !== "Q2"}
+              onChange={() => handledone(item.question._id)}
+              className="appearance-none h-5 w-5 rounded-md border border-gray-500 bg-[#1f1f1f] checked:bg-green-500/80 checked:border-green-500 transition-all duration-200"
+            />
+          </article>
+        ))}
 
-        {/* RIGHT */}
-        <input
-          type="checkbox"
-          checked={data.queue !== "Q2"}
-          disabled={data.queue !== "Q2"}
-          onChange={() => handledone(data.question._id)}
-          className="
-            appearance-none h-5 w-5 rounded-md 
-                border border-gray-500 bg-[#252121]
-                checked:bg-green-500/80 checked:border-green-500
-                transition-all duration-200
-          "
-        />
+        {q2Items.length === 0 && (
+          <div className="rounded-2xl border border-dashed border-white/15 bg-black/20 p-4 text-sm text-zinc-400">
+            No questions are currently in Warm queue.
+          </div>
+        )}
       </div>
-    ))}
-
-  {safeData.filter((item) => item.queue === "Q2").length === 0 && (
-    <p className="text-gray-500 italic text-sm">
-      Not scheduled yet
-    </p>
-  )}
-</div>
-
-
-    
-    </div>
+    </section>
   );
 }

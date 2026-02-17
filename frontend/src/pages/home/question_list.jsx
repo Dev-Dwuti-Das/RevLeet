@@ -12,7 +12,7 @@ function Question_list({render}) {
 
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/questions", {
+      const res = await axios.get("/api/questions", {
         withCredentials: true,
       });
 
@@ -25,8 +25,8 @@ function Question_list({render}) {
 
   async function handletick(q_id) {
     try {
-      const res = await axios.post(
-        "http://localhost:3000/api/tick",
+      await axios.post(
+        "/api/tick",
         { question_id: q_id },
         { withCredentials: true }
       );
