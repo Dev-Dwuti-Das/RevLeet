@@ -5,29 +5,36 @@ import Q2stats from "./Q2stats.jsx";
 import Questionlist from "./question_list.jsx";
 import HeatmapExample from "./heatmap.jsx";
 import DoughnutChart from "./doughnut.jsx";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ProgressSummary from "./Progress.jsx";
-import Navbar from "../../components/common/home_nav.jsx";
 import axios from "axios";
 
 function Home() {
   const [data, setdata] = useState({});
-  async function get_data() {
-      try {
-        const new_data = await axios.get(
-          "http://localhost:3000/api/gethomeinfo",
-          {
-            withCredentials: true,
-          }
-        );
-        setdata(new_data.data.user_data);
-      } catch (err) {
-        console.log(err);
-      }
+  const hasFetched = useRef(false);
+
+  const get_data = useCallback(async () => {
+    try {
+      const new_data = await axios.get("http://localhost:3000/api/gethomeinfo", {
+        withCredentials: true,
+      });
+
+      setdata((prevData) => {
+        const incomingData = new_data.data.user_data;
+        return JSON.stringify(prevData) === JSON.stringify(incomingData)
+          ? prevData
+          : incomingData;
+      });
+    } catch (err) {
+      console.log(err);
     }
-  useEffect(() => {
-    get_data();
   }, []);
+
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+    get_data();
+  }, [get_data]);
 
   return (
     <div className="p-4  pt-1 min-h-screen text-white w-full m-0 relative">
