@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context.jsx";
 
@@ -87,8 +87,6 @@ export default function Navbar() {
           </div>
         </div>
       )}
-
-      <Outlet />
     </>
   );
 }
