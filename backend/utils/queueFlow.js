@@ -15,18 +15,45 @@ export function automoveat(queue) {
   return new Date(Date.now() + flow.delay);
 }
 
+function getDueAtFromEnteredAt(item) {
+  const flow = QUEUE_FLOW[item.queue];
+  if (!flow || flow.type !== "waiting") return null;
+  if (!item.queueEnteredAt) return null;
+  return new Date(new Date(item.queueEnteredAt).getTime() + flow.delay);
+}
+
 export async function autoMoveUserQueues(userId) {
   const now = new Date();
 
-  const expired = await Progress.find({
+  const waitingItems = await Progress.find({
     user: userId,
     queue: { $in: ["Q1", "Q3"] },
-    autoMoveAt: { $lte: now },
   });
 
-  for (const item of expired) {
+  for (const item of waitingItems) {
     const flow = QUEUE_FLOW[item.queue];
     if (!flow || !flow.next) continue;
+
+    const expectedDueAt = getDueAtFromEnteredAt(item);
+    const currentDueAt = item.autoMoveAt ? new Date(item.autoMoveAt) : null;
+    const dueAt = expectedDueAt || currentDueAt;
+    if (!dueAt) {
+      item.queueEnteredAt = item.queueEnteredAt || now;
+      item.autoMoveAt = automoveat(item.queue);
+      await item.save();
+      continue;
+    }
+
+    // Keep stored due time in sync when old/stale values exist.
+    if (
+      expectedDueAt &&
+      (!currentDueAt || Math.abs(currentDueAt.getTime() - expectedDueAt.getTime()) > 1000)
+    ) {
+      item.autoMoveAt = expectedDueAt;
+      await item.save();
+    }
+
+    if (dueAt > now) continue;
 
     const prevQueue = item.queue;
     const nextQueue = flow.next;
@@ -48,6 +75,10 @@ export async function autoMoveUserQueues(userId) {
 
 export async function handle_done(req, res) {
   try {
+    if (req.isDemo) {
+      return res.status(403).json({ msg: "Demo mode is read-only" });
+    }
+
     const { question_id } = req.body;
     const user = req.user;
     const record = await Progress.findOne({

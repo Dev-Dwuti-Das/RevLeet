@@ -43,12 +43,12 @@ export default function ProgressSummary({ data, stats }) {
       <div className="grid grid-cols-3 gap-4 text-center mb-6">
         <div className="bg-white/3 rounded-3xl p-4">
           <p className="text-3xl font-bold text-white">{total}</p>
-          <p className="text-xs font-semibold text-orange-400/75 mt-1">Solved</p>
+          <p className="text-xs font-semibold text-purple-300/80 mt-1">Initated</p>
         </div>
 
         <div className="bg-white/3 rounded-3xl p-4">
           <p className="text-3xl font-bold text-white">{inProgress}</p>
-          <p className="text-xs font-semibold text-yellow-400/75 mt-1">In Progress</p>
+          <p className="text-xs font-semibold text-orange-300/80 mt-1">In Progress</p>
         </div>
 
         <div className="bg-white/3 rounded-3xl p-4">

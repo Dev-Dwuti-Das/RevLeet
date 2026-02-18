@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export default function LandingNavbar() {
   const [open, setOpen] = useState(false);
+  const navPill =
+    "px-4 py-1.5 rounded-full text-sm font-medium tracking-wide heading-top3 transition-all duration-200 text-white/75 border border-transparent hover:text-white hover:bg-white/12 hover:border-white/20";
 
   return (
     <header className="absolute inset-x-0 top-0 z-30 pointer-events-none">
@@ -24,16 +26,7 @@ export default function LandingNavbar() {
               <a
                 key={item.href}
                 href={item.href}
-                className="
-                  px-4 py-1.5 rounded-full
-                  ms-2
-                  text-sm font-medium tracking-wide
-                  heading-top3
-                  text-white/70
-                  transition-all duration-300 ease-out
-                  hover:text-white
-                  hover:bg-white/15
-                "
+                className={`${navPill} ms-2`}
               >
                 {item.label}
               </a>
@@ -46,15 +39,15 @@ export default function LandingNavbar() {
               onClick={() => setOpen(!open)}
               className="
                 inline-flex items-center gap-1
-                px-5 py-2
+                px-5 py-2.5
                 rounded-full
                 bg-white/10
                 backdrop-blur-md
-                border border-white/20
-                
-                text-sm text-white/80
-                hover:text-white hover:bg-white/15
-                transition
+                border border-white/25
+                text-sm font-medium text-white/90
+                hover:text-white hover:bg-white/16 hover:border-white/35
+                transition-all duration-200
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50
               "
             >
               Login
@@ -77,13 +70,13 @@ export default function LandingNavbar() {
               >
                 <a
                   href="/login"
-                  className="block px-4 py-3 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
+                  className="block px-4 py-3 text-sm text-white/85 hover:text-white hover:bg-white/12 transition-colors duration-200"
                 >
                   login
                 </a>
                 <a
                   href="/signup"
-                  className="block px-4 py-3 text-sm text-white/80 hover:text-white hover:bg-white/10 transition"
+                  className="block px-4 py-3 text-sm text-white/85 hover:text-white hover:bg-white/12 transition-colors duration-200"
                 >
                   Sign up
                 </a>

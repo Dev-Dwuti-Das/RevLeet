@@ -164,9 +164,7 @@ export default function Landing() {
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
       <LandingNavbar></LandingNavbar>
       <section className="relative min-h-screen flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-[#05050a]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.25),transparent_60%)]" />
-
+        
         <div
           className="
       absolute
@@ -267,7 +265,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative py-32 overflow-hidden border-none" id="whyrevleet">
+      <section className="relative py-32 border-none" id="whyrevleet">
         {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
         <div className="relative max-w-6xl mx-auto px-6 text-center">
@@ -362,7 +360,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative px-6 py-28 grid-bg overflow-hidden" id="howitworks">
+      <section className="relative px-6 py-28 overflow-hidden" id="howitworks">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}
@@ -393,32 +391,91 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="bg-[#0d0d11] py-32 text-center px-6">
-        <h2 className="text-4xl md:text-5xl font-bold mb-6">
-          Stop grinding.
-          <span className="text-purple-400"> Start learning.</span>
-        </h2>
-
-        <p className="text-gray-400 mb-10 max-w-xl mx-auto">
-          Revleet turns practice into long-term skill.
-        </p>
-
-        <a
-          href="/home"
+      <section className="relative py-28 px-6 overflow-hidden">
+        <div className="absolute inset-0 bg-[#0d0d11]" />
+        <div
           className="
-            bg-purple-500 hover:bg-purple-600
-            px-10 py-4 rounded-full
-            font-bold
-            text-white text-xl
-            shadow-[0_0_40px_rgba(168,85,247,0.45)]
-            transition
-          "
-        >
-          Get Started Free
-        </a>
+      absolute
+      w-[520px] h-[520px]
+      rounded-full
+      bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
+      blur-[130px]
+      opacity-70
+      animate-[float-slow_18s_ease-in-out_infinite]
+    "
+        />
+
+        <div
+          className="
+      absolute
+      w-[420px] h-[420px]
+      rounded-full
+      border border-purple-400/30
+      blur-sm
+      animate-[float-reverse_22s_ease-in-out_infinite]
+    "
+        />
+
+        <div
+          className="
+      absolute
+      w-[300px] h-[300px]
+      rounded-full
+      border border-cyan-400/20
+      blur-sm
+      animate-[float-orbit_40s_linear_infinite]
+    "
+        />
+        <div className="relative max-w-5xl mx-auto text-center rounded-3xl border border-white/10 bg-black/80 backdrop-blur-xl p-10 sm:p-12 shadow-[0_30px_100px_rgba(0,0,0,0.6)]">
+          <p className="text-xs uppercase tracking-[0.35em] text-white/50 mb-4">
+            Ready When You Are
+          </p>
+
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4 heading-bottom text-white">
+            Stop grinding.
+            <span className="text-purple-400"> Start learning.</span>
+          </h2>
+
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto text-lg">
+            Revleet turns practice into long-term skill. Small daily wins beat
+            last‑minute cramming.
+          </p>
+
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <a
+              href="/home"
+              className="
+                bg-purple-500 hover:bg-purple-600
+                px-10 py-4 rounded-full
+                font-bold
+                text-white text-xl
+                border border-purple-300/20
+                shadow-[0_0_40px_rgba(168,85,247,0.45)]
+                transition
+              "
+            >
+              Get Started Free
+            </a>
+            <a
+              href="/about"
+              className="
+                px-10 py-4 rounded-full
+                font-semibold
+                text-white/90
+                bg-white/10
+                border border-white/25
+                backdrop-blur-md
+                hover:bg-white/15
+                transition
+              "
+            >
+              See the method
+            </a>
+          </div>
+        </div>
       </section>
 
-      <footer className="border-t border-white/5 py-6 text-center text-gray-500 text-sm">
+      <footer className="border-t border-white/5 py-1 text-center text-gray-500 text-sm">
         Built with intent. © {new Date().getFullYear()} Revleet
       </footer>
     </div>

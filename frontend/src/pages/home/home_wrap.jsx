@@ -44,32 +44,32 @@ function Home() {
           </div>
 
           <div className="w-full mb-1 flex items-center justify-center space-x-2">
-            <span className="bg-gray-400/20 text-xs font-semibold rounded-full px-2 py-1 border border-gray-500/35">
+            <span className="bg-white/5 text-zinc-300 text-xs font-semibold rounded-full px-2 py-1 border border-white/15">
               {" "}
               Question List{" "}
             </span>
-            <span>→</span>
-            <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1">
+            <span className="text-zinc-500">→</span>
+            <span className="bg-purple-500/20 text-xs text-purple-200 font-semibold border border-purple-400/30 rounded-full px-2 py-1">
               {" "}
-              Waiting Queue 1
+              Buffer 1
             </span>
-            <span>→</span>
-            <span className="bg-gray-400/20 text-xs font-semibold bg-orange-500/20 text-orange-400 rounded-full border border-orange-500/25 px-2 py-1">
+            <span className="text-zinc-500">→</span>
+            <span className="text-xs font-semibold bg-orange-500/20 text-orange-200 rounded-full border border-orange-400/30 px-2 py-1">
               {" "}
-              Vague Queue{" "}
+              Warm{" "}
             </span>
-            <span>→</span>
-            <span className="bg-gray-400/20 text-xs bg-purple-500/20 text-purple-500 font-semibold border border-purple-500/25 rounded-full px-2 py-1">
+            <span className="text-zinc-500">→</span>
+            <span className="text-xs bg-indigo-500/20 text-indigo-200 font-semibold border border-indigo-400/30 rounded-full px-2 py-1">
               {" "}
-              Waiting Queue 2{" "}
+              Buffer 2{" "}
             </span>
-            <span>→</span>
-            <span className="bg-gray-400/20 text-xs font-semibold bg-yellow-500/20 text-yellow-400  border border-yellow-500/25 rounded-full px-2 py-1">
+            <span className="text-zinc-500">→</span>
+            <span className="text-xs font-semibold bg-yellow-500/20 text-yellow-200 border border-yellow-400/30 rounded-full px-2 py-1">
               {" "}
-              Almost done Queue{" "}
+              Almost done {" "}
             </span>
-            <span>→</span>
-            <span className="bg-gray-400/20 text-xs font-semibold bg-green-500/20 text-green-400 border border-green-500/25 rounded-full px-2 py-1 mt-0">
+            <span className="text-zinc-500">→</span>
+            <span className="text-xs font-semibold bg-green-500/20 text-green-200 border border-green-400/30 rounded-full px-2 py-1 mt-0">
               {" "}
               done List
             </span>

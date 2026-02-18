@@ -1,11 +1,17 @@
 import axios from "axios";
 import { toast } from "sonner";
+import { useAuth } from "../../context";
 
 export default function VagueCardQ({ data, ondone }) {
+  const { isDemo } = useAuth();
   const safeData = Array.isArray(data) ? data : [];
   const q2Items = safeData.filter((item) => item.queue === "Q2");
 
   async function handledone(id) {
+    if (isDemo) {
+      toast.info("Demo mode is read-only");
+      return;
+    }
     try {
       await axios.post(
         "/api/queuedone",
@@ -81,9 +87,9 @@ export default function VagueCardQ({ data, ondone }) {
             <input
               type="checkbox"
               checked={item.queue !== "Q2"}
-              disabled={item.queue !== "Q2"}
+              disabled={item.queue !== "Q2" || isDemo}
               onChange={() => handledone(item.question._id)}
-              className="appearance-none h-5 w-5 rounded-md border border-gray-500 bg-[#1f1f1f] checked:bg-green-500/80 checked:border-green-500 transition-all duration-200"
+              className="appearance-none h-5 w-5 rounded-md border border-gray-500 bg-[#1f1f1f] checked:bg-green-500/80 checked:border-green-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             />
           </article>
         ))}

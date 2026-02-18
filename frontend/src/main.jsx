@@ -59,6 +59,7 @@ createRoot(document.getElementById("root")).render(
         },
         classNames: {
           success: "!text-green-400 !border-green-500/40",
+          error: "!text-red-400 !border-red-500/40",
         },
       }}
     />

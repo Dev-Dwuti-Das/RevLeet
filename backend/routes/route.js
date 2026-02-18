@@ -2,6 +2,7 @@ import express from "express";
 import { signup } from "../controllers/userController.js";
 import { handletick } from "../controllers/userController.js";
 import { login } from "../controllers/userController.js";
+import { demoLogin } from "../controllers/userController.js";
 import auth_jwt from "../middleware/auth.js";
 import  getquestions from "../controllers/controller.js";
 import { gethomeinfo } from "../controllers/userController.js";
@@ -23,6 +24,7 @@ router.post("/queuedone",auth_jwt, handle_done);
 router.post("/signup",signup);  
 
 router.post("/login",login);  
+router.post("/demo-login", demoLogin);
 
 router.post("/tick",auth_jwt, handletick);
 
@@ -30,7 +32,8 @@ router.post("/logout", logoutController);
 
 router.get("/me", auth_jwt, (req, res) => {
   res.json({
-    user: req.user
+    user: req.user,
+    demo: Boolean(req.isDemo),
   });
 });
 

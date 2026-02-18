@@ -27,7 +27,9 @@ export default function DoughnutChart({ data }) {
 
   const hasData = total > 0;
   const chartdata = {
-    labels: hasData ? ["Q1", "Q2", "Q3", "Q4", "Q5"] : ["No data"],
+    labels: hasData
+      ? ["Buffer 1", "Warm", "Buffer 2", "Almost done", "done List"]
+      : ["No data"],
     datasets: [
       hasData
         ? {
@@ -39,11 +41,11 @@ export default function DoughnutChart({ data }) {
               queue_count.q5,
             ],
             backgroundColor: [
-              "rgba(239, 68, 68, 0.95)", // red
-              "rgba(99, 102, 241, 0.95)", // indigo
-              "rgba(234, 179, 8, 0.95)", // yellow
-              "rgba(249, 115, 22, 0.95)", // orange
-              "rgba(168, 85, 247, 0.95)", // purple
+              "rgba(168, 85, 247, 0.9)", // Q1 purple
+              "rgba(249, 115, 22, 0.9)", // Q2 orange
+              "rgba(99, 102, 241, 0.9)", // Q3 indigo
+              "rgba(234, 179, 8, 0.9)", // Q4 yellow
+              "rgba(34, 197, 94, 0.9)", // Q5 green
             ],
             borderRadius: 2,
             spacing: 1,
@@ -82,7 +84,7 @@ export default function DoughnutChart({ data }) {
         h-[280px]
         rounded-3xl
         bg-gradient-to-br from-[#0f0f0f] to-[#181818]
-        border border-white/5
+        border border-white/10
         p-5
         shadow-[0_20px_50px_rgba(0,0,0,0.6)]
         backdrop-blur-xl

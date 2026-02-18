@@ -17,19 +17,14 @@ function Signup() {
       const res = await axios.post("/api/signup", form, { withCredentials: true });
 
       res.data.flag === "error"
-        ? toast.error(res.data.msg, {
-            style: { color: "#ff2c2cec", fontWeight: 700 },
-          })
-        : toast.success(res.data.msg, {
-            style: { color: "#56ff67ec" },
-          });
+        ? toast.error(res.data.msg)
+        : toast.success(res.data.msg);
       if (res.data.flag === "success") {
         window.location.replace("/home");
       }
     } catch (err) {
-      toast.error("Server error", {
-        style: { color: "#ff2c2cec", fontWeight: 700 },
-      });
+      const msg = err?.response?.data?.msg || "Signup failed";
+      toast.error(msg);
     }
   }
 

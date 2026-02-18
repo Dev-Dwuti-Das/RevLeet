@@ -10,12 +10,20 @@ async function auth_jwt(req, res, next) {
     return res.status(401).json({ msg: "No token found" });
   }
 
+  if (token === "demo_session") {
+    req.user = null;
+    req.isDemo = true;
+    return next();
+  }
+
   try {
     const decoded = jwt.verify(token, process.env.SECRET_CODE);
-    req.user = decoded.user;
+    req.user = decoded.user || null;
+    req.isDemo = Boolean(decoded.demo);
 
-    // IMPORTANT: awaited
-    await autoMoveUserQueues(req.user);
+    if (!req.isDemo && req.user) {
+      await autoMoveUserQueues(req.user);
+    }
 
     next();
   } catch (err) {

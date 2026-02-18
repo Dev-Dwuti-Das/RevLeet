@@ -3,11 +3,29 @@ import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { automoveat } from "../utils/queueFlow.js";
+import { QUEUE_FLOW } from "../utils/queueFlow.js";
+import { demoHomeData } from "../utils/demoData.js";
+import { z } from "zod";
 
 const isProd = process.env.NODE_ENV === "production";
 
+const signupSchema = z.object({
+  name: z.string().trim().min(2, "Name must be at least 2 characters"),
+  email: z.string().trim().email("Invalid email format"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+const loginSchema = z.object({
+  email: z.string().trim().email("Invalid email format"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
 export async function handletick(req, res) {
   try {
+    if (req.isDemo) {
+      return res.status(403).json({ msg: "Demo mode is read-only" });
+    }
+
     const { question_id } = req.body;
     const user = req.user;
 
@@ -21,6 +39,12 @@ export async function handletick(req, res) {
 
     if (record) {
       record.isDone = true;
+      record.queueEnteredAt = new Date();
+      if (QUEUE_FLOW[record.queue]?.type === "waiting") {
+        record.autoMoveAt = automoveat(record.queue);
+      } else {
+        record.autoMoveAt = null;
+      }
       await record.save();
       solvedQueue = record.queue;
     } else {
@@ -82,13 +106,11 @@ export async function handletick(req, res) {
 
 export async function signup(req, res) {
   try {
-    let { name, email, password } = req.body;
-    if (!name || !email || !password) {
-      return res.status(400).json({
-        msg: "All fields are required",
-      });
+    const parsed = signupSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ msg: parsed.error.issues[0].message });
     }
-    email = email.toLowerCase().trim();
+    const { name, email, password } = parsed.data;
     let user = await Account.findOne({ email: email });
     if (user) {
       return res
@@ -150,8 +172,28 @@ export const logoutController = (req, res) => {
   }
 };
 
+export async function demoLogin(req, res) {
+  try {
+    res.cookie("token", "demo_session", {
+      httpOnly: true,
+      sameSite: isProd ? "none" : "lax",
+      secure: isProd,
+      path: "/",
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(200).json({ msg: "Demo session started", flag: "success" });
+  } catch (err) {
+    return res.status(500).json({ msg: "Could not start demo", flag: "error" });
+  }
+}
+
 
 export async function gethomeinfo(req, res) {
+  if (req.isDemo) {
+    return res.status(200).json(demoHomeData);
+  }
+
   const userid = req.user;
   if (!userid) return res.status(401).json({ msg: "id not matched" });
 
@@ -175,8 +217,11 @@ export async function gethomeinfo(req, res) {
 
 export async function login(req, res) {
   try {
-    const email = String(req.body.email);
-    const password = String(req.body.password);
+    const parsed = loginSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ msg: parsed.error.issues[0].message, flag: "error" });
+    }
+    const { email, password } = parsed.data;
 
     const user = await Account.findOne({ email });
     if (!user) {

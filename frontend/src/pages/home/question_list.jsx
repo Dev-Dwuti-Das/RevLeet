@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "sonner";
+import { useAuth } from "../../context";
 import SearchBar from "./Search";
 import FilterMenu from "./filter";
 
 function Question_list({render}) {
+  const { isDemo } = useAuth();
   const [question, setquestion] = useState([]);
   const [filtered, setFiltered] = useState([]); 
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,6 +27,10 @@ function Question_list({render}) {
   };
 
   async function handletick(q_id) {
+    if (isDemo) {
+      toast.info("Demo mode is read-only");
+      return;
+    }
     try {
       await axios.post(
         "/api/tick",
@@ -141,7 +148,7 @@ function Question_list({render}) {
                   href={q.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 ml-1"
+                  className="text-purple-300 hover:text-purple-200 ml-1"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,12 +190,13 @@ function Question_list({render}) {
                 <input
                   type="checkbox"
                   defaultChecked={q.isDone}
+                  disabled={isDemo}
                   onChange={() => handletick(q._id)}
                   className="
                 appearance-none h-5 w-5 rounded-md 
                 border border-gray-500 bg-[#1f1f1f]
                 checked:bg-green-500/80 checked:border-green-500
-                transition-all duration-200
+                transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
               "
                 />
                 <h1 className="font-semibold text-xs">Mark as done</h1>
