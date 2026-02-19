@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node src/server.js",
+    "build": "vite build",
     "start": "node src/server.js"
   },
   "author": "Dev Dwuti Das",
