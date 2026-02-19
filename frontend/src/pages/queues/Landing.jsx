@@ -8,7 +8,7 @@ export default function Landing() {
   const buttonBase =
     "inline-flex items-center justify-center rounded-full border font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
   const buttonPrimary =
-    `${buttonBase} px-10 py-3.5 text-white bg-white/12 border-white/30 hover:bg-white/18 hover:border-white/45`;
+    `${buttonBase} px-9 py-3 text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
   const buttonSecondary = buttonPrimary;
   const iconButton =
     "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
@@ -243,11 +243,6 @@ export default function Landing() {
             <a href="/signup" className={buttonPrimary}>
               Start Revising
             </a>
-
-            <a href="/about" className={buttonSecondary}>
-              How it Works
-            </a>
-
             <button type="button" onClick={handleDemoEnter} className={buttonSecondary}>
               Try Demo
             </button>
@@ -255,7 +250,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative py-32 border-none" id="whyrevleet">
+      <section className="relative pt-32 border-none" id="whyrevleet">
         {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
         <div className="relative max-w-6xl mx-auto px-6 text-center">
@@ -350,7 +345,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative px-6 py-28 overflow-hidden" id="howitworks">
+      <section className="relative px-6 pt-30 pb-30 verflow-hidden" id="howitworks">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}
@@ -381,8 +376,19 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative py-28 px-6 overflow-hidden">
+      <section className="relative py-15 px-6 overflow-hidden">
         <div className="absolute inset-0 bg-[#0d0d11]" />
+        <div
+          className="
+      absolute
+      w-[520px] h-[520px]
+      rounded-full
+      bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
+      blur-[130px]
+      opacity-70
+      animate-[float-slow_18s_ease-in-out_infinite]
+    "
+        />
         <div
           className="
       absolute
@@ -398,9 +404,9 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[420px] h-[420px]
+      w-[420px] h-[450px]
       rounded-full
-      border border-purple-400/30
+      border border-purple-500/30
       blur-sm
       animate-[float-reverse_22s_ease-in-out_infinite]
     "

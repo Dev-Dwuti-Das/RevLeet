@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LandingNavbar from "../../components/common/landing_nav";
 function Login() {
   let navigate = useNavigate();
@@ -9,9 +9,14 @@ function Login() {
     email: "",
     password: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const submitBtnClass =
+    "w-full rounded-full border border-violet-200/30 py-3 font-semibold text-white backdrop-blur-md  transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 disabled:opacity-60 disabled:cursor-not-allowed";
 
   async function handlesubmit(e) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
     try {
       const res = await axios.post("/api/login", form, { withCredentials: true });
       res.data.flag === "error"
@@ -26,6 +31,8 @@ function Login() {
     } catch (err) {
       const msg = err?.response?.data?.msg || "Login failed";
       toast.error(msg);
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -79,7 +86,7 @@ function Login() {
         <div
           className="
           w-full max-w-md
-          bg-[#121212]
+          bg-[#000000]/85
           border border-white/10
           rounded-3xl
           p-8
@@ -132,27 +139,18 @@ function Login() {
 
             <button
               type="submit"
-              className="
-                w-full rounded-full
-                bg-gradient-to-r from-purple-500/90 to-indigo-500/90
-                border border-white/10
-                py-3 font-semibold
-                text-white
-                hover:from-purple-500 hover:to-indigo-500
-                hover:shadow-[0_18px_40px_rgba(99,102,241,0.35)]
-                transition-all duration-200
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300/60
-              "
+              disabled={submitting}
+              className={submitBtnClass}
             >
-              Login
+              {submitting ? "Logging in..." : "Login"}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-400">
-            don't have an account?{" "}
-            <span className="text-purple-400 hover:text-purple-300 cursor-pointer">
-              Signin
-            </span>
+          <p className="mt-6 text-center text-sm text-gray-400 pe-2">
+            don't have an account ?{" "}
+            <Link to="/signup" className="!text-purple-500 hover:!text-purple-300">
+              Sign up
+            </Link>
           </p>
         </div>
       </div>

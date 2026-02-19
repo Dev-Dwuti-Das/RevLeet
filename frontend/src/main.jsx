@@ -51,6 +51,7 @@ createRoot(document.getElementById("root")).render(
       position="top-center"
       theme="dark"
       toastOptions={{
+        duration: 1500,
         style: {
           background: "#111111",
           color: "#e5e7eb",

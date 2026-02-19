@@ -7,14 +7,16 @@ export default function LandingNavbar() {
 
   return (
     <header className="absolute inset-x-0 top-0 z-30 pointer-events-none">
-      <nav className="relative max-w-7xl mx-auto px-6 py-4 pointer-events-auto">
+      <nav className="relative max-w-7xl mx-auto px-6 py-2 pointer-events-auto">
         
         <div className="flex items-center justify-between">
 
           {/* LEFT — Logo */}
-          <span className="text-white font-bold text-lg">
-            Sentinel
-          </span>
+          <img
+            src="/logo.png"
+            alt="Revleet logo"
+            className="tp-0 h-15 w-30 object-contain"
+          />
 
           {/* CENTER — Links */}
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2">

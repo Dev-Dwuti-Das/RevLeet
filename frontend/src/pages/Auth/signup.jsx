@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import LandingNavbar from "../../components/common/landing_nav";
 
 function Signup() {
   const navigate = useNavigate();
@@ -10,9 +11,14 @@ function Signup() {
     email: "",
     password: "",
   });
+  const [submitting, setSubmitting] = useState(false);
+  const submitBtnClass =
+    "w-full rounded-full border border-violet-200/30 py-3 font-semibold text-white backdrop-blur-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 disabled:opacity-60 disabled:cursor-not-allowed";
 
   async function handlesubmit(e) {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
     try {
       const res = await axios.post("/api/signup", form, { withCredentials: true });
 
@@ -20,16 +26,19 @@ function Signup() {
         ? toast.error(res.data.msg)
         : toast.success(res.data.msg);
       if (res.data.flag === "success") {
-        window.location.replace("/home");
+        navigate("/home", { replace: true });
       }
     } catch (err) {
       const msg = err?.response?.data?.msg || "Signup failed";
       toast.error(msg);
+    } finally {
+      setSubmitting(false);
     }
   }
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
+      <LandingNavbar></LandingNavbar>
       {/* LEFT SIDE — SAME AS LOGIN */}
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">
         <h1 className="text-5xl font-bold mb-6">Revleet</h1>
@@ -61,7 +70,7 @@ function Signup() {
 
       {/* RIGHT SIDE — SAME BACKGROUND + BLOBS */}
       <div className="flex items-center relative justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-2">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
           <div className="absolute left-[200px] top-[10%] w-[600px] h-[600px] rounded-full bg-purple-500/50 blur-[140px] animate-[float-slow_20s_ease-in-out_infinite]" />
@@ -74,13 +83,14 @@ function Signup() {
         {/* GLASS CARD — SAME AS LOGIN */}
         <div
           className="
-            relative z-10
-            w-full max-w-md
-            bg-[#121212]
-            border border-white/10
-            rounded-3xl
-            p-8
-          "
+          w-full max-w-md
+          bg-[#000000]/85
+          border border-white/10
+          rounded-3xl
+          p-8
+          z-3
+          
+        "
         >
           <div className="mb-8">
             <h2 className="text-3xl font-bold tracking-tight heading-bottom2">
@@ -142,28 +152,18 @@ function Signup() {
 
             <button
               type="submit"
-              className="
-                w-full rounded-full
-                bg-white/10
-                border border-white/20
-                py-3 font-semibold
-                text-white
-                backdrop-blur-md
-                hover:bg-white/15 hover:border-white/35
-                hover:shadow-[0_12px_30px_rgba(0,0,0,0.35)]
-                transition-all duration-200
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40
-              "
+              disabled={submitting}
+              className={submitBtnClass}
             >
-              Sign up
+              {submitting ? "Signing up..." : "Sign up"}
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-400">
+          <p className="mt-6 text-center text-sm text-gray-400 pe-2">
             Already have an account?{" "}
-            <span className="text-purple-400 hover:text-purple-300 cursor-pointer">
+            <Link to="/login" className="!text-purple-500 hover:!text-purple-300">
               Log in
-            </span>
+            </Link>
           </p>
         </div>
       </div>
