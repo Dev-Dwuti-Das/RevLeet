@@ -226,11 +226,11 @@ export default function Landing() {
         <div className="relative z-20 max-w-4xl text-center px-6">
           <h1 className="text-5xl md:text-7xl tracking-tight leading-tight mb-6 font-inter">
             <span className="block heading-bottom text-white">
-              You <span className="heading-top">solved</span> it once.
+              You <span className="heading-top1">solved</span> it once.
             </span>
 
             <span className="block heading-bottom font-semibold text-white">
-              Now you <span className="heading-top">remember</span> it.
+              Now you <span className="heading-top1">remember</span> it.
             </span>
           </h1>
 
@@ -256,10 +256,10 @@ export default function Landing() {
         <div className="relative max-w-6xl mx-auto px-6 text-center">
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
             LeetCode helps you{" "}
-            <span className="text-violet-500 heading-top1 ">SOLVE</span>.
+            <span className="text-violet-500 heading-top4 ">SOLVE</span>.
             <br />
             RevLeet helps you{" "}
-            <span className="text-violet-500 heading-top1">REMEMBER</span>.
+            <span className="text-violet-500 heading-top4">REMEMBER</span>.
           </h2>
 
           <p className="max-w-2xl mx-auto hero-text1 text-gray-400 text-lg mb-20">
