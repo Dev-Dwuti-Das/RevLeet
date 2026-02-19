@@ -1,4 +1,3 @@
-import default_questions from "../models/default_questions.js";
 import DefaultQuestion from "../models/default_questions.js";
 import Progress from "../models/progress.js";
 import { demoQuestionsData } from "../utils/demoData.js";
@@ -7,7 +6,17 @@ import { demoQuestionsData } from "../utils/demoData.js";
 async function getquestions(req, res) {
   try {
     if (req.isDemo) {
-      return res.status(200).json(demoQuestionsData);
+      const allQuestions = await DefaultQuestion.find({}).lean();
+      const demoDoneByTitle = new Map(
+        demoQuestionsData.map((q) => [String(q.title || "").toLowerCase(), Boolean(q.isDone)])
+      );
+
+      const mergedDemo = allQuestions.map((q) => ({
+        ...q,
+        isDone: demoDoneByTitle.get(String(q.title || "").toLowerCase()) ?? false,
+      }));
+
+      return res.status(200).json(mergedDemo);
     }
 
     const userId = req.user;

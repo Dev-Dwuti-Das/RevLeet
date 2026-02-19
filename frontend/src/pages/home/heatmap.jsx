@@ -1,18 +1,36 @@
 import CalendarHeatmap from "react-calendar-heatmap";
 import "react-calendar-heatmap/dist/styles.css";
 import "./heatmap-custom.css";
+import { useAuth } from "../../context";
 
-export default function HeatmapExample({ data }) {
+function formatLocalDate(dateObj) {
+  const y = dateObj.getFullYear();
+  const m = String(dateObj.getMonth() + 1).padStart(2, "0");
+  const d = String(dateObj.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+export default function HeatmapExample({ data, streak = 0 }) {
+  const { isDemo } = useAuth();
   const safeData = Array.isArray(data) ? data : [];
 
   const map = {};
 
-  safeData.forEach((item) => {
-    if (!item.isDone || !item.queueEnteredAt) return;
+  if (isDemo && streak > 0) {
+    const today = new Date();
+    for (let i = 0; i < streak; i++) {
+      const day = new Date(today);
+      day.setDate(today.getDate() - i);
+      map[formatLocalDate(day)] = Math.floor(Math.random() * 7) + 1;
+    }
+  } else {
+    safeData.forEach((item) => {
+      if (!item.isDone || !item.queueEnteredAt) return;
 
-    const date = new Date(item.queueEnteredAt).toISOString().slice(0, 10);
-    map[date] = (map[date] || 0) + 1;
-  });
+      const date = formatLocalDate(new Date(item.queueEnteredAt));
+      map[date] = (map[date] || 0) + 1;
+    });
+  }
 
   const values = Object.entries(map).map(([date, count]) => ({
     date,

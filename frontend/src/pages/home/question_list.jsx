@@ -28,7 +28,7 @@ function Question_list({render}) {
 
   async function handletick(q_id) {
     if (isDemo) {
-      toast.info("Demo mode is read-only");
+      toast.warning("Demo mode is read-only");
       return;
     }
     try {
@@ -47,7 +47,7 @@ function Question_list({render}) {
 
   useEffect(() => {
     fetchQuestions();
-  }, [tick]);
+  }, [tick, isDemo]);
 
   const applyFilters = (search = searchTerm, diff = difficulty) => {
     let updated = [...question];
@@ -190,7 +190,6 @@ function Question_list({render}) {
                 <input
                   type="checkbox"
                   defaultChecked={q.isDone}
-                  disabled={isDemo}
                   onChange={() => handletick(q._id)}
                   className="
                 appearance-none h-5 w-5 rounded-md 
@@ -205,6 +204,12 @@ function Question_list({render}) {
           </label>
         </div>
       ))}
+
+      {isDemo && (
+        <div className="mt-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 p-4 text-center text-sm font-semibold text-emerald-300">
+          Sign up for 250+ questions
+        </div>
+      )}
     </div>
   );
 }

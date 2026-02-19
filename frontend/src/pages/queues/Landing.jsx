@@ -1,10 +1,24 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import LandingNavbar from "../../components/common/landing_nav";
+import { Github, Linkedin } from "lucide-react";
 export default function Landing() {
-  const {loggedIn} = useAuth();
+  const {loggedIn, enterDemo} = useAuth();
+  const navigate = useNavigate();
+  const buttonBase =
+    "inline-flex items-center justify-center rounded-full border font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
+  const buttonPrimary =
+    `${buttonBase} px-10 py-3.5 text-white bg-white/12 border-white/30 hover:bg-white/18 hover:border-white/45`;
+  const buttonSecondary = buttonPrimary;
+  const iconButton =
+    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
 
   if (loggedIn) return <Navigate to="/home" replace />;
+
+  const handleDemoEnter = async () => {
+    await enterDemo();
+    navigate("/home");
+  };
   function FlowPill({ label, tone }) {
     const styles = {
       neutral: "bg-white/5 border-white/15 text-white",
@@ -222,45 +236,21 @@ export default function Landing() {
 
           <p className="max-w-2xl mx-auto hero-text text-gray-300 text-lg md:text-xl mb-12">
             Revleet is a spaced-repetition system for coding problems. It
-            intelligently schedules revisions so concepts stick for interviews.
+            schedules revisions so concepts stick for interviews.
           </p>
 
-          <div className="flex justify-center gap-5">
-            <a
-              href="/home"
-              className="
-          inline-flex items-center justify-center
-          px-10 py-3
-          rounded-full
-          font-medium
-          text-white
-          bg-white/15
-          backdrop-blur-xl
-          transition
-          hover:bg-white/20
-        "
-            >
+          <div className="flex justify-center gap-5 flex-wrap">
+            <a href="/signup" className={buttonPrimary}>
               Start Revising
             </a>
 
-            <a
-              href="/about"
-              className="
-          inline-flex items-center justify-center
-          px-10 py-3.5
-          rounded-full
-          font-medium
-          text-white/90
-          bg-white/10
-          backdrop-blur-md
-          border border-white/25
-          shadow-[0_20px_60px_rgba(0,0,0,0.6)]
-          transition
-          hover:bg-white/15
-        "
-            >
+            <a href="/about" className={buttonSecondary}>
               How it Works
             </a>
+
+            <button type="button" onClick={handleDemoEnter} className={buttonSecondary}>
+              Try Demo
+            </button>
           </div>
         </div>
       </section>
@@ -442,42 +432,53 @@ export default function Landing() {
           </p>
 
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <a
-              href="/home"
-              className="
-                bg-purple-500 hover:bg-purple-600
-                px-10 py-4 rounded-full
-                font-bold
-                text-white text-xl
-                border border-purple-300/20
-                shadow-[0_0_40px_rgba(168,85,247,0.45)]
-                transition
-              "
-            >
+            <a href="/signup" className={buttonPrimary}>
               Get Started Free
             </a>
-            <a
-              href="/about"
-              className="
-                px-10 py-4 rounded-full
-                font-semibold
-                text-white/90
-                bg-white/10
-                border border-white/25
-                backdrop-blur-md
-                hover:bg-white/15
-                transition
-              "
-            >
+            <a href="/about" className={buttonSecondary}>
               See the method
             </a>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-white/5 py-1 text-center text-gray-500 text-sm">
-        Built with intent. © {new Date().getFullYear()} Revleet
-      </footer>
+      
+
+<footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm">
+  <div className="mx-auto grid w-full max-w-6xl grid-cols-3 items-center px-6 py-2 text-sm text-gray-400">
+    
+    <div /> {/* empty left spacer */}
+
+    <span className="text-center">
+      Built with intent. © {new Date().getFullYear()} Revleet
+    </span>
+
+    <div className="flex justify-end gap-6">
+      <a
+        href="https://github.com/Dev-Dwuti-Das"
+        target="_blank"
+        rel="noopener noreferrer"
+        
+      >
+        <Github size={18} />
+      </a>
+
+      <a
+        href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/"
+        target="_blank"
+        rel="noopener noreferrer"
+        
+      >
+        <Linkedin size={18} />
+      </a>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
     </div>
   );
 }

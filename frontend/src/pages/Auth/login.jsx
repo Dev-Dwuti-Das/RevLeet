@@ -134,11 +134,14 @@ function Login() {
               type="submit"
               className="
                 w-full rounded-full
-                bg-gradient-to-r from-purple-500 to-indigo-600
+                bg-gradient-to-r from-purple-500/90 to-indigo-500/90
+                border border-white/10
                 py-3 font-semibold
-                hover:opacity-90
-                hover:shadow-[0_0_25px_rgba(168,85,247,0.6)]
-                transition-all duration-300
+                text-white
+                hover:from-purple-500 hover:to-indigo-500
+                hover:shadow-[0_18px_40px_rgba(99,102,241,0.35)]
+                transition-all duration-200
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300/60
               "
             >
               Login

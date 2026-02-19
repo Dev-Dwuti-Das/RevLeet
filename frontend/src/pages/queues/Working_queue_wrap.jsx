@@ -2,12 +2,20 @@ import WaitingQ2 from "./WaitingQ2.jsx";
 import { useEffect, useState } from "react";
 import WaitingQ4 from "./WaitingQ4.jsx";
 import axios from "axios";
+import { useAuth } from "../../context";
+import { demoQueueData } from "../../demo/demoData";
 
 export default function Working_Queues() {
+  const { isDemo } = useAuth();
   const [data, setdata] = useState({});
   const [loading, setLoading] = useState(true);
 
   async function getData() {
+    if (isDemo) {
+      setdata(demoQueueData);
+      setLoading(false);
+      return;
+    }
     try {
       const new_data = await axios.get("/api/gethomeinfo", {
         withCredentials: true,
@@ -22,7 +30,7 @@ export default function Working_Queues() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [isDemo]);
 
   const safeData = Array.isArray(data) ? data : [];
   const q2 = safeData.filter((item) => item.queue === "Q2").length;

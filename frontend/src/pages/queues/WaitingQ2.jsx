@@ -9,7 +9,7 @@ export default function VagueCardQ({ data, ondone }) {
 
   async function handledone(id) {
     if (isDemo) {
-      toast.info("Demo mode is read-only");
+      toast.warning("Demo mode is read-only");
       return;
     }
     try {
@@ -87,7 +87,7 @@ export default function VagueCardQ({ data, ondone }) {
             <input
               type="checkbox"
               checked={item.queue !== "Q2"}
-              disabled={item.queue !== "Q2" || isDemo}
+              disabled={item.queue !== "Q2"}
               onChange={() => handledone(item.question._id)}
               className="appearance-none h-5 w-5 rounded-md border border-gray-500 bg-[#1f1f1f] checked:bg-green-500/80 checked:border-green-500 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
             />

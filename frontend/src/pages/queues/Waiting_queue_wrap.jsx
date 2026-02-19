@@ -2,18 +2,25 @@ import WaitingQ1 from "./WaitingQ1.jsx";
 import WaitingQ3 from "./WaitingQ3.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useAuth } from "../../context";
+import { demoQueueData } from "../../demo/demoData";
 
 export default function WaitingQueues() {
+  const { isDemo } = useAuth();
   const [data, setdata] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
+      if (isDemo) {
+        setdata(demoQueueData);
+        setLoading(false);
+        return;
+      }
       try {
-        const new_data = await axios.get(
-          "http://localhost:3000/api/gethomeinfo",
-          { withCredentials: true }
-        );
+        const new_data = await axios.get("/api/gethomeinfo", {
+          withCredentials: true,
+        });
         setdata(new_data.data.user_data);
       } catch (err) {
         console.log(err);
@@ -23,7 +30,7 @@ export default function WaitingQueues() {
     }
 
     getData();
-  }, []);
+  }, [isDemo]);
 
   const safeData = Array.isArray(data) ? data : [];
   const q1 = safeData.filter((item) => item.queue === "Q1").length;

@@ -7,11 +7,19 @@ import DoughnutChart from "./doughnut.jsx";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ProgressSummary from "./Progress.jsx";
 import axios from "axios";
+import { useAuth } from "../../context";
+import { demoQueueData, demoStats } from "../../demo/demoData";
 
 function Home() {
+  const { isDemo } = useAuth();
   const [data, setdata] = useState({});
   const [stats, setStats] = useState({});
   async function getData() {
+      if (isDemo) {
+        setdata(demoQueueData);
+        setStats(demoStats);
+        return;
+      }
       try {
         const new_data = await axios.get("/api/gethomeinfo", {
           withCredentials: true,
@@ -24,7 +32,7 @@ function Home() {
     }
   useEffect(() => {
     getData();
-  }, []);
+  }, [isDemo]);
 
   useEffect(() => {
     if (hasFetched.current) return;
@@ -88,7 +96,7 @@ function Home() {
           </div>
 
           <div className="md:col-span-2 w-full">
-            <HeatmapExample data={data}/>
+            <HeatmapExample data={data} streak={stats?.streak ?? 0} />
           </div>
         </div>
 

@@ -20,7 +20,7 @@ function Q2stats({data}) {
         hover:shadow-[0_0_25px_rgba(255,255,255,0.08)]
       "
     >
-       <div className="flex justify-between items-center"> <h1 className="text-xl font-semibold text-white">Vague</h1>
+       <div className="flex justify-between items-center"> <h1 className="text-xl font-semibold text-white">Warm</h1>
       <span
           className="
             text-xs font-semibold

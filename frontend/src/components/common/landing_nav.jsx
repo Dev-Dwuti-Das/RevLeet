@@ -39,15 +39,12 @@ export default function LandingNavbar() {
               onClick={() => setOpen(!open)}
               className="
                 inline-flex items-center gap-1
-                px-5 py-2.5
+                px-4 py-2
                 rounded-full
-                bg-white/10
-                backdrop-blur-md
                 border border-white/25
                 text-sm font-medium text-white/90
                 hover:text-white hover:bg-white/16 hover:border-white/35
                 transition-all duration-200
-                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50
               "
             >
               Login

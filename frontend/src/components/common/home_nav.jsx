@@ -2,17 +2,30 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context.jsx";
+import { toast } from "sonner";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-  const { loggedIn, loading } = useAuth();
+  const { loggedIn, loading, isDemo, exitDemo } = useAuth();
   const navigate = useNavigate();
 
   // If we are still checking or if they aren't logged in, don't show the Nav
   if (loading || !loggedIn) return null;
 
   const logout = async () => {
+    if (isDemo) {
+      try {
+        await axios.post("/api/logout", {}, { withCredentials: true });
+      } catch (err) {
+        console.error("Demo logout cookie clear failed", err);
+      } finally {
+        exitDemo();
+        toast.info("Exited demo mode");
+        navigate("/landing", { replace: true });
+      }
+      return;
+    }
     try {
       await axios.post("/api/logout", {}, { withCredentials: true });
       navigate("/login", { replace: true });
@@ -26,7 +39,14 @@ export default function Navbar() {
       <header className="inset-x-0 bg-black">
         <nav className="relative max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <span className="text-white font-bold text-lg">Sentinel</span>
+            <div className="flex items-center gap-3">
+              <span className="text-white font-bold text-lg">Sentinel</span>
+              {isDemo && (
+                <span className="text-[11px] font-semibold uppercase tracking-[0.2em] rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-200 px-2 py-1">
+                  Demo
+                </span>
+              )}
+            </div>
 
             <div className="absolute left-1/2 -translate-x-1/2 hidden lg:flex gap-6 text-white">
               <Link to="/home">Home</Link>
@@ -37,7 +57,7 @@ export default function Navbar() {
             <div className="flex items-center gap-4 relative">
               <button
                 onClick={() => setShowLogoutConfirm(!showLogoutConfirm)}
-                className="text-white"
+                className="inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"
               >
                 Logout
               </button>
@@ -68,7 +88,10 @@ export default function Navbar() {
             <Link to="/home" className="block text-white">Home</Link>
             <Link to="/WorkingQueues" className="block text-white">WorkingQ</Link>
             <Link to="/WaitingQueues" className="block text-white">WaitingQ</Link>
-            <button onClick={() => setShowLogoutConfirm(true)} className="block text-white">
+            <button
+              onClick={() => setShowLogoutConfirm(true)}
+              className="inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"
+            >
               Logout
             </button>
           </div>

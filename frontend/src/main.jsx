@@ -60,6 +60,8 @@ createRoot(document.getElementById("root")).render(
         classNames: {
           success: "!text-green-400 !border-green-500/40",
           error: "!text-red-400 !border-red-500/40",
+          warning: "!text-amber-300 !border-amber-500/40",
+          info: "!text-cyan-300 !border-cyan-500/40",
         },
       }}
     />
