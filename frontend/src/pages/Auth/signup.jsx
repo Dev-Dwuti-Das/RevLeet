@@ -73,15 +73,44 @@ function Signup() {
 
       {/* RIGHT SIDE — SAME BACKGROUND + BLOBS */}
       <div className="flex items-center relative justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-2">
+        <div className="absolute inset-0 z-10 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
-          <div className="absolute left-[200px] top-[10%] w-[600px] h-[600px] rounded-full bg-purple-500/50 blur-[140px] animate-[float-slow_20s_ease-in-out_infinite]" />
-          <div className="absolute left-[200px] top-[10%] w-[600px] h-[600px] rounded-full bg-purple-500/50 blur-[140px] animate-[float-slow_20s_ease-in-out_infinite]" />
+          <div
+            className="
+            absolute
+            w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
+            rounded-full
+            bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
+            blur-[130px]
+            opacity-70
+            animate-[float-slow_18s_ease-in-out_infinite]
+          "
+          />
 
-          <div className="absolute right-[20px] top-[35%] w-[200px] h-[200px] rounded-full bg-indigo-500/50 blur-[180px] animate-[float-reverse_26s_ease-in-out_infinite]" />
+          <div
+            className="
+            absolute
+            w-[56vw] h-[56vw] sm:w-[420px] sm:h-[420px]
+            rounded-full
+            border border-purple-400/30
+            blur-sm
+            animate-[float-reverse_22s_ease-in-out_infinite]
+          "
+          />
 
-          <div className="absolute left-1/2 bottom-[-200px] -translate-x-1/2 w-[900px] h-[300px] bg-purple-600/30 blur-[180px]" />
+          <div
+            className="
+            absolute
+            w-[40vw] h-[40vw] sm:w-[300px] sm:h-[300px]
+            rounded-full
+            border border-cyan-400/20
+            blur-sm
+            animate-[float-orbit_40s_linear_infinite]
+          "
+          />
+
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[130vw] sm:w-[1200px] h-[240px] sm:h-[300px] bg-purple-600/30 blur-[140px] sm:blur-[160px]" />
         </div>
 
         {/* GLASS CARD — SAME AS LOGIN */}
@@ -92,7 +121,7 @@ function Signup() {
           border border-white/10
           rounded-3xl
           p-8
-          z-3
+          z-20
           
         "
         >

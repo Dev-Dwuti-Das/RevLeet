@@ -77,28 +77,40 @@ function Login() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
           <div
-            className="absolute -left-24 top-[-8%] h-[560px] w-[560px] sm:h-[760px] sm:w-[760px] rounded-full blur-[170px] sm:blur-[190px] animate-[float-slow_20s_ease-in-out_infinite]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(168,85,247,0.56) 0%, rgba(99,102,241,0.34) 34%, rgba(59,130,246,0.14) 58%, rgba(0,0,0,0) 78%)",
-            }}
+            className="
+            absolute
+            w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
+            rounded-full
+            bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
+            blur-[130px]
+            opacity-70
+            animate-[float-slow_18s_ease-in-out_infinite]
+          "
           />
 
           <div
-            className="absolute -right-[120px] top-[28%] h-[280px] w-[280px] sm:-right-[72px] sm:top-[24%] sm:h-[420px] sm:w-[420px] rounded-full blur-[150px] sm:blur-[170px] animate-[float-reverse_26s_ease-in-out_infinite]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(99,102,241,0.56) 0%, rgba(59,130,246,0.28) 42%, rgba(0,0,0,0) 78%)",
-            }}
+            className="
+            absolute
+            w-[56vw] h-[56vw] sm:w-[420px] sm:h-[420px]
+            rounded-full
+            border border-purple-400/30
+            blur-sm
+            animate-[float-reverse_22s_ease-in-out_infinite]
+          "
           />
 
           <div
-            className="absolute left-1/2 bottom-[-180px] h-[280px] w-[640px] sm:bottom-[-220px] sm:h-[380px] sm:w-[980px] -translate-x-1/2 blur-[170px] sm:blur-[190px]"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, rgba(147,51,234,0.34) 0%, rgba(99,102,241,0.2) 35%, rgba(0,0,0,0) 78%)",
-            }}
+            className="
+            absolute
+            w-[40vw] h-[40vw] sm:w-[300px] sm:h-[300px]
+            rounded-full
+            border border-cyan-400/20
+            blur-sm
+            animate-[float-orbit_40s_linear_infinite]
+          "
           />
+
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[130vw] sm:w-[1200px] h-[240px] sm:h-[300px] bg-purple-600/30 blur-[140px] sm:blur-[160px]" />
         </div>
         
         <div

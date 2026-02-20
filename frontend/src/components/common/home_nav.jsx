@@ -40,11 +40,13 @@ export default function Navbar() {
         <nav className="relative max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <img
-                src="/logo.png"
-                alt="Revleet logo"
-                className="h-9 w-auto object-contain"
-              />
+              <Link to="/home" aria-label="Go to home">
+                <img
+                  src="/logo.png"
+                  alt="Revleet logo"
+                  className="h-9 w-auto object-contain"
+                />
+              </Link>
               {isDemo && (
                 <span className="text-[11px] font-semibold uppercase tracking-[0.2em] rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-200 px-2 py-1">
                   Demo

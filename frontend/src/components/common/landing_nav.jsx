@@ -12,11 +12,13 @@ export default function LandingNavbar() {
         <div className="flex items-center justify-between">
 
           {/* LEFT — Logo */}
-          <img
-            src="/logo.png"
-            alt="Revleet logo"
-            className="tp-0 h-12 sm:h-14 w-auto object-contain"
-          />
+          <a href="/landing" aria-label="Go to home">
+            <img
+              src="/logo.png"
+              alt="Revleet logo"
+              className="tp-0 h-12 sm:h-14 w-auto object-contain"
+            />
+          </a>
 
           {/* CENTER — Links */}
           <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-2">
