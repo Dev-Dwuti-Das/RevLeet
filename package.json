@@ -18,6 +18,6 @@
     "zod": "^3.25.76"
   },
   "scripts": {
-    "build": "cd frontend && npm install && npm run build && rm -rf ../dist && cp -r dist ../dist"
+    "start": "node api/index.js"
   }
 }

@@ -29,7 +29,7 @@ app.get("/api", (_req, res) => {
   return res.json({ msg: "api alive" });
 });
 
-// Keep both mounts so routes work whether /api is stripped or preserved by the runtime.
+
 app.use("/", router);
 app.use("/api", router);
 
