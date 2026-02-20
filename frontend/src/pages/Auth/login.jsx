@@ -3,8 +3,10 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Link, useNavigate } from "react-router-dom";
 import LandingNavbar from "../../components/common/landing_nav";
+import { useAuth } from "../../context";
 function Login() {
   let navigate = useNavigate();
+  const { refreshAuth } = useAuth();
   const [form, setform] = useState({
     email: "",
     password: "",
@@ -24,9 +26,8 @@ function Login() {
         : toast.success(res.data.msg);
 
       if (res.data.flag === "success") {
-        setTimeout(() => {
-          navigate("/home");
-        }, 1200);
+        await refreshAuth();
+        navigate("/home", { replace: true });
       }
     } catch (err) {
       const msg = err?.response?.data?.msg || "Login failed";
