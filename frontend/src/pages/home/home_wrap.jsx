@@ -89,7 +89,7 @@ function Home() {
 
           {/* Heatmap */}
           <div className="w-full">
-            <HeatmapExample data={data} />
+            <HeatmapExample data={data} streak={Number(stats?.streak ?? 0)} />
           </div>
         </div>
 

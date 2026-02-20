@@ -178,7 +178,6 @@ export default function Landing() {
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
       <LandingNavbar></LandingNavbar>
       <section className="relative min-h-screen flex items-center justify-center">
-        
         <div
           className="
       absolute
@@ -196,12 +195,8 @@ export default function Landing() {
       absolute
       w-[420px] h-[420px]
       rounded-full
-      bg-purple-400/16
-      shadow-[0_0_160px_70px_rgba(168,85,247,0.34)]
-      blur-[90px]
-      opacity-75
-      mix-blend-screen
-      transform-gpu
+      border border-purple-400/30
+      blur-sm
       animate-[float-reverse_22s_ease-in-out_infinite]
     "
         />
@@ -211,12 +206,8 @@ export default function Landing() {
       absolute
       w-[300px] h-[300px]
       rounded-full
-      bg-cyan-400/14
-      shadow-[0_0_150px_55px_rgba(34,211,238,0.28)]
-      blur-[80px]
-      opacity-75
-      mix-blend-screen
-      transform-gpu
+      border border-cyan-400/20
+      blur-sm
       animate-[float-orbit_40s_linear_infinite]
     "
         />
@@ -478,7 +469,7 @@ export default function Landing() {
       </a>
 
       <a
-        href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/"
+        href="https://www.linkedin.com/in/dev-dwuti-das-643a28277/"
         target="_blank"
         rel="noopener noreferrer"
         

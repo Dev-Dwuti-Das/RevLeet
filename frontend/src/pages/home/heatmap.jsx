@@ -21,7 +21,10 @@ export default function HeatmapExample({ data, streak = 0 }) {
     for (let i = 0; i < streak; i++) {
       const day = new Date(today);
       day.setDate(today.getDate() - i);
-      map[formatLocalDate(day)] = Math.floor(Math.random() * 7) + 1;
+      // Generate deterministic intensity so demo streak days are consecutive
+      // and rendered with visible green shade variation.
+      const intensity = Math.max(1, Math.min(8, streak - i + 1));
+      map[formatLocalDate(day)] = intensity;
     }
   } else {
     safeData.forEach((item) => {
