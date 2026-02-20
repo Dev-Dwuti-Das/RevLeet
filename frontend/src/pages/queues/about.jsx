@@ -38,19 +38,23 @@ export default function About() {
             </span>
             <span className="text-violet-400">→</span>
             <span className="px-4 py-1.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-400/30">
-              Waiting
+              Buffer 1
             </span>
             <span className="text-violet-400">→</span>
             <span className="px-4 py-1.5 rounded-full bg-orange-500/15 text-orange-300 border border-orange-400/30">
-              Vague
+              Warm
+            </span>
+            <span className="text-violet-400">→</span>
+            <span className="px-4 py-1.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-400/30">
+              Buffer 2
             </span>
             <span className="text-violet-400">→</span>
             <span className="px-4 py-1.5 rounded-full bg-yellow-500/15 text-yellow-300 border border-yellow-400/30">
-              Almost Done
+              Almost done
             </span>
             <span className="text-violet-400">→</span>
             <span className="px-4 py-1.5 rounded-full bg-green-500/15 text-green-300 border border-green-400/30">
-              Done
+              Stable
             </span>
           </div>
 
@@ -65,28 +69,35 @@ export default function About() {
         <div className="grid sm:grid-cols-2 gap-6">
 
           <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h3 className="font-medium mb-2 text-red-400">Clueless</h3>
+            <h3 className="font-medium mb-2 text-purple-400">Buffer 1</h3>
             <p className="text-gray-400 text-sm">
-              You don’t understand the problem yet. This is the starting point.
+              First waiting checkpoint. Questions pause here before active review.
             </p>
           </div>
 
           <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h3 className="font-medium mb-2 text-orange-400">Vague</h3>
+            <h3 className="font-medium mb-2 text-orange-400">Warm</h3>
             <p className="text-gray-400 text-sm">
-              You know the idea, but need repeated exposure.
+              Active practice queue where you re-attempt and mark progress.
             </p>
           </div>
 
           <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h3 className="font-medium mb-2 text-yellow-400">Almost Done</h3>
+            <h3 className="font-medium mb-2 text-indigo-400">Buffer 2</h3>
+            <p className="text-gray-400 text-sm">
+              Second waiting checkpoint that reinforces spacing before final review.
+            </p>
+          </div>
+
+          <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-6">
+            <h3 className="font-medium mb-2 text-yellow-400">Almost done</h3>
             <p className="text-gray-400 text-sm">
               You can solve it, but confidence isn’t automatic yet.
             </p>
           </div>
 
           <div className="rounded-2xl bg-white/5 backdrop-blur border border-white/10 p-6">
-            <h3 className="font-medium mb-2 text-green-400">Done</h3>
+            <h3 className="font-medium mb-2 text-green-400">Stable</h3>
             <p className="text-gray-400 text-sm">
               Fully internalized. Minimal revision required.
             </p>
