@@ -53,7 +53,7 @@ export default function Working_Queues() {
                 Questions ready for manual review and completion.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <div className="rounded-2xl border border-orange-500/25 bg-orange-500/10 px-4 py-3">
                 <p className="text-xs text-orange-200/80">Warm</p>
                 <p className="text-2xl font-semibold text-orange-300">{q2}</p>

@@ -73,32 +73,15 @@ function Signup() {
 
       {/* RIGHT SIDE — SAME BACKGROUND + BLOBS */}
       <div className="flex items-center relative justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-2 pointer-events-none">
+        <div className="absolute inset-0 z-2">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
-          <div
-            className="absolute -left-8 top-[4%] h-[760px] w-[760px] rounded-full blur-[190px] animate-[float-slow_20s_ease-in-out_infinite]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(168,85,247,0.56) 0%, rgba(99,102,241,0.34) 34%, rgba(59,130,246,0.14) 58%, rgba(0,0,0,0) 78%)",
-            }}
-          />
+          <div className="absolute left-[200px] top-[10%] w-[600px] h-[600px] rounded-full bg-purple-500/50 blur-[140px] animate-[float-slow_20s_ease-in-out_infinite]" />
+          <div className="absolute left-[200px] top-[10%] w-[600px] h-[600px] rounded-full bg-purple-500/50 blur-[140px] animate-[float-slow_20s_ease-in-out_infinite]" />
 
-          <div
-            className="absolute -right-[72px] top-[24%] h-[420px] w-[420px] rounded-full blur-[170px] animate-[float-reverse_26s_ease-in-out_infinite]"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(99,102,241,0.56) 0%, rgba(59,130,246,0.28) 42%, rgba(0,0,0,0) 78%)",
-            }}
-          />
+          <div className="absolute right-[20px] top-[35%] w-[200px] h-[200px] rounded-full bg-indigo-500/50 blur-[180px] animate-[float-reverse_26s_ease-in-out_infinite]" />
 
-          <div
-            className="absolute left-1/2 bottom-[-220px] h-[380px] w-[980px] -translate-x-1/2 blur-[190px]"
-            style={{
-              background:
-                "radial-gradient(ellipse at center, rgba(147,51,234,0.34) 0%, rgba(99,102,241,0.2) 35%, rgba(0,0,0,0) 78%)",
-            }}
-          />
+          <div className="absolute left-1/2 bottom-[-200px] -translate-x-1/2 w-[900px] h-[300px] bg-purple-600/30 blur-[180px]" />
         </div>
 
         {/* GLASS CARD — SAME AS LOGIN */}

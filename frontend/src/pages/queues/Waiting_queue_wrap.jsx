@@ -53,7 +53,7 @@ export default function WaitingQueues() {
                 Questions resting before the next revision move.
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
               <div className="rounded-2xl border border-purple-500/25 bg-purple-500/10 px-4 py-3">
                 <p className="text-xs text-purple-200/80">Buffer 1</p>
                 <p className="text-2xl font-semibold text-purple-300">{q1}</p>

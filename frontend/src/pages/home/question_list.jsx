@@ -89,15 +89,14 @@ function Question_list({render}) {
   return (
     <div
       className="
-        h-200 w-auto overflow-y-auto 
+        h-[68vh] lg:h-[800px] w-auto overflow-y-auto 
         bg-[#121212]
         rounded-3xl       
         border border-[#1d1d1d]
-        p-6 flex flex-col
+        p-4 sm:p-6 flex flex-col
         shadow-[0_0_25px_rgba(255,255,255,0.04)]
         hover:shadow-[0_0_35px_rgba(255,255,255,0.06)]
         transition-all duration-300
-        overflow-hidden
         z-10
       "
     >
@@ -139,9 +138,9 @@ function Question_list({render}) {
             
           `}
         >
-          <div className="flex justify-between items-center">
-            <div className="text-lg font-bold text-white flex items-center gap-2">
-              <span>{q.title}</span>
+          <div className="flex justify-between items-center gap-3">
+            <div className="min-w-0 text-base sm:text-lg font-bold text-white flex items-center gap-2">
+              <span className="truncate">{q.title}</span>
 
               {q.link && (
                 <a

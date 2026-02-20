@@ -32,7 +32,7 @@ function Home() {
   }, [getData]);
 
   return (
-    <div className="p-4 pt-1 min-h-screen text-white w-full m-0 relative">
+    <div className="p-3 sm:p-4 pt-1 min-h-screen text-white w-full m-0 relative">
       <div className="flex flex-col lg:flex-row gap-6 w-full">
         
         {/* LEFT SECTION */}
@@ -45,34 +45,34 @@ function Home() {
           </div>
 
           {/* Flow Indicator */}
-          <div className="w-full mb-1 flex items-center justify-center space-x-2 flex-wrap text-center">
+          <div className="w-full mb-1 flex items-center justify-start sm:justify-center gap-2 flex-wrap text-center overflow-x-auto pb-1">
             <span className="bg-gray-400/20 text-xs font-semibold rounded-full px-2 py-1 border border-gray-500/35">
               Question List
             </span>
             <span>→</span>
 
-            <span className="bg-purple-500/20 text-purple-400 text-xs font-semibold border border-purple-500/25 rounded-full px-2 py-1">
-              Waiting Queue 1
+            <span className="bg-purple-500/20 text-purple-400 text-xs font-semibold border border-purple-500/25 rounded-full px-2 py-1 whitespace-nowrap">
+              Buffer 1
             </span>
             <span>→</span>
 
-            <span className="bg-orange-500/20 text-orange-400 text-xs font-semibold border border-orange-500/25 rounded-full px-2 py-1">
-              Vague Queue
+            <span className="bg-orange-500/20 text-orange-400 text-xs font-semibold border border-orange-500/25 rounded-full px-2 py-1 whitespace-nowrap">
+              Warm
             </span>
             <span>→</span>
 
-            <span className="bg-purple-500/20 text-purple-400 text-xs font-semibold border border-purple-500/25 rounded-full px-2 py-1">
-              Waiting Queue 2
+            <span className="bg-indigo-500/20 text-indigo-300 text-xs font-semibold border border-indigo-500/25 rounded-full px-2 py-1 whitespace-nowrap">
+              Buffer 2
             </span>
             <span>→</span>
 
-            <span className="bg-yellow-500/20 text-yellow-400 text-xs font-semibold border border-yellow-500/25 rounded-full px-2 py-1">
-              Almost Done Queue
+            <span className="bg-yellow-500/20 text-yellow-400 text-xs font-semibold border border-yellow-500/25 rounded-full px-2 py-1 whitespace-nowrap">
+              Almost done
             </span>
             <span>→</span>
 
-            <span className="bg-green-500/20 text-green-400 text-xs font-semibold border border-green-500/25 rounded-full px-2 py-1">
-              Done List
+            <span className="bg-green-500/20 text-green-400 text-xs font-semibold border border-green-500/25 rounded-full px-2 py-1 whitespace-nowrap">
+              Stable
             </span>
           </div>
 

@@ -8,7 +8,7 @@ export default function Landing() {
   const buttonBase =
     "inline-flex items-center justify-center rounded-full border font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
   const buttonPrimary =
-    `${buttonBase} px-9 py-3 text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
+    `${buttonBase} px-6 sm:px-9 py-2.5 sm:py-3 text-sm sm:text-base text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
   const buttonSecondary = buttonPrimary;
   const iconButton =
     "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
@@ -32,9 +32,9 @@ export default function Landing() {
       
       <span
         className={`
-        px-5 py-2.5
+        px-3.5 sm:px-5 py-2 sm:py-2.5
         rounded-full
-        text-sm font-medium
+        text-xs sm:text-sm font-medium
         backdrop-blur-md
         border
         ${styles[tone]}
@@ -49,7 +49,7 @@ export default function Landing() {
     return (
       <div
         className="
-        min-w-90 rounded-3xl
+        w-[320px] rounded-3xl
         bg-white/5
         backdrop-blur-xl
         border border-white/10
@@ -81,7 +81,7 @@ export default function Landing() {
 
         <div className="h-px w-full bg-white/10 mb-4" />
 
-        <div className="space-y-3 max-h-70 pr-1">
+        <div className="space-y-3 max-h-[280px] overflow-y-auto pr-1">
           {[
             { title: "Maximum Subarray" },
             { title: "LRU Cache" },
@@ -177,11 +177,11 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
       <LandingNavbar></LandingNavbar>
-      <section className="relative min-h-screen flex items-center justify-center">
+      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6">
         <div
           className="
       absolute
-      w-[520px] h-[520px]
+      w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
       rounded-full
       bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
       blur-[130px]
@@ -193,7 +193,7 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[420px] h-[420px]
+      w-[56vw] h-[56vw] sm:w-[420px] sm:h-[420px]
       rounded-full
       border border-purple-400/30
       blur-sm
@@ -204,7 +204,7 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[300px] h-[300px]
+      w-[40vw] h-[40vw] sm:w-[300px] sm:h-[300px]
       rounded-full
       border border-cyan-400/20
       blur-sm
@@ -212,9 +212,9 @@ export default function Landing() {
     "
         />
 
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[300px] bg-purple-600/30 blur-[160px]" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[130vw] sm:w-[1200px] h-[240px] sm:h-[300px] bg-purple-600/30 blur-[140px] sm:blur-[160px]" />
 
-        <div className="absolute bottom-10 left-30 z-10 hidden lg:block rotate-[-10deg] scale-[1]">
+        <div className="absolute bottom-10 left-8 z-10 hidden lg:block rotate-[-10deg] scale-[1]">
           <QueueCardLeft></QueueCardLeft>
         </div>
 
@@ -222,8 +222,8 @@ export default function Landing() {
           <QueueCard />
         </div>
 
-        <div className="relative z-20 max-w-4xl text-center px-6">
-          <h1 className="text-5xl md:text-7xl tracking-tight leading-tight mb-6 font-inter">
+        <div className="relative z-20 max-w-4xl text-center px-2 sm:px-6">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl tracking-tight leading-tight mb-5 sm:mb-6 font-inter">
             <span className="block heading-bottom text-white">
               You <span className="heading-top1">solved</span> it once.
             </span>
@@ -233,7 +233,7 @@ export default function Landing() {
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto hero-text text-gray-300 text-lg md:text-xl mb-12">
+          <p className="max-w-2xl mx-auto hero-text text-gray-300 text-base sm:text-lg md:text-xl mb-10 sm:mb-12">
             Revleet is a spaced-repetition system for coding problems. It
             schedules revisions so concepts stick for interviews.
           </p>
@@ -249,11 +249,11 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative pt-32 border-none" id="whyrevleet">
+      <section className="relative pt-20 sm:pt-32 border-none" id="whyrevleet">
         {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
 
-        <div className="relative max-w-6xl mx-auto px-6 text-center">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
             LeetCode helps you{" "}
             <span className="text-violet-500 heading-top4 ">SOLVE</span>.
             <br />
@@ -344,9 +344,9 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative px-6 pt-30 pb-30 verflow-hidden" id="howitworks">
+      <section className="relative px-4 sm:px-6 pt-20 sm:pt-30 pb-20 sm:pb-30 overflow-hidden" id="howitworks">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold heading-bottom text-white mb-6">
             Revleet fixes this with{" "}
             <span className="text-violet-500 heading-top-bold">structure</span>
           </h2>
@@ -355,16 +355,16 @@ export default function Landing() {
             <FlowPill label="Question List" tone="neutral" />
             <Arrow />
 
-            <FlowPill label="Waiting" tone="purple" />
+            <FlowPill label="Buffer 1" tone="purple" />
             <Arrow />
 
-            <FlowPill label="Vague" tone="orange" />
+            <FlowPill label="Warm" tone="orange" />
             <Arrow />
 
-            <FlowPill label="Almost Done" tone="yellow" />
+            <FlowPill label="Buffer 2" tone="yellow" />
             <Arrow />
 
-            <FlowPill label="Done" tone="green" />
+            <FlowPill label="Stable" tone="green" />
           </div>
 
           <p className="max-w-3xl mx-auto text-gray-400 text-lg leading-relaxed">
@@ -375,12 +375,12 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className="relative py-15 px-6 overflow-hidden">
+      <section className="relative py-12 sm:py-15 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 bg-[#0d0d11]" />
         <div
           className="
       absolute
-      w-[520px] h-[520px]
+      w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
       rounded-full
       bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
       blur-[130px]
@@ -391,7 +391,7 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[520px] h-[520px]
+      w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
       rounded-full
       bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
       blur-[130px]
@@ -403,7 +403,7 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[420px] h-[450px]
+      w-[58vw] h-[60vw] sm:w-[420px] sm:h-[450px]
       rounded-full
       border border-purple-500/30
       blur-sm
@@ -414,7 +414,7 @@ export default function Landing() {
         <div
           className="
       absolute
-      w-[300px] h-[300px]
+      w-[42vw] h-[42vw] sm:w-[300px] sm:h-[300px]
       rounded-full
       border border-cyan-400/20
       blur-sm
@@ -426,7 +426,7 @@ export default function Landing() {
             Ready When You Are
           </p>
 
-          <h2 className="text-4xl md:text-5xl font-semibold mb-4 heading-bottom text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 heading-bottom text-white">
             Stop grinding.
             <span className="text-purple-400"> Start learning.</span>
           </h2>
@@ -450,15 +450,15 @@ export default function Landing() {
       
 
 <footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm">
-  <div className="mx-auto grid w-full max-w-6xl grid-cols-3 items-center px-6 py-2 text-sm text-gray-400">
-    
-    <div /> {/* empty left spacer */}
+  <div className="mx-auto grid w-full max-w-6xl grid-cols-1 sm:grid-cols-3 items-center gap-3 sm:gap-0 px-4 sm:px-6 py-3 sm:py-2 text-sm text-gray-400">
 
-    <span className="text-center">
+    <div className="hidden sm:block" />
+
+    <span className="text-center order-2 sm:order-none">
       Built with intent. © {new Date().getFullYear()} Revleet
     </span>
 
-    <div className="flex justify-end gap-6">
+    <div className="flex justify-center sm:justify-end gap-6 order-1 sm:order-none">
       <a
         href="https://github.com/Dev-Dwuti-Das"
         target="_blank"

@@ -72,12 +72,12 @@ function Login() {
         </ul>
       </div>
 
-      <div className="flex items-center relative justify-center px-6 overflow-hidden">
-        <div className="absolute inset-0 z-2 pointer-events-none">
+      <div className="flex items-center relative justify-center px-4 sm:px-6 py-24 lg:py-8 overflow-hidden">
+        <div className="absolute inset-0 z-10 pointer-events-none">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a18] via-[#060610] to-black" />
 
           <div
-            className="absolute -left-8 top-[4%] h-[760px] w-[760px] rounded-full blur-[190px] animate-[float-slow_20s_ease-in-out_infinite]"
+            className="absolute -left-24 top-[-8%] h-[560px] w-[560px] sm:h-[760px] sm:w-[760px] rounded-full blur-[170px] sm:blur-[190px] animate-[float-slow_20s_ease-in-out_infinite]"
             style={{
               background:
                 "radial-gradient(circle, rgba(168,85,247,0.56) 0%, rgba(99,102,241,0.34) 34%, rgba(59,130,246,0.14) 58%, rgba(0,0,0,0) 78%)",
@@ -85,7 +85,7 @@ function Login() {
           />
 
           <div
-            className="absolute -right-[72px] top-[24%] h-[420px] w-[420px] rounded-full blur-[170px] animate-[float-reverse_26s_ease-in-out_infinite]"
+            className="absolute -right-[120px] top-[28%] h-[280px] w-[280px] sm:-right-[72px] sm:top-[24%] sm:h-[420px] sm:w-[420px] rounded-full blur-[150px] sm:blur-[170px] animate-[float-reverse_26s_ease-in-out_infinite]"
             style={{
               background:
                 "radial-gradient(circle, rgba(99,102,241,0.56) 0%, rgba(59,130,246,0.28) 42%, rgba(0,0,0,0) 78%)",
@@ -93,7 +93,7 @@ function Login() {
           />
 
           <div
-            className="absolute left-1/2 bottom-[-220px] h-[380px] w-[980px] -translate-x-1/2 blur-[190px]"
+            className="absolute left-1/2 bottom-[-180px] h-[280px] w-[640px] sm:bottom-[-220px] sm:h-[380px] sm:w-[980px] -translate-x-1/2 blur-[170px] sm:blur-[190px]"
             style={{
               background:
                 "radial-gradient(ellipse at center, rgba(147,51,234,0.34) 0%, rgba(99,102,241,0.2) 35%, rgba(0,0,0,0) 78%)",
@@ -107,13 +107,13 @@ function Login() {
           bg-[#000000]/85
           border border-white/10
           rounded-3xl
-          p-8
-          z-3
+          p-6 sm:p-8
+          z-20
           
         "
         >
           <div className="mb-8">
-            <h2 className="text-3xl font-bold tracking-tight heading-bottom2">
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight heading-bottom2">
               login your account
             </h2>
             <p className="text-gray-400 mt-2 hero-text2 text-sm">

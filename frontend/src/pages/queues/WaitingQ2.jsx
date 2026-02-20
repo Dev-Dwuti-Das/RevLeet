@@ -27,10 +27,10 @@ export default function VagueCardQ({ data, ondone }) {
   }
 
   return (
-    <section className="relative overflow-hidden rounded-3xl border border-orange-500/20 bg-gradient-to-br from-[#21160f] via-[#121212] to-[#101010] p-6">
+    <section className="relative overflow-hidden rounded-3xl border border-orange-500/20 bg-gradient-to-br from-[#21160f] via-[#121212] to-[#101010] p-4 sm:p-6">
       <div className="absolute -top-20 -right-20 h-44 w-44 rounded-full bg-orange-500/15 blur-3xl" />
 
-      <div className="relative flex items-start justify-between">
+      <div className="relative flex flex-wrap items-start justify-between gap-3">
         <div>
           <h2 className="text-xl font-semibold tracking-wide">Warm</h2>
           <p className="text-xs text-zinc-400 mt-1">Active practice queue</p>
@@ -40,7 +40,7 @@ export default function VagueCardQ({ data, ondone }) {
         </span>
       </div>
 
-      <div className="mt-5 flex items-center gap-2 text-xs text-zinc-400">
+      <div className="mt-5 flex flex-wrap items-center gap-2 text-xs text-zinc-400">
         <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Buffer 1</span>
         <span>→</span>
         <span className="px-2 py-1 rounded-full border border-orange-400/30 bg-orange-500/20 text-orange-200 font-semibold">Warm</span>
