@@ -6,9 +6,9 @@ export default function Landing() {
   const {loggedIn, enterDemo} = useAuth();
   const navigate = useNavigate();
   const buttonBase =
-    "inline-flex items-center justify-center rounded-full border font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
+    "inline-flex items-center justify-center rounded-full border font-bold sm:font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
   const buttonPrimary =
-    `${buttonBase} px-6 sm:px-9 py-2.5 sm:py-3 text-sm sm:text-base text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
+    `${buttonBase} px-10 sm:px-9 py-2.5 sm:py-3 text-sm sm:text-base text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
   const buttonSecondary = buttonPrimary;
   const iconButton =
     "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
@@ -31,17 +31,19 @@ export default function Landing() {
     return (
       
       <span
-        className={`
-        px-3.5 sm:px-5 py-2 sm:py-2.5
-        rounded-full
-        text-xs sm:text-sm font-medium
-        backdrop-blur-md
-        border
-        ${styles[tone]}
-      `}
-      >
-        {label}
-      </span>
+  className={`
+    px-25 sm:px-5
+    py-3 sm:py-2.5
+    rounded-full
+    text-bold sm:text-sm
+    font-bold sm:font-medium
+    backdrop-blur-md
+    border
+    ${styles[tone]}
+  `}
+>
+  {label}
+</span>
     );
   }
 
@@ -351,7 +353,7 @@ export default function Landing() {
             <span className="text-violet-500 heading-top-bold">structure</span>
           </h2>
 
-          <div className="relative flex flex-wrap justify-center items-center gap-3 md:gap-4 mb-10">
+          <div className="relative flex flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-2 sm:gap-3 md:gap-4 mt-5 mb-10">
             <FlowPill label="Question List" tone="neutral" />
             <Arrow />
 
@@ -525,5 +527,9 @@ function Step({ label, color }) {
 }
 
 function Arrow() {
-  return <span className="text-purple-400 mt-2">→</span>;
+  return (
+    <span className="inline-block text-purple-400 rotate-90 sm:rotate-0">
+      →
+    </span>
+  );
 }

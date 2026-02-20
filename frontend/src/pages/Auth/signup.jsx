@@ -81,12 +81,15 @@ function Signup() {
             absolute
             w-[72vw] h-[72vw] sm:w-[520px] sm:h-[520px]
             rounded-full
-            bg-gradient-to-br from-purple-500 via-indigo-500 to-cyan-400
-            blur-[130px]
-            opacity-70
+            bg-gradient-to-br from-fuchsia-500 via-indigo-500 to-cyan-400
+            blur-[120px] sm:blur-[130px]
+            opacity-80 sm:opacity-70
             animate-[float-slow_18s_ease-in-out_infinite]
           "
           />
+
+          <div className="absolute -right-[16vw] top-[22%] h-[44vw] w-[44vw] rounded-full bg-cyan-400/35 blur-[90px] sm:hidden" />
+          <div className="absolute -left-[10vw] bottom-[18%] h-[36vw] w-[36vw] rounded-full bg-indigo-400/30 blur-[80px] sm:hidden" />
 
           <div
             className="
