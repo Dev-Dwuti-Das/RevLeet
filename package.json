@@ -10,14 +10,14 @@
     "express": "^5.2.1",
     "express-mongo-sanitize": "^2.2.0",
     "jsonwebtoken": "^9.0.3",
+    "lucide-react": "^0.575.0",
     "mongo-sanitize": "^1.1.0",
     "mongodb": "^6.20.0",
     "mongoose": "^8.19.2",
     "sonner": "^2.0.7",
-    "zod": "^3.25.76",
-    "lucide-react": "^0.575.0"
+    "zod": "^3.25.76"
   },
   "scripts": {
-    "build": "cd frontend && npm install && npm run build"
+    "build": "cd frontend && npm install && npm run build && rm -rf ../dist && cp -r dist ../dist"
   }
 }
