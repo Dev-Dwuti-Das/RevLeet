@@ -37,7 +37,7 @@ export default function Navbar() {
   return (
     <>
       <header className="inset-x-0 bg-black">
-        <nav className="relative max-w-7xl mx-auto px-6 py-4">
+        <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link to="/home" aria-label="Go to home">
@@ -60,16 +60,16 @@ export default function Navbar() {
               <Link to="/WaitingQueues">WaitingQ</Link>
             </div>
 
-            <div className="flex items-center gap-4 relative">
+            <div className="flex items-center gap-3 sm:gap-4 relative">
               <button
                 onClick={() => setShowLogoutConfirm(!showLogoutConfirm)}
-                className="inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"
+                className="hidden lg:inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"
               >
                 Logout
               </button>
 
               {showLogoutConfirm && (
-                <div className="absolute right-0 top-full mt-2 w-48 rounded-3xl z-50 bg-black border border-white/10 shadow-lg p-3 text-sm">
+                <div className="hidden lg:block absolute right-0 top-full mt-2 w-48 rounded-3xl z-50 bg-black border border-white/10 shadow-lg p-3 text-sm">
                   <p className="text-white/80 mb-3 p-1 ms-1 font-bold">Are you sure?</p>
                   <div className="flex justify-end gap-2">
                     <button onClick={() => setShowLogoutConfirm(false)} className="px-3 py-1 me-3 rounded-3xl text-white/70 hover:text-white">
@@ -82,7 +82,7 @@ export default function Navbar() {
                 </div>
               )}
 
-              <button className="lg:hidden text-white text-xl" onClick={() => setOpen(!open)}>
+              <button className="lg:hidden text-white text-xl" onClick={() => setOpen(!open)} aria-label="Toggle menu">
                 ☰
               </button>
             </div>
@@ -91,9 +91,9 @@ export default function Navbar() {
 
         {open && (
           <div className="lg:hidden bg-black border-t border-white/10 px-6 py-4 space-y-3">
-            <Link to="/home" className="block text-white">Home</Link>
-            <Link to="/WorkingQueues" className="block text-white">WorkingQ</Link>
-            <Link to="/WaitingQueues" className="block text-white">WaitingQ</Link>
+            <Link to="/home" className="block text-white" onClick={() => setOpen(false)}>Home</Link>
+            <Link to="/WorkingQueues" className="block text-white" onClick={() => setOpen(false)}>WorkingQ</Link>
+            <Link to="/WaitingQueues" className="block text-white" onClick={() => setOpen(false)}>WaitingQ</Link>
             <button
               onClick={() => setShowLogoutConfirm(true)}
               className="inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"
