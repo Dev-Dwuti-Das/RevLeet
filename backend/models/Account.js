@@ -31,8 +31,19 @@ const AccountSchema = new Schema({
 
   password: {
     type: String,
-    required: true,
+    required: false,
     trim: true,
+  },
+
+  authProvider: {
+    type: String,
+    enum: ["local", "google", "github"],
+    default: "local",
+  },
+
+  authProviderId: {
+    type: String,
+    default: null,
   },
 
   profile: {

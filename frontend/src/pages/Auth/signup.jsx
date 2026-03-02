@@ -16,6 +16,8 @@ function Signup() {
   const [submitting, setSubmitting] = useState(false);
   const submitBtnClass =
     "w-full rounded-full border border-violet-200/30 py-3 font-semibold text-white backdrop-blur-md transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-300/60 disabled:opacity-60 disabled:cursor-not-allowed";
+  const oauthBtnClass =
+    "w-full rounded-full border border-white/20 py-3 font-semibold text-white bg-white/5 hover:bg-white/10 transition-all duration-200";
 
   async function handlesubmit(e) {
     e.preventDefault();
@@ -194,6 +196,21 @@ function Signup() {
               {submitting ? "Signing up..." : "Sign up"}
             </button>
           </form>
+
+          <div className="my-4 flex items-center gap-3">
+            <div className="h-px flex-1 bg-white/10" />
+            <span className="text-xs text-gray-400">OR</span>
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
+
+          <div className="space-y-3">
+            <a href="/api/auth/google" className={`${oauthBtnClass} block text-center`}>
+              Continue with Google
+            </a>
+            <a href="/api/auth/github" className={`${oauthBtnClass} block text-center`}>
+              Continue with GitHub
+            </a>
+          </div>
 
           <p className="mt-6 text-center text-sm text-gray-400 pe-2">
             Already have an account?{" "}

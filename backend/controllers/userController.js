@@ -2,6 +2,8 @@ import progress from "../models/progress.js";
 import Account from "../models/Account.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import crypto from "crypto";
+import axios from "axios";
 import { automoveat } from "../utils/queueFlow.js";
 import { QUEUE_FLOW } from "../utils/queueFlow.js";
 import { demoHomeData } from "../utils/demoData.js";
@@ -19,6 +21,263 @@ const loginSchema = z.object({
   email: z.string().trim().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
 });
+
+function getCookieOptions() {
+  return {
+    httpOnly: true,
+    sameSite: isProd ? "none" : "lax",
+    secure: isProd,
+    path: "/",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  };
+}
+
+function getOAuthStateCookieOptions() {
+  return {
+    httpOnly: true,
+    sameSite: "lax",
+    secure: isProd,
+    path: "/",
+    maxAge: 10 * 60 * 1000,
+  };
+}
+
+function issueAuthCookie(res, userId) {
+  const token = jwt.sign({ user: userId }, process.env.SECRET_CODE, {
+    expiresIn: "15d",
+  });
+  res.cookie("token", token, getCookieOptions());
+}
+
+function frontendBaseUrl() {
+  return process.env.FRONTEND_URL || "http://localhost:5173";
+}
+
+function oauthCallbackUrl(req, provider) {
+  const envValue =
+    provider === "google"
+      ? process.env.GOOGLE_CALLBACK_URL
+      : process.env.GITHUB_CALLBACK_URL;
+  if (envValue) return envValue;
+  return `${req.protocol}://${req.get("host")}/api/auth/${provider}/callback`;
+}
+
+function oauthRedirectSuccess(res) {
+  return res.redirect(`${frontendBaseUrl()}/home`);
+}
+
+function oauthRedirectError(res, message = "OAuth failed") {
+  return res.redirect(
+    `${frontendBaseUrl()}/login?oauthError=${encodeURIComponent(message)}`
+  );
+}
+
+async function findOrCreateOAuthUser({ provider, providerId, email, name }) {
+  let user = await Account.findOne({ email });
+  if (user) {
+    let dirty = false;
+    if (!user.authProvider || user.authProvider === "local") {
+      user.authProvider = provider;
+      dirty = true;
+    }
+    if (!user.authProviderId && providerId) {
+      user.authProviderId = providerId;
+      dirty = true;
+    }
+    if (!user.name && name) {
+      user.name = name;
+      dirty = true;
+    }
+    if (dirty) await user.save();
+    return user;
+  }
+
+  const randomPassword = crypto.randomBytes(24).toString("hex");
+  const passwordHash = await bcrypt.hash(randomPassword, 10);
+
+  return Account.create({
+    name: name || email.split("@")[0],
+    email,
+    password: passwordHash,
+    authProvider: provider,
+    authProviderId: providerId || null,
+  });
+}
+
+export async function googleAuthStart(req, res) {
+  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
+    return res.status(500).json({ msg: "Google OAuth is not configured" });
+  }
+
+  const state = crypto.randomBytes(24).toString("hex");
+  res.cookie("oauth_google_state", state, getOAuthStateCookieOptions());
+
+  const params = new URLSearchParams({
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    redirect_uri: oauthCallbackUrl(req, "google"),
+    response_type: "code",
+    scope: "openid email profile",
+    state,
+    prompt: "select_account",
+  });
+
+  return res.redirect(
+    `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`
+  );
+}
+
+export async function googleAuthCallback(req, res) {
+  try {
+    const { code, state, error } = req.query;
+    if (error) return oauthRedirectError(res, "Google login was cancelled");
+    if (!code || !state) return oauthRedirectError(res, "Missing OAuth params");
+
+    const expectedState = req.cookies?.oauth_google_state;
+    res.clearCookie("oauth_google_state", {
+      path: "/",
+      sameSite: "lax",
+      secure: isProd,
+    });
+
+    if (!expectedState || expectedState !== state) {
+      return oauthRedirectError(res, "Invalid OAuth state");
+    }
+
+    const tokenBody = new URLSearchParams({
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_secret: process.env.GOOGLE_CLIENT_SECRET,
+      code: String(code),
+      grant_type: "authorization_code",
+      redirect_uri: oauthCallbackUrl(req, "google"),
+    });
+
+    const tokenRes = await axios.post(
+      "https://oauth2.googleapis.com/token",
+      tokenBody.toString(),
+      {
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      }
+    );
+
+    const accessToken = tokenRes.data?.access_token;
+    if (!accessToken) return oauthRedirectError(res, "Google token exchange failed");
+
+    const profileRes = await axios.get(
+      "https://www.googleapis.com/oauth2/v3/userinfo",
+      {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      }
+    );
+
+    const email = profileRes.data?.email?.toLowerCase();
+    if (!email) return oauthRedirectError(res, "Google account email missing");
+
+    const user = await findOrCreateOAuthUser({
+      provider: "google",
+      providerId: profileRes.data?.sub || null,
+      email,
+      name: profileRes.data?.name || null,
+    });
+
+    issueAuthCookie(res, user._id);
+    return oauthRedirectSuccess(res);
+  } catch (err) {
+    console.error("Google OAuth callback error:", err?.response?.data || err);
+    return oauthRedirectError(res, "Google login failed");
+  }
+}
+
+export async function githubAuthStart(req, res) {
+  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
+    return res.status(500).json({ msg: "GitHub OAuth is not configured" });
+  }
+
+  const state = crypto.randomBytes(24).toString("hex");
+  res.cookie("oauth_github_state", state, getOAuthStateCookieOptions());
+
+  const params = new URLSearchParams({
+    client_id: process.env.GITHUB_CLIENT_ID,
+    redirect_uri: oauthCallbackUrl(req, "github"),
+    scope: "read:user user:email",
+    state,
+  });
+
+  return res.redirect(
+    `https://github.com/login/oauth/authorize?${params.toString()}`
+  );
+}
+
+export async function githubAuthCallback(req, res) {
+  try {
+    const { code, state, error } = req.query;
+    if (error) return oauthRedirectError(res, "GitHub login was cancelled");
+    if (!code || !state) return oauthRedirectError(res, "Missing OAuth params");
+
+    const expectedState = req.cookies?.oauth_github_state;
+    res.clearCookie("oauth_github_state", {
+      path: "/",
+      sameSite: "lax",
+      secure: isProd,
+    });
+
+    if (!expectedState || expectedState !== state) {
+      return oauthRedirectError(res, "Invalid OAuth state");
+    }
+
+    const tokenRes = await axios.post(
+      "https://github.com/login/oauth/access_token",
+      {
+        client_id: process.env.GITHUB_CLIENT_ID,
+        client_secret: process.env.GITHUB_CLIENT_SECRET,
+        code: String(code),
+        redirect_uri: oauthCallbackUrl(req, "github"),
+      },
+      {
+        headers: { Accept: "application/json" },
+      }
+    );
+
+    const accessToken = tokenRes.data?.access_token;
+    if (!accessToken) return oauthRedirectError(res, "GitHub token exchange failed");
+
+    const userRes = await axios.get("https://api.github.com/user", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        Accept: "application/vnd.github+json",
+      },
+    });
+
+    let email = userRes.data?.email?.toLowerCase() || null;
+    if (!email) {
+      const emailsRes = await axios.get("https://api.github.com/user/emails", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          Accept: "application/vnd.github+json",
+        },
+      });
+      const primaryEmail =
+        emailsRes.data?.find((item) => item.primary && item.verified) ||
+        emailsRes.data?.find((item) => item.verified) ||
+        emailsRes.data?.[0];
+      email = primaryEmail?.email?.toLowerCase() || null;
+    }
+
+    if (!email) return oauthRedirectError(res, "GitHub account email missing");
+
+    const user = await findOrCreateOAuthUser({
+      provider: "github",
+      providerId: userRes.data?.id ? String(userRes.data.id) : null,
+      email,
+      name: userRes.data?.name || userRes.data?.login || null,
+    });
+
+    issueAuthCookie(res, user._id);
+    return oauthRedirectSuccess(res);
+  } catch (err) {
+    console.error("GitHub OAuth callback error:", err?.response?.data || err);
+    return oauthRedirectError(res, "GitHub login failed");
+  }
+}
 
 export async function handletick(req, res) {
   try {
@@ -128,14 +387,7 @@ export async function signup(req, res) {
     const token = jwt.sign({ user: newuser._id }, process.env.SECRET_CODE, {
       expiresIn: "15d",
     });
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: isProd ? "none" : "lax",
-      secure: isProd,
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    res.cookie("token", token, getCookieOptions());
 
     return res.status(201).json({
       msg: "Sign up successfull",
@@ -229,6 +481,12 @@ export async function login(req, res) {
         .status(404)
         .json({ msg: "User not found try sigining in", flag: "error" });
     }
+    if (!user.password) {
+      return res.status(400).json({
+        msg: "This account uses social login. Continue with Google or GitHub.",
+        flag: "error",
+      });
+    }
     const ismatch = await bcrypt.compare(password, user.password);
     if (!ismatch) {
       return res.json({ msg: "Incorrect password or email", flag: "error" });
@@ -237,14 +495,7 @@ export async function login(req, res) {
     const token = jwt.sign({ user: user._id }, process.env.SECRET_CODE, {
       expiresIn: "15d",
     });
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: isProd ? "none" : "lax",
-      secure: isProd,
-      path: "/",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
+    res.cookie("token", token, getCookieOptions());
 
     return res.status(200).json({ msg: "Login successful", flag: "success" });
   } catch (err) {

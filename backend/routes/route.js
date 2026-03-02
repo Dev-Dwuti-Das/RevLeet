@@ -3,6 +3,8 @@ import { signup } from "../controllers/userController.js";
 import { handletick } from "../controllers/userController.js";
 import { login } from "../controllers/userController.js";
 import { demoLogin } from "../controllers/userController.js";
+import { googleAuthStart, googleAuthCallback } from "../controllers/userController.js";
+import { githubAuthStart, githubAuthCallback } from "../controllers/userController.js";
 import auth_jwt from "../middleware/auth.js";
 import  getquestions from "../controllers/controller.js";
 import { gethomeinfo } from "../controllers/userController.js";
@@ -26,6 +28,10 @@ router.post("/signup",signup);
 router.post("/login",login);  
 
 router.post("/demo-login", demoLogin);
+router.get("/auth/google", googleAuthStart);
+router.get("/auth/google/callback", googleAuthCallback);
+router.get("/auth/github", githubAuthStart);
+router.get("/auth/github/callback", githubAuthCallback);
 
 router.post("/tick",auth_jwt, handletick);
 
