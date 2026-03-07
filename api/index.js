@@ -1,11 +1,17 @@
 import express from "express";
 import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
 import { connectDB } from "../backend/src/db.js";
 import router from "../backend/routes/route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load backend env file when running from project root (e.g. `node api/index.js`).
+dotenv.config({ path: path.resolve(__dirname, "../backend/.env") });
 
 const app = express();
 

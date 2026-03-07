@@ -53,13 +53,31 @@ function frontendBaseUrl() {
   return process.env.FRONTEND_URL || "http://localhost:5173";
 }
 
+function withoutTrailingSlash(url) {
+  return String(url || "").replace(/\/+$/, "");
+}
+
+function requestOrigin(req) {
+  const forwardedProto = req.get("x-forwarded-proto");
+  const proto = forwardedProto ? forwardedProto.split(",")[0].trim() : req.protocol;
+  const host = req.get("x-forwarded-host") || req.get("host");
+  return `${proto}://${host}`;
+}
+
 function oauthCallbackUrl(req, provider) {
   const envValue =
     provider === "google"
       ? process.env.GOOGLE_CALLBACK_URL
       : process.env.GITHUB_CALLBACK_URL;
   if (envValue) return envValue;
-  return `${req.protocol}://${req.get("host")}/api/auth/${provider}/callback`;
+
+  // In local dev, OAuth often starts on frontend origin (/api via Vite proxy).
+  // Using frontend origin keeps oauth_state cookie and callback host aligned.
+  if (!isProd) {
+    return `${withoutTrailingSlash(frontendBaseUrl())}/api/auth/${provider}/callback`;
+  }
+
+  return `${requestOrigin(req)}/api/auth/${provider}/callback`;
 }
 
 function oauthRedirectSuccess(res) {
