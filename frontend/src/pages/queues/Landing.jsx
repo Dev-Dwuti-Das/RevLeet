@@ -9,7 +9,7 @@ export default function Landing() {
     "inline-flex items-center justify-center rounded-full border font-bold sm:font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
   const buttonPrimary =
     `${buttonBase} px-10 sm:px-9 py-2.5 sm:py-3 text-sm sm:text-base text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
-  const buttonSecondary = buttonPrimary;
+  const buttonSecondary = `${buttonPrimary} !font-normal`;
   const iconButton =
     "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
 
@@ -470,14 +470,14 @@ export default function Landing() {
         <Github size={18} />
       </a>
 
-      <a
+      {/* <a
         href="https://www.linkedin.com/in/dev-dwuti-das-643a28277/"
         target="_blank"
         rel="noopener noreferrer"
         
       >
         <Linkedin size={18} />
-      </a>
+      </a> */}
     </div>
 
   </div>

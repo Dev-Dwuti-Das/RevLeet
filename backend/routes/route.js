@@ -10,6 +10,7 @@ import  getquestions from "../controllers/controller.js";
 import { gethomeinfo } from "../controllers/userController.js";
 import { handle_done } from "../utils/queueFlow.js";
 import { logoutController } from "../controllers/userController.js";
+import { addProjectStar, getProjectStars } from "../controllers/projectStarController.js";
 
 const router = express.Router();
 
@@ -43,6 +44,9 @@ router.get("/me", auth_jwt, (req, res) => {
     demo: Boolean(req.isDemo),
   });
 });
+
+router.get("/project-stars", getProjectStars);
+router.post("/project-stars/star", addProjectStar);
 
 
 export default router;  

@@ -123,8 +123,14 @@ async function findOrCreateOAuthUser({ provider, providerId, email, name }) {
 }
 
 export async function googleAuthStart(req, res) {
-  if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-    return res.status(500).json({ msg: "Google OAuth is not configured" });
+  const missingGoogleVars = ["GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET"].filter(
+    (key) => !process.env[key]
+  );
+  if (missingGoogleVars.length) {
+    return res.status(500).json({
+      msg: "Google OAuth is not configured",
+      missing: missingGoogleVars,
+    });
   }
 
   const state = crypto.randomBytes(24).toString("hex");
@@ -206,8 +212,14 @@ export async function googleAuthCallback(req, res) {
 }
 
 export async function githubAuthStart(req, res) {
-  if (!process.env.GITHUB_CLIENT_ID || !process.env.GITHUB_CLIENT_SECRET) {
-    return res.status(500).json({ msg: "GitHub OAuth is not configured" });
+  const missingGithubVars = ["GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET"].filter(
+    (key) => !process.env[key]
+  );
+  if (missingGithubVars.length) {
+    return res.status(500).json({
+      msg: "GitHub OAuth is not configured",
+      missing: missingGithubVars,
+    });
   }
 
   const state = crypto.randomBytes(24).toString("hex");
