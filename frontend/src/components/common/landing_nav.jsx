@@ -124,7 +124,7 @@ export default function LandingNavbar() {
               aria-label="Star RevLeet"
             >
               <Star size={19} strokeWidth={2.2} />
-              <span className="ms-2 font-mono text-sm leading-none">
+              <span className="ms-2 mt-1 font-mono text-sm leading-none">
                 {displayStarCount}
               </span>
             </button>
