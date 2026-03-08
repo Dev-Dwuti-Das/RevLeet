@@ -17,7 +17,7 @@ export default function LandingNavbar() {
 
     const loadStars = async () => {
       try {
-        const response = await fetch(STARS_API_URL);
+        const response = await fetch(STARS_API_URL, { credentials: "include" });
         if (!response.ok) return;
         const data = await response.json();
         if (isMounted && typeof data?.count === "number") {
@@ -44,6 +44,7 @@ export default function LandingNavbar() {
 
     try {
       const response = await fetch(STAR_API_URL, {
+        credentials: "include",
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({}),
@@ -113,7 +114,7 @@ export default function LandingNavbar() {
                 disabled:cursor-not-allowed
                 ${
                   hasStarred
-                    ? "border-white-300/60 text-amber-100 bg-amber-400/20 hover:bg-amber-300/30 hover:border-amber-200/80 hover:text-amber-50 hover:shadow-[0_0_18px_rgba(251,191,36,0.45)]"
+                    ? "border-amber-300/60 text-amber-100 bg-amber-400/20 hover:bg-amber-300/30 hover:border-amber-200/80 hover:text-amber-50 hover:shadow-[0_0_18px_rgba(251,191,36,0.45)]"
                     : "border-white/25 text-white/90 hover:text-amber-100 hover:bg-amber-400/14 hover:border-amber-300/60"
                 }
               `}
