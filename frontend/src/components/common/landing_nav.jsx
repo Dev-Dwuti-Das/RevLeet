@@ -9,6 +9,9 @@ export default function LandingNavbar() {
   const [starCount, setStarCount] = useState(0);
   const [hasStarred, setHasStarred] = useState(false);
   const [isStarring, setIsStarring] = useState(false);
+  const displayStarCount = Number.isFinite(Number(starCount))
+    ? Math.max(0, Math.trunc(Number(starCount)))
+    : 0;
   const navPill =
     "px-4 py-1.5 rounded-full text-sm font-medium tracking-wide heading-top3 transition-all duration-200 text-white/75 border border-transparent hover:text-white hover:bg-white/12 hover:border-white/20";
 
@@ -121,7 +124,9 @@ export default function LandingNavbar() {
               aria-label="Star RevLeet"
             >
               <Star size={19} strokeWidth={2.2} />
-              <span className="ms-2 mt-0.5 font-medium text-md">{starCount}</span>
+              <span className="ms-2 font-mono text-sm leading-none">
+                {displayStarCount}
+              </span>
             </button>
 
             <div className="relative">
