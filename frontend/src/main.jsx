@@ -3,6 +3,7 @@ import "../src/index.css";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { Toaster } from "sonner";
+import { Analytics } from "@vercel/analytics/react";
 import { AuthProvider } from "./context";
 import ProtectedRoute from "./ProtectedRoute";
 import "../src/index.css";
@@ -47,6 +48,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <AuthProvider>
     <RouterProvider router={router} />
+    <Analytics />
     <Toaster
       position="top-center"
       theme="dark"
