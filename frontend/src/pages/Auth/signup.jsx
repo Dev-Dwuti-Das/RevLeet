@@ -43,10 +43,10 @@ function Signup() {
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
-      <LandingNavbar></LandingNavbar>
+      {/* <LandingNavbar></LandingNavbar> */}
       {/* LEFT SIDE — SAME AS LOGIN */}
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">
-        <h1 className="text-5xl font-bold mb-6">Revleet</h1>
+        <div className="ms-20"><h1 className="text-5xl font-bold mb-6">Revleet</h1>
 
         <p className="text-gray-300 heading-bottom3 max-w-md mb-8">
           A smarter way to revise DSA problems using
@@ -70,7 +70,8 @@ function Signup() {
             <span className="w-2 h-2 rounded-full bg-purple-500" />
             Built for consistency, not cramming
           </li>
-        </ul>
+        </ul></div>
+        
       </div>
 
       {/* RIGHT SIDE — SAME BACKGROUND + BLOBS */}
@@ -121,11 +122,13 @@ function Signup() {
         {/* GLASS CARD — SAME AS LOGIN */}
         <div
           className="
+          mt-10
           w-full max-w-md
           bg-[#000000]/85
           border border-white/10
           rounded-3xl
-          p-8
+          p-8 
+          pt-5
           z-20
           
         "

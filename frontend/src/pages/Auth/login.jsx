@@ -49,12 +49,12 @@ function Login() {
 
   return (
     <div className="min-h-screen grid grid-cols-1 lg:grid-cols-2 bg-[#0b0b0b] text-white">
-      <LandingNavbar></LandingNavbar>
+      {/* <LandingNavbar></LandingNavbar> */}
       
       <div className="hidden lg:flex flex-col justify-center px-16 relative grid-bg">
         {/* Glow */}
         {/* <div className="absolute top-32 left-32 w-[800px] h-[600px] bg-purple-600/70 blur-[120px] z-0" /> */}
-
+       <div className=" ms-20 ">
         <h1 className="text-5xl font-bold mb-6">Revleet</h1>
 
         <p className="text-gray-300 heading-bottom3 max-w-md mb-8 z-1">
@@ -80,6 +80,8 @@ function Login() {
             Built for consistency, not cramming
           </li>
         </ul>
+         </div>
+        
       </div>
 
       <div className="flex items-center relative justify-center px-4 sm:px-6 py-24 lg:py-8 overflow-hidden">

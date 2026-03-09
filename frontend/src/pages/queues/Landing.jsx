@@ -461,14 +461,14 @@ export default function Landing() {
     </span>
 
     <div className="flex justify-center sm:justify-end gap-6 order-1 sm:order-none">
-      <a
+      {/* <a
         href="https://github.com/Dev-Dwuti-Das"
         target="_blank"
         rel="noopener noreferrer"
         
       >
         <Github size={18} />
-      </a>
+      </a> */}
 
       {/* <a
         href="https://www.linkedin.com/in/dev-dwuti-das-643a28277/"
