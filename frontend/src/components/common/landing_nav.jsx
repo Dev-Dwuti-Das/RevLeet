@@ -77,9 +77,9 @@ export default function LandingNavbar() {
           {/* LEFT — Logo */}
           <a href="/landing" aria-label="Go to home">
             <img
-              src="/logo.png"
+              src="logo_try.png"
               alt="Revleet logo"
-              className="tp-0 h-12 sm:h-14 w-auto object-contain"
+              className="tp-0 h-11 sm:h-12 w-auto object-contain"
             />
           </a>
 
