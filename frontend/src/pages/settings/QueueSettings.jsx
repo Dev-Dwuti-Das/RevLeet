@@ -2,11 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { useAuth } from "../../context.jsx";
-import { DEFAULT_BUFFER_SETTINGS, formatDuration } from "../../utils/queueSettings.js";
+import {
+  DEFAULT_BUFFER_SETTINGS,
+  SECONDS_PER_DAY,
+  daysToSeconds,
+  formatDuration,
+  secondsToDays,
+} from "../../utils/queueSettings.js";
 
 export default function QueueSettings() {
   const { isDemo } = useAuth();
-  const [form, setForm] = useState(DEFAULT_BUFFER_SETTINGS);
+  const [form, setForm] = useState({
+    Q1Days: secondsToDays(DEFAULT_BUFFER_SETTINGS.Q1Seconds),
+    Q3Days: secondsToDays(DEFAULT_BUFFER_SETTINGS.Q3Seconds),
+  });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [readOnly, setReadOnly] = useState(isDemo);
@@ -24,7 +33,11 @@ export default function QueueSettings() {
         const res = await axios.get("/api/queue-settings", {
           withCredentials: true,
         });
-        setForm(res.data?.settings || DEFAULT_BUFFER_SETTINGS);
+        const settings = res.data?.settings || DEFAULT_BUFFER_SETTINGS;
+        setForm({
+          Q1Days: secondsToDays(settings.Q1Seconds),
+          Q3Days: secondsToDays(settings.Q3Seconds),
+        });
         setReadOnly(Boolean(res.data?.readOnly));
       } catch (err) {
         console.error("Queue settings fetch failed:", err);
@@ -52,15 +65,19 @@ export default function QueueSettings() {
     }
 
     setSaving(true);
-    try {
+      try {
       const payload = {
-        Q1Seconds: Number(form.Q1Seconds),
-        Q3Seconds: Number(form.Q3Seconds),
+        Q1Seconds: daysToSeconds(form.Q1Days),
+        Q3Seconds: daysToSeconds(form.Q3Days),
       };
       const res = await axios.put("/api/queue-settings", payload, {
         withCredentials: true,
       });
-      setForm(res.data?.settings || payload);
+      const settings = res.data?.settings || payload;
+      setForm({
+        Q1Days: secondsToDays(settings.Q1Seconds),
+        Q3Days: secondsToDays(settings.Q3Seconds),
+      });
       toast.success("Queue settings saved");
     } catch (err) {
       console.error("Queue settings update failed:", err);
@@ -111,37 +128,37 @@ export default function QueueSettings() {
             <div className="grid gap-6">
               <label className="rounded-3xl border border-purple-500/20 bg-purple-500/5 p-5">
                 <span className="block text-sm font-semibold text-purple-200">Buffer 1</span>
-                <span className="mt-1 block text-sm text-zinc-400">Time in seconds before a solved item moves from Q1 to Q2.</span>
+                <span className="mt-1 block text-sm text-zinc-400">Time in days before a solved item moves from Q1 to Q2.</span>
                 <input
                   type="number"
-                  min="5"
-                  max={30 * 24 * 60 * 60}
-                  step="1"
-                  value={form.Q1Seconds}
-                  onChange={onChange("Q1Seconds")}
+                  min={5 / SECONDS_PER_DAY}
+                  max={30}
+                  step="0.0001"
+                  value={form.Q1Days}
+                  onChange={onChange("Q1Days")}
                   disabled={readOnly || saving}
                   className="mt-4 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-lg font-semibold text-white outline-none transition focus:border-purple-400/50 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <span className="mt-2 block text-xs uppercase tracking-[0.2em] text-purple-300/80">
-                  Current: {formatDuration(form.Q1Seconds)}
+                  Current: {formatDuration(daysToSeconds(form.Q1Days))}
                 </span>
               </label>
 
               <label className="rounded-3xl border border-indigo-500/20 bg-indigo-500/5 p-5">
                 <span className="block text-sm font-semibold text-indigo-200">Buffer 2</span>
-                <span className="mt-1 block text-sm text-zinc-400">Time in seconds before a solved item moves from Q3 to Q4.</span>
+                <span className="mt-1 block text-sm text-zinc-400">Time in days before a solved item moves from Q3 to Q4.</span>
                 <input
                   type="number"
-                  min="5"
-                  max={60 * 24 * 60 * 60}
-                  step="1"
-                  value={form.Q3Seconds}
-                  onChange={onChange("Q3Seconds")}
+                  min={5 / SECONDS_PER_DAY}
+                  max={60}
+                  step="0.0001"
+                  value={form.Q3Days}
+                  onChange={onChange("Q3Days")}
                   disabled={readOnly || saving}
                   className="mt-4 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-lg font-semibold text-white outline-none transition focus:border-indigo-400/50 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <span className="mt-2 block text-xs uppercase tracking-[0.2em] text-indigo-300/80">
-                  Current: {formatDuration(form.Q3Seconds)}
+                  Current: {formatDuration(daysToSeconds(form.Q3Days))}
                 </span>
               </label>
             </div>
@@ -165,11 +182,11 @@ export default function QueueSettings() {
             <div className="mt-5 space-y-4">
               <div className="rounded-3xl border border-purple-400/20 bg-purple-500/10 p-5">
                 <p className="text-sm font-semibold text-purple-200">Q1 -&gt; Q2</p>
-                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q1Seconds)}</p>
+                <p className="mt-2 text-3xl font-semibold text-white">{form.Q1Days} day{Number(form.Q1Days) === 1 ? "" : "s"}</p>
               </div>
               <div className="rounded-3xl border border-indigo-400/20 bg-indigo-500/10 p-5">
                 <p className="text-sm font-semibold text-indigo-200">Q3 -&gt; Q4</p>
-                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q3Seconds)}</p>
+                <p className="mt-2 text-3xl font-semibold text-white">{form.Q3Days} day{Number(form.Q3Days) === 1 ? "" : "s"}</p>
               </div>
             </div>
           </section>
