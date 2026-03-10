@@ -54,8 +54,8 @@ export default function QueueSettings() {
     setSaving(true);
     try {
       const payload = {
-        Q1Seconds: Number(form.Q1Seconds),
-        Q3Seconds: Number(form.Q3Seconds),
+        Q1Days: Number(form.Q1Days),
+        Q3Days: Number(form.Q3Days),
       };
       const res = await axios.put("/api/queue-settings", payload, {
         withCredentials: true,
@@ -111,37 +111,37 @@ export default function QueueSettings() {
             <div className="grid gap-6">
               <label className="rounded-3xl border border-purple-500/20 bg-purple-500/5 p-5">
                 <span className="block text-sm font-semibold text-purple-200">Buffer 1</span>
-                <span className="mt-1 block text-sm text-zinc-400">Time in seconds before a solved item moves from Q1 to Q2.</span>
+                <span className="mt-1 block text-sm text-zinc-400">Time in days before a solved item moves from Q1 to Q2.</span>
                 <input
                   type="number"
-                  min="5"
-                  max={30 * 24 * 60 * 60}
+                  min="1"
+                  max="150"
                   step="1"
-                  value={form.Q1Seconds}
-                  onChange={onChange("Q1Seconds")}
+                  value={form.Q1Days}
+                  onChange={onChange("Q1Days")}
                   disabled={readOnly || saving}
                   className="mt-4 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-lg font-semibold text-white outline-none transition focus:border-purple-400/50 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <span className="mt-2 block text-xs uppercase tracking-[0.2em] text-purple-300/80">
-                  Current: {formatDuration(form.Q1Seconds)}
+                  Current: {formatDuration(form.Q1Days)}
                 </span>
               </label>
 
               <label className="rounded-3xl border border-indigo-500/20 bg-indigo-500/5 p-5">
                 <span className="block text-sm font-semibold text-indigo-200">Buffer 2</span>
-                <span className="mt-1 block text-sm text-zinc-400">Time in seconds before a solved item moves from Q3 to Q4.</span>
+                <span className="mt-1 block text-sm text-zinc-400">Time in days before a solved item moves from Q3 to Q4.</span>
                 <input
                   type="number"
-                  min="5"
-                  max={60 * 24 * 60 * 60}
+                  min="1"
+                  max="150"
                   step="1"
-                  value={form.Q3Seconds}
-                  onChange={onChange("Q3Seconds")}
+                  value={form.Q3Days}
+                  onChange={onChange("Q3Days")}
                   disabled={readOnly || saving}
                   className="mt-4 w-full rounded-2xl border border-white/10 bg-black/30 px-4 py-3 text-lg font-semibold text-white outline-none transition focus:border-indigo-400/50 disabled:cursor-not-allowed disabled:opacity-60"
                 />
                 <span className="mt-2 block text-xs uppercase tracking-[0.2em] text-indigo-300/80">
-                  Current: {formatDuration(form.Q3Seconds)}
+                  Current: {formatDuration(form.Q3Days)}
                 </span>
               </label>
             </div>
@@ -155,7 +155,7 @@ export default function QueueSettings() {
                 {saving ? "Saving..." : "Save settings"}
               </button>
               <p className="text-sm text-zinc-500">
-                Existing waiting items are recalculated from their queue entry time after save.
+                Existing waiting items are recalculated from their queue entry time after save. Allowed range: 1 to 150 days.
               </p>
             </div>
           </section>
@@ -165,11 +165,11 @@ export default function QueueSettings() {
             <div className="mt-5 space-y-4">
               <div className="rounded-3xl border border-purple-400/20 bg-purple-500/10 p-5">
                 <p className="text-sm font-semibold text-purple-200">Q1 -&gt; Q2</p>
-                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q1Seconds)}</p>
+                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q1Days)}</p>
               </div>
               <div className="rounded-3xl border border-indigo-400/20 bg-indigo-500/10 p-5">
                 <p className="text-sm font-semibold text-indigo-200">Q3 -&gt; Q4</p>
-                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q3Seconds)}</p>
+                <p className="mt-2 text-3xl font-semibold text-white">{formatDuration(form.Q3Days)}</p>
               </div>
             </div>
           </section>

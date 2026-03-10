@@ -22,8 +22,8 @@ const loginSchema = z.object({
 });
 
 const queueSettingsSchema = z.object({
-  Q1Seconds: z.coerce.number().int().min(5).max(30 * 24 * 60 * 60),
-  Q3Seconds: z.coerce.number().int().min(5).max(60 * 24 * 60 * 60),
+  Q1Days: z.coerce.number().int().min(1).max(150),
+  Q3Days: z.coerce.number().int().min(1).max(150),
 });
 
 function getCookieOptions() {

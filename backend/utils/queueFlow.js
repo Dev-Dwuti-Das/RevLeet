@@ -2,24 +2,42 @@ import Account from "../models/Account.js";
 import Progress from "../models/progress.js";
 
 export const DEFAULT_BUFFER_SETTINGS = {
-  Q1Seconds: 30,
-  Q3Seconds: 15 * 24 * 60 * 60,
+  Q1Days: 1,
+  Q3Days: 15,
 };
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+function clampDays(value, fallback) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric)) return fallback;
+  return Math.min(150, Math.max(1, Math.round(numeric)));
+}
+
+function legacySecondsToDays(value, fallback) {
+  const numeric = Number(value);
+  if (!Number.isFinite(numeric) || numeric <= 0) return fallback;
+  return clampDays(Math.ceil(numeric / (24 * 60 * 60)), fallback);
+}
 
 export function getBufferSettings(account) {
   const raw = account?.bufferSettings || {};
   return {
-    Q1Seconds: Number(raw.Q1Seconds) > 0 ? Number(raw.Q1Seconds) : DEFAULT_BUFFER_SETTINGS.Q1Seconds,
-    Q3Seconds: Number(raw.Q3Seconds) > 0 ? Number(raw.Q3Seconds) : DEFAULT_BUFFER_SETTINGS.Q3Seconds,
+    Q1Days: raw.Q1Days != null
+      ? clampDays(raw.Q1Days, DEFAULT_BUFFER_SETTINGS.Q1Days)
+      : legacySecondsToDays(raw.Q1Seconds, DEFAULT_BUFFER_SETTINGS.Q1Days),
+    Q3Days: raw.Q3Days != null
+      ? clampDays(raw.Q3Days, DEFAULT_BUFFER_SETTINGS.Q3Days)
+      : legacySecondsToDays(raw.Q3Seconds, DEFAULT_BUFFER_SETTINGS.Q3Days),
   };
 }
 
 export function getQueueFlow(account) {
   const settings = getBufferSettings(account);
   return {
-    Q1: { type: "waiting", next: "Q2", delay: settings.Q1Seconds * 1000 },
+    Q1: { type: "waiting", next: "Q2", delay: settings.Q1Days * MS_PER_DAY },
     Q2: { type: "pending", next: "Q3" },
-    Q3: { type: "waiting", next: "Q4", delay: settings.Q3Seconds * 1000 },
+    Q3: { type: "waiting", next: "Q4", delay: settings.Q3Days * MS_PER_DAY },
     Q4: { type: "pending", next: "Q5" },
     Q5: { type: "done" },
   };

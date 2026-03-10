@@ -15,8 +15,8 @@ const dailySolvedSchema = new Schema({
 }, { _id: false });
 
 const bufferSettingsSchema = new Schema({
-  Q1Seconds: { type: Number, default: 30, min: 5 },
-  Q3Seconds: { type: Number, default: 15 * 24 * 60 * 60, min: 5 },
+  Q1Days: { type: Number, default: 1, min: 1, max: 150 },
+  Q3Days: { type: Number, default: 15, min: 1, max: 150 },
 }, { _id: false });
 
 const AccountSchema = new Schema({

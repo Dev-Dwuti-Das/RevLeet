@@ -1,4 +1,4 @@
-export default function WaitingQueueQ1({ data, delayLabel = "30 sec" }) {
+export default function WaitingQueueQ1({ data, delayLabel = "1 day" }) {
   const safeData = Array.isArray(data) ? data : [];
 
   const queue_count = safeData.reduce(

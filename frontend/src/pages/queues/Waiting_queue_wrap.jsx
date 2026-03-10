@@ -85,8 +85,8 @@ export default function WaitingQueues() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <WaitingQ1 data={data} delayLabel={formatDuration(settings.Q1Seconds)} />
-            <WaitingQ3 data={data} delayLabel={formatDuration(settings.Q3Seconds)} />
+            <WaitingQ1 data={data} delayLabel={formatDuration(settings.Q1Days)} />
+            <WaitingQ3 data={data} delayLabel={formatDuration(settings.Q3Days)} />
           </div>
         )}
       </div>
