@@ -1,6 +1,6 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
-import LandingNavbar from "../../components/common/landing_nav";
+
 export default function Landing() {
   const {loggedIn, enterDemo} = useAuth();
   const navigate = useNavigate();
@@ -26,21 +26,21 @@ export default function Landing() {
     };
 
     return (
-      
       <span
-  className={`
-    px-25 sm:px-5
-    py-3 sm:py-2.5
-    rounded-full
-    text-bold sm:text-sm
-    font-bold sm:font-medium
-    backdrop-blur-md
-    border
-    ${styles[tone]}
-  `}
->
-  {label}
-</span>
+        className={`
+          inline-flex min-w-[10rem] items-center justify-center
+          px-4 sm:px-5
+          py-3 sm:py-2.5
+          rounded-full
+          text-sm
+          font-bold sm:font-medium
+          backdrop-blur-md
+          border
+          ${styles[tone]}
+        `}
+      >
+        {label}
+      </span>
     );
   }
 
@@ -175,8 +175,7 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-[#05050a] text-white overflow-x-hidden">
-      <LandingNavbar></LandingNavbar>
-      <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6">
+      <section className="relative min-h-screen flex items-center justify-center px-4 pt-24 sm:px-6 sm:pt-0">
         <div
           className="
       absolute
@@ -245,13 +244,17 @@ export default function Landing() {
               Try Demo
             </button>
           </div>
+
         </div>
       </section>
 
       <section className="relative pt-20 sm:pt-32 border-none" id="whyrevleet">
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(124,58,237,0.18),transparent_55%)]" /> */}
-
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        <div className="pointer-events-none absolute inset-x-5 -top-4 flex justify-center px-4 lg:hidden">
+          <div className="w-full max-w-[300px] origin-center rotate-[-11deg] scale-[0.9] opacity-45 blur-[0.2px]">
+            <QueueCardLeft />
+          </div>
+        </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mb-4 heading-bottom1">
             LeetCode helps you{" "}
             <span className="text-violet-500 heading-top4 ">SOLVE</span>.
