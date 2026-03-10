@@ -220,6 +220,12 @@ export default function Landing() {
           <QueueCard />
         </div>
 
+        <div className="pointer-events-none absolute right-[-34%] top-20 flex justify-center px-4 lg:hidden">
+          <div className="w-[300px] origin-center rotate-[-11deg] scale-[0.9] opacity-40 blur-[0.2px]">
+            <QueueCardLeft />
+          </div>
+        </div>
+
         <div className="relative z-20 max-w-4xl text-center px-2 sm:px-6">
           <h1 className="text-4xl sm:text-5xl md:text-7xl tracking-tight leading-tight mb-5 sm:mb-6 font-inter">
             <span className="block heading-bottom text-white">
@@ -249,9 +255,9 @@ export default function Landing() {
       </section>
 
       <section className="relative pt-20 sm:pt-32 border-none" id="whyrevleet">
-        <div className="pointer-events-none absolute inset-x-5 -top-4 flex justify-center px-4 lg:hidden">
-          <div className="w-full max-w-[300px] origin-center rotate-[-11deg] scale-[0.9] opacity-45 blur-[0.2px]">
-            <QueueCardLeft />
+        <div className="pointer-events-none absolute left-[-34%] top-0 flex justify-center px-4 lg:hidden">
+          <div className="w-[300px] origin-center rotate-[11deg] scale-[0.9] opacity-35 blur-[0.2px]">
+            <QueueCard />
           </div>
         </div>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 text-center">
