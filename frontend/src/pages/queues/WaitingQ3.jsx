@@ -32,7 +32,7 @@ export default function WaitingQueueQ1({ data, delayLabel = "15 days" }) {
         <span>→</span>
         <span className="px-2 py-1 rounded-full border border-indigo-400/30 bg-indigo-500/20 text-indigo-200 font-semibold">Buffer 2</span>
         <span>→</span>
-        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Stable</span>
+        <span className="px-2 py-1 rounded-full border border-white/10 bg-white/5">Almost done</span>
       </div>
 
       <div className="mt-5 flex items-center justify-between rounded-2xl border border-white/10 bg-black/20 px-4 py-3">
