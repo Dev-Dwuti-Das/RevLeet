@@ -4,24 +4,33 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../../context";
 import { demoQueueData } from "../../demo/demoData";
+import { DEFAULT_BUFFER_SETTINGS, formatDuration } from "../../utils/queueSettings.js";
 
 export default function WaitingQueues() {
   const { isDemo } = useAuth();
   const [data, setdata] = useState({});
+  const [settings, setSettings] = useState(DEFAULT_BUFFER_SETTINGS);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
       if (isDemo) {
         setdata(demoQueueData);
+        setSettings(DEFAULT_BUFFER_SETTINGS);
         setLoading(false);
         return;
       }
       try {
-        const new_data = await axios.get("/api/gethomeinfo", {
-          withCredentials: true,
-        });
-        setdata(new_data.data.user_data);
+        const [homeRes, settingsRes] = await Promise.all([
+          axios.get("/api/gethomeinfo", {
+            withCredentials: true,
+          }),
+          axios.get("/api/queue-settings", {
+            withCredentials: true,
+          }),
+        ]);
+        setdata(homeRes.data.user_data);
+        setSettings(settingsRes.data?.settings || DEFAULT_BUFFER_SETTINGS);
       } catch (err) {
         console.log(err);
       } finally {
@@ -76,8 +85,8 @@ export default function WaitingQueues() {
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <WaitingQ1 data={data} />
-            <WaitingQ3 data={data} />
+            <WaitingQ1 data={data} delayLabel={formatDuration(settings.Q1Seconds)} />
+            <WaitingQ3 data={data} delayLabel={formatDuration(settings.Q3Seconds)} />
           </div>
         )}
       </div>

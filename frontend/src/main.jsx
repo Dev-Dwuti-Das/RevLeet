@@ -18,6 +18,7 @@ import Signup from "./pages/Auth/signup";
 import Home from "./pages/home/home_wrap";
 import WorkingQueues from "./pages/queues/Working_queue_wrap";
 import WaitingQueues from "./pages/queues/Waiting_queue_wrap";
+import QueueSettings from "./pages/settings/QueueSettings";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
           { path: "home", element: <Home /> },
           { path: "WorkingQueues", element: <WorkingQueues /> },
           { path: "WaitingQueues", element: <WaitingQueues /> },
+          { path: "settings", element: <QueueSettings /> },
         ],
       },
     ],

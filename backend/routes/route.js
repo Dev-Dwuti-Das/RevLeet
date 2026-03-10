@@ -7,7 +7,7 @@ import { googleAuthStart, googleAuthCallback } from "../controllers/userControll
 import { githubAuthStart, githubAuthCallback } from "../controllers/userController.js";
 import auth_jwt from "../middleware/auth.js";
 import  getquestions from "../controllers/controller.js";
-import { gethomeinfo } from "../controllers/userController.js";
+import { gethomeinfo, getQueueSettings, updateQueueSettings } from "../controllers/userController.js";
 import { handle_done } from "../utils/queueFlow.js";
 import { logoutController } from "../controllers/userController.js";
 import { addProjectStar, getProjectStars } from "../controllers/projectStarController.js";
@@ -19,6 +19,8 @@ const router = express.Router();
 
 // router.get('/listing', listing);
 router.get("/gethomeinfo", auth_jwt, gethomeinfo);
+router.get("/queue-settings", auth_jwt, getQueueSettings);
+router.put("/queue-settings", auth_jwt, updateQueueSettings);
 
 router.get("/questions",auth_jwt, getquestions);
 

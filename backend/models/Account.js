@@ -14,6 +14,11 @@ const dailySolvedSchema = new Schema({
   solved: { type: Number, default: 0 },
 }, { _id: false });
 
+const bufferSettingsSchema = new Schema({
+  Q1Seconds: { type: Number, default: 30, min: 5 },
+  Q3Seconds: { type: Number, default: 15 * 24 * 60 * 60, min: 5 },
+}, { _id: false });
+
 const AccountSchema = new Schema({
   name: {
     type: String,
@@ -65,6 +70,11 @@ const AccountSchema = new Schema({
   streak: { type: Number, default: 0 },
 
   lastActive: { type: Date },
+
+  bufferSettings: {
+    type: bufferSettingsSchema,
+    default: () => ({})
+  },
 });
 
 export default mongoose.model("Account", AccountSchema);

@@ -1,22 +1,40 @@
 import Account from "../models/Account.js";
 import Progress from "../models/progress.js";
 
-export const QUEUE_FLOW = {
-  Q1: { type: "waiting", next: "Q2", delay: 30 * 1000 },
-  Q2: { type: "pending", next: "Q3" },
-  Q3: { type: "waiting", next: "Q4", delay: 15 * 24 * 60 * 60 * 1000 },
-  Q4: { type: "pending", next: "Q5" },
-  Q5: { type: "done" },
+export const DEFAULT_BUFFER_SETTINGS = {
+  Q1Seconds: 30,
+  Q3Seconds: 15 * 24 * 60 * 60,
 };
 
-export function automoveat(queue) {
-  const flow = QUEUE_FLOW[queue];
+export function getBufferSettings(account) {
+  const raw = account?.bufferSettings || {};
+  return {
+    Q1Seconds: Number(raw.Q1Seconds) > 0 ? Number(raw.Q1Seconds) : DEFAULT_BUFFER_SETTINGS.Q1Seconds,
+    Q3Seconds: Number(raw.Q3Seconds) > 0 ? Number(raw.Q3Seconds) : DEFAULT_BUFFER_SETTINGS.Q3Seconds,
+  };
+}
+
+export function getQueueFlow(account) {
+  const settings = getBufferSettings(account);
+  return {
+    Q1: { type: "waiting", next: "Q2", delay: settings.Q1Seconds * 1000 },
+    Q2: { type: "pending", next: "Q3" },
+    Q3: { type: "waiting", next: "Q4", delay: settings.Q3Seconds * 1000 },
+    Q4: { type: "pending", next: "Q5" },
+    Q5: { type: "done" },
+  };
+}
+
+export const QUEUE_FLOW = getQueueFlow();
+
+export function automoveat(queue, account = null) {
+  const flow = getQueueFlow(account)[queue];
   if (!flow || flow.type !== "waiting") return null;
   return new Date(Date.now() + flow.delay);
 }
 
-function getDueAtFromEnteredAt(item) {
-  const flow = QUEUE_FLOW[item.queue];
+function getDueAtFromEnteredAt(item, account = null) {
+  const flow = getQueueFlow(account)[item.queue];
   if (!flow || flow.type !== "waiting") return null;
   if (!item.queueEnteredAt) return null;
   return new Date(new Date(item.queueEnteredAt).getTime() + flow.delay);
@@ -24,6 +42,8 @@ function getDueAtFromEnteredAt(item) {
 
 export async function autoMoveUserQueues(userId) {
   const now = new Date();
+  const account = await Account.findById(userId).select("bufferSettings");
+  const flowMap = getQueueFlow(account);
 
   const waitingItems = await Progress.find({
     user: userId,
@@ -31,15 +51,15 @@ export async function autoMoveUserQueues(userId) {
   });
 
   for (const item of waitingItems) {
-    const flow = QUEUE_FLOW[item.queue];
+    const flow = flowMap[item.queue];
     if (!flow || !flow.next) continue;
 
-    const expectedDueAt = getDueAtFromEnteredAt(item);
+    const expectedDueAt = getDueAtFromEnteredAt(item, account);
     const currentDueAt = item.autoMoveAt ? new Date(item.autoMoveAt) : null;
     const dueAt = expectedDueAt || currentDueAt;
     if (!dueAt) {
       item.queueEnteredAt = item.queueEnteredAt || now;
-      item.autoMoveAt = automoveat(item.queue);
+      item.autoMoveAt = automoveat(item.queue, account);
       await item.save();
       continue;
     }
@@ -90,7 +110,9 @@ export async function handle_done(req, res) {
       return res.status(404).json({ msg: "Progress not found" });
     }
 
-    const flow = QUEUE_FLOW[record.queue];
+    const account = await Account.findById(user).select("bufferSettings");
+    const flowMap = getQueueFlow(account);
+    const flow = flowMap[record.queue];
 
     if (!flow || flow.type !== "pending") {
       return res.status(400).json({
@@ -104,8 +126,8 @@ export async function handle_done(req, res) {
     record.queue = nextQueue;
     record.queueEnteredAt = new Date();
 
-    if (QUEUE_FLOW[nextQueue]?.type === "waiting") {
-      record.autoMoveAt = automoveat(nextQueue);
+    if (flowMap[nextQueue]?.type === "waiting") {
+      record.autoMoveAt = automoveat(nextQueue, account);
     } else {
       record.autoMoveAt = null;
     }

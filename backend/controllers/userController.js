@@ -4,8 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import crypto from "crypto";
 import axios from "axios";
-import { automoveat } from "../utils/queueFlow.js";
-import { QUEUE_FLOW } from "../utils/queueFlow.js";
+import { automoveat, getBufferSettings, getQueueFlow } from "../utils/queueFlow.js";
 import { demoHomeData } from "../utils/demoData.js";
 import { z } from "zod";
 
@@ -20,6 +19,11 @@ const signupSchema = z.object({
 const loginSchema = z.object({
   email: z.string().trim().email("Invalid email format"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+const queueSettingsSchema = z.object({
+  Q1Seconds: z.coerce.number().int().min(5).max(30 * 24 * 60 * 60),
+  Q3Seconds: z.coerce.number().int().min(5).max(60 * 24 * 60 * 60),
 });
 
 function getCookieOptions() {
@@ -317,6 +321,8 @@ export async function handletick(req, res) {
 
     const { question_id } = req.body;
     const user = req.user;
+    const account = await Account.findById(user);
+    const flowMap = getQueueFlow(account);
 
     let record = await progress.findOne({ user, question: question_id });
 
@@ -329,8 +335,8 @@ export async function handletick(req, res) {
     if (record) {
       record.isDone = true;
       record.queueEnteredAt = new Date();
-      if (QUEUE_FLOW[record.queue]?.type === "waiting") {
-        record.autoMoveAt = automoveat(record.queue);
+      if (flowMap[record.queue]?.type === "waiting") {
+        record.autoMoveAt = automoveat(record.queue, account);
       } else {
         record.autoMoveAt = null;
       }
@@ -343,12 +349,9 @@ export async function handletick(req, res) {
         queue: "Q1",
         isDone: true,
         queueEnteredAt: new Date(),
-        autoMoveAt: automoveat("Q1"),
+        autoMoveAt: automoveat("Q1", account),
       });
     }
-
-
-    const account = await Account.findById(user);
 
     if (account) {
       const now = new Date();
@@ -485,7 +488,7 @@ export async function gethomeinfo(req, res) {
       .populate("question");
 
     const account = await Account.findById(userid).select(
-      "dailySolved streak queueCounts totalSolved"
+      "dailySolved streak queueCounts totalSolved bufferSettings"
     );
     res.status(200).json({
       user_data,
@@ -493,6 +496,69 @@ export async function gethomeinfo(req, res) {
     });
   } catch (err) {
     res.status(500).json({ msg: "error" });
+  }
+}
+
+export async function getQueueSettings(req, res) {
+  try {
+    if (req.isDemo) {
+      return res.status(200).json({
+        settings: getBufferSettings(),
+        readOnly: true,
+      });
+    }
+
+    const account = await Account.findById(req.user).select("bufferSettings");
+    return res.status(200).json({
+      settings: getBufferSettings(account),
+      readOnly: false,
+    });
+  } catch (err) {
+    console.error("Queue settings fetch error:", err);
+    return res.status(500).json({ msg: "Could not fetch queue settings" });
+  }
+}
+
+export async function updateQueueSettings(req, res) {
+  try {
+    if (req.isDemo) {
+      return res.status(403).json({ msg: "Demo mode is read-only" });
+    }
+
+    const parsed = queueSettingsSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ msg: parsed.error.issues[0].message });
+    }
+
+    const account = await Account.findById(req.user);
+    if (!account) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    account.bufferSettings = parsed.data;
+    await account.save();
+
+    const flowMap = getQueueFlow(account);
+    const waitingItems = await progress.find({
+      user: req.user,
+      queue: { $in: ["Q1", "Q3"] },
+    });
+
+    for (const item of waitingItems) {
+      if (!item.queueEnteredAt || flowMap[item.queue]?.type !== "waiting") continue;
+      item.autoMoveAt = new Date(
+        new Date(item.queueEnteredAt).getTime() + flowMap[item.queue].delay
+      );
+      await item.save();
+    }
+
+    return res.status(200).json({
+      msg: "Queue settings updated",
+      settings: getBufferSettings(account),
+    });
+  } catch (err) {
+    console.error("Queue settings update error:", err);
+    return res.status(500).json({ msg: "Could not update queue settings" });
   }
 }
 

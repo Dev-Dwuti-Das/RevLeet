@@ -58,6 +58,7 @@ export default function Navbar() {
               <Link to="/home">Home</Link>
               <Link to="/WorkingQueues">WorkingQ</Link>
               <Link to="/WaitingQueues">WaitingQ</Link>
+              <Link to="/settings">Settings</Link>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-4 relative">
@@ -94,6 +95,7 @@ export default function Navbar() {
             <Link to="/home" className="block text-white" onClick={() => setOpen(false)}>Home</Link>
             <Link to="/WorkingQueues" className="block text-white" onClick={() => setOpen(false)}>WorkingQ</Link>
             <Link to="/WaitingQueues" className="block text-white" onClick={() => setOpen(false)}>WaitingQ</Link>
+            <Link to="/settings" className="block text-white" onClick={() => setOpen(false)}>Settings</Link>
             <button
               onClick={() => setShowLogoutConfirm(true)}
               className="inline-flex items-center rounded-full border border-red-400/35 bg-red-500/10 px-4 py-1.5 text-sm font-semibold text-red-300 transition hover:bg-red-500/20 hover:text-red-200"

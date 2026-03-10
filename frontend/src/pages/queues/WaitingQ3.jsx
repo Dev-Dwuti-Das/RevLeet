@@ -1,4 +1,4 @@
-export default function WaitingQueueQ1({ data }) {
+export default function WaitingQueueQ1({ data, delayLabel = "15 days" }) {
   const safeData = Array.isArray(data) ? data : [];
 
   const queue_count = safeData.reduce(
@@ -41,7 +41,7 @@ export default function WaitingQueueQ1({ data }) {
           <p className="text-xs text-zinc-400 mt-1">questions waiting</p>
         </div>
         <p className="text-xs font-semibold px-3 py-1 rounded-full border border-indigo-400/25 bg-indigo-500/10 text-indigo-200">
-          15 days delay
+          {delayLabel} delay
         </p>
       </div>
 
