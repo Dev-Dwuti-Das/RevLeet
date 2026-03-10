@@ -41,7 +41,7 @@ export default function WaitingQueueQ1({ data }) {
           <p className="text-xs text-zinc-400 mt-1">questions waiting</p>
         </div>
         <p className="text-xs font-semibold px-3 py-1 rounded-full border border-purple-400/25 bg-purple-500/10 text-purple-200">
-          7 days delay
+          30 sec delay
         </p>
       </div>
 

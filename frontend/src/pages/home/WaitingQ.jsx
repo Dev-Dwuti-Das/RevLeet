@@ -31,7 +31,7 @@ function WaitingQ() {
       <p className="text-4xl font-bold text-purple-500/90 opacity-75 mt-3">3 questions</p>
 
       <p className="text-gray-400 text-sm mt-2">
-        7 days buffer 
+        30 sec buffer
       </p>
     </div>
   );
