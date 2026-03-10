@@ -383,6 +383,38 @@ export default function Landing() {
         </div>
       </section>
 
+      <section className="relative px-4 sm:px-6 pb-18 mt-10 sm:pb-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.14),_transparent_28%),linear-gradient(180deg,rgba(10,10,14,0.92),rgba(5,5,8,0.98))] p-6 sm:p-8 md:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
+            <div className="max-w-3xl">
+              <p className="text-xs uppercase tracking-[0.35em] text-white/45">
+                Tutorial
+              </p>
+              <h2 className="mt-3 text-3xl sm:text-4xl font-semibold text-white heading-bottom">
+                See Revleet in action
+              </h2>
+              <p className="mt-3 text-base sm:text-lg text-gray-400">
+                A quick walkthrough of the full workflow, from solving a question to moving it through Buffer 1, Warm, Buffer 2, and Almost done.
+              </p>
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/60 shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
+              <div className="aspect-video w-full">
+                <iframe
+                  className="h-full w-full"
+                  src="https://www.youtube-nocookie.com/embed/bbFtQFUXoR4"
+                  title="Revleet tutorial video"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="relative py-12 sm:py-15 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0 bg-[#0d0d11]" />
         <div
@@ -451,38 +483,6 @@ export default function Landing() {
             <a href="/about" className={buttonSecondary}>
               See the method
             </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="relative px-4 sm:px-6 pb-18 sm:pb-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.14),_transparent_28%),linear-gradient(180deg,rgba(10,10,14,0.92),rgba(5,5,8,0.98))] p-6 sm:p-8 md:p-10 shadow-[0_30px_90px_rgba(0,0,0,0.45)]">
-            <div className="max-w-3xl">
-              <p className="text-xs uppercase tracking-[0.35em] text-white/45">
-                Tutorial
-              </p>
-              <h2 className="mt-3 text-3xl sm:text-4xl font-semibold text-white heading-bottom">
-                See Revleet in action
-              </h2>
-              <p className="mt-3 text-base sm:text-lg text-gray-400">
-                A quick walkthrough of the full workflow, from solving a question to moving it through Buffer 1, Warm, Buffer 2, and Almost done.
-              </p>
-            </div>
-
-            <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/60 shadow-[0_24px_80px_rgba(0,0,0,0.55)]">
-              <div className="aspect-video w-full">
-                <iframe
-                  className="h-full w-full"
-                  src="https://www.youtube-nocookie.com/embed/bbFtQFUXoR4"
-                  title="Revleet tutorial video"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerPolicy="strict-origin-when-cross-origin"
-                  allowFullScreen
-                />
-              </div>
-            </div>
           </div>
         </div>
       </section>
