@@ -1,17 +1,14 @@
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import LandingNavbar from "../../components/common/landing_nav";
-import { Github, Linkedin } from "lucide-react";
 export default function Landing() {
   const {loggedIn, enterDemo} = useAuth();
   const navigate = useNavigate();
   const buttonBase =
-    "inline-flex items-center justify-center rounded-full border font-bold sm:font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
+    "inline-flex w-full sm:w-auto items-center justify-center rounded-full border px-6 sm:px-9 py-3 text-sm sm:text-base text-center font-bold sm:font-semibold tracking-wide backdrop-blur-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-300/60";
   const buttonPrimary =
-    `${buttonBase} px-10 sm:px-9 py-2.5 sm:py-3 text-sm sm:text-base text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
+    `${buttonBase} text-white bg-black/40 border-white/30 hover:bg-white/18 hover:border-white/45`;
   const buttonSecondary = `${buttonPrimary} !font-normal`;
-  const iconButton =
-    "inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-white/10 text-gray-300 backdrop-blur-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] transition-all duration-200 hover:scale-105 hover:border-white/40 hover:bg-white/18 hover:text-white";
 
   if (loggedIn) return <Navigate to="/home" replace />;
 
@@ -240,7 +237,7 @@ export default function Landing() {
             schedules revisions so concepts stick for interviews.
           </p>
 
-          <div className="flex justify-center gap-5 flex-wrap">
+          <div className="mx-auto flex w-full max-w-sm flex-col justify-center gap-4 sm:max-w-none sm:flex-row sm:gap-5">
             <a href="/signup" className={buttonPrimary}>
               Start Revising
             </a>
@@ -438,7 +435,7 @@ export default function Landing() {
             last‑minute cramming.
           </p>
 
-          <div className="flex items-center justify-center gap-4 flex-wrap">
+          <div className="mx-auto flex w-full max-w-sm flex-col items-stretch justify-center gap-4 sm:max-w-none sm:flex-row sm:items-center">
             <a href="/signup" className={buttonPrimary}>
               Get Started Free
             </a>
@@ -460,25 +457,7 @@ export default function Landing() {
       Built with intent. © {new Date().getFullYear()} Revleet
     </span>
 
-    <div className="flex justify-center sm:justify-end gap-6 order-1 sm:order-none">
-      {/* <a
-        href="https://github.com/Dev-Dwuti-Das"
-        target="_blank"
-        rel="noopener noreferrer"
-        
-      >
-        <Github size={18} />
-      </a> */}
-
-      {/* <a
-        href="https://www.linkedin.com/in/dev-dwuti-das-643a28277/"
-        target="_blank"
-        rel="noopener noreferrer"
-        
-      >
-        <Linkedin size={18} />
-      </a> */}
-    </div>
+    <div className="order-1 sm:order-none" />
 
   </div>
 </footer>

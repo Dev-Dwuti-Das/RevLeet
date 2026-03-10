@@ -9,20 +9,6 @@ export async function connectDB() {
     process.exit(1);
   }
 }
-
-// export const sample_user_data = [{
-//     "name": "devdas",
-//     "email": "devdas@example.com",
-//     "profile": {
-//       "fullName": "Dev D. Das",
-//       "avatarUrl": "https://example.com/avatars/devdas.png",
-//       "bio": "Founder of Sprucial, passionate about AI and coding humor reels."
-//     },
-//     "totalSolved": 120,
-//     "streak": 12,
-//     "lastActive": "2025-10-21T18:45:00.000Z"
-//   }]
-
 export const mockQuestions =[
   {
     "questionNumber": 329,
@@ -353,4 +339,3 @@ export const mockQuestions =[
 
 
   
-

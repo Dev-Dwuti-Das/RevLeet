@@ -7,7 +7,6 @@
     "dev": "node src/server.js",
     "start": "node src/server.js"
   },
-  "author": "Dev Dwuti Das",
   "license": "ISC",
   "description": "",
   "dependencies": {
