@@ -1,6 +1,6 @@
 # Revleet
 
-**Revleet** is a system designed to turn scattered studying into **structured knowledge accumulation**.
+**Revleet** is a system designed to turn scattered DSA into **structured knowledge accumulation**.
 
 Most people don't fail to learn because they lack intelligence.  
 They fail because they lack **a system**.
