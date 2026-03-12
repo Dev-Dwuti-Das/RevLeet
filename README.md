@@ -1,63 +1,179 @@
 # Revleet
 
-Revleet is a structured revision and learning system designed to help users retain knowledge using systematic revision cycles instead of chaotic studying.
+**Revleet** is a system designed to turn scattered studying into **structured knowledge accumulation**.
 
-It focuses on long-term memory retention through organized queues and scheduled revision.
+Most people don't fail to learn because they lack intelligence.  
+They fail because they lack **a system**.
 
----
+Revleet provides that system.
 
-## Problem
-
-Most people study in an unstructured way:
-
-- They learn concepts once and forget them quickly
-- Revision is inconsistent
-- Notes are scattered across different apps
-- There is no system to track retention
-
-Revleet solves this by enforcing structured revision cycles.
+It focuses on **long-term retention**, **structured revision cycles**, and **minimal friction learning**.
 
 ---
 
-## Features
+# Why Revleet Exists
+
+The modern learning workflow is broken.
+
+People typically:
+
+• learn something once  
+• feel productive  
+• forget it within days  
+
+Notes apps store information.  
+Task managers track work.  
+Flashcard apps isolate learning.
+
+None of them enforce **structured reinforcement over time**.
+
+Revleet was built to solve exactly that.
+
+---
+
+# Core Idea
+
+Learning compounds only when concepts are revisited at the right time.
+
+Revleet implements a structured revision flow:
+
+```
+Learn → Review → Delay → Reappear → Reinforce
+```
+
+Concepts resurface when your memory is about to fade.
+
+This transforms short-term effort into **long-term knowledge**.
+
+---
+
+# Key Features
 
 ### Structured Revision Queues
-Organize topics into queues instead of random notes.
 
-### Spaced Repetition
-Concepts reappear after specific intervals to strengthen memory retention.
+Concepts are organized into queues rather than chaotic lists.
 
-### Smart Revision Scheduling
-Revleet automatically determines when a topic should appear again for revision.
+This allows predictable learning workflows.
 
-### Progress Tracking
-Users can track how consistently they revise concepts.
+---
+
+### Spaced Reinforcement
+
+Topics reappear after intelligent delay cycles.
+
+Example:
+
+```
+Day 1 → Day 3 → Day 7 → Day 21
+```
+
+Each cycle strengthens memory.
+
+---
+
+### Smart Scheduling
+
+Revleet automatically decides when a concept should appear again for revision.
+
+No manual tracking required.
+
+---
 
 ### Minimal Interface
-Focused design without distractions.
+
+The interface removes unnecessary complexity.
+
+No clutter.  
+No productivity theatre.
+
+Just learning.
 
 ---
 
-## Tech Stack
+# Tech Stack
 
-Frontend  
-- React
+**Frontend**
 
-Backend  
-- Node.js
-- Express
+React
 
-Database  
-- MongoDB Atlas
+**Backend**
 
-Deployment  
-- Render
+Node.js  
+Express
+
+**Database**
+
+MongoDB Atlas
+
+**Deployment**
+
+Render
 
 ---
 
-## Installation
+# Project Structure
+
+```
+revleet/
+│
+├── client/        # React frontend
+├── server/        # Node.js backend
+├── api/           # API routes
+├── models/        # Database schemas
+└── utils/         # Core learning logic
+```
+
+---
+
+# Getting Started
 
 Clone the repository
 
 ```bash
 git clone https://github.com/yourusername/revleet.git
+```
+
+Navigate into the project
+
+```bash
+cd revleet
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+---
+
+# Who This Is For
+
+Revleet is built for people who care about **deep learning**:
+
+• students mastering technical subjects  
+• developers learning DSA  
+• competitive exam aspirants  
+• anyone serious about knowledge retention
+
+---
+
+# Philosophy
+
+Revleet is based on one simple belief:
+
+> Knowledge should compound like interest.
+
+Small daily reinforcement leads to exponential understanding over time.
+
+---
+
+# License
+
+MIT
