@@ -489,14 +489,31 @@ export default function Landing() {
 
 <footer className="border-t border-white/10 bg-black/30 backdrop-blur-sm">
   <div className="mx-auto grid w-full max-w-6xl grid-cols-1 sm:grid-cols-3 items-center gap-3 sm:gap-0 px-4 sm:px-6 py-3 sm:py-2 text-sm text-gray-400">
-
-    <div className="hidden sm:block" />
+    <div className="order-1 flex justify-center sm:order-none sm:justify-start">
+      <a
+        href="https://github.com/Dev-Dwuti-Das/RevLeet"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center rounded-full border border-yellow-500/50 px-4 py-1.5 text-sm font-medium text-yellow-400 transition hover:border-white/30 hover:text-[#E6C65A]"
+      >
+        Star on GitHub ?
+      </a>
+    </div>
 
     <span className="text-center order-2 sm:order-none">
       Built with intent. © {new Date().getFullYear()} Revleet
     </span>
 
-    <div className="order-1 sm:order-none" />
+    <div className="order-3 flex justify-center sm:order-none sm:justify-end">
+      <a
+        href="https://github.com/Dev-Dwuti-Das"
+        target="_blank"
+        rel="noreferrer"
+        className="transition hover:text-white"
+      >
+        GitHub
+      </a>
+    </div>
 
   </div>
 </footer>
